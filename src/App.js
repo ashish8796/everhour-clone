@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import Routes from "./Pages/Routes";
 import styled from "styled-components";
 
