@@ -10,7 +10,9 @@
 6. Start Coding.
 
 Always first push your code to `project-demo` branch and check that how is the project look and functioning work? Then create a PR.
-You can see the changes in the project by visiting the following link:- https://ashish8796.github.io/unit-3-project/
+You can see the changes in the project by visiting the following link:-
+
+# https://ashish8796.github.io/unit-3-project/
 
 # Code merging instruction
 
