@@ -1,8 +1,8 @@
 const initState = {};
 
-const ACTION = "ACTION";
+const ACTION = 'ACTION';
 
-export default function homeReducer(state, { type, payload }) {
+export default function homeReducer(state = initState, { type, payload }) {
   switch (type) {
     case ACTION:
       return {};
