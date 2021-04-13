@@ -1,6 +1,6 @@
 const initState = {};
 
-const ACTION = "ACTION";
+const ACTION = 'ACTION';
 
 export default function homeReducer(state=initState, { type, payload }) {
   switch (type) {
