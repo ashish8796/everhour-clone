@@ -1,9 +1,14 @@
 import Axios from "axios";
 
+const apiKey = env.process.REACT_APP_API_KEY;
+
+console.log(apiKey);
+
 const axios = Axios.create({
-  baseURL: "",
+  baseURL: "https://api.everhour.com",
   headers: {
     "content-type": "application/json",
+    "X-Api-Key": apiKey,
   },
 });
 
