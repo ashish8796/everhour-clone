@@ -2,7 +2,7 @@
 
 # Instructions to kick start the project
 
-1. Clone the repo `git clone https://github.com/ashish8796/unit-3-project.git`.
+1. Clone the repo `https://github.com/ashish8796/everhour-clone.git`.
 2. Run `npm i` to install all dependencies of the project locally.
 3. Fetch project demo branch `git fetch project-demo`.
 4. Make a branch by your name and project name like `git branch ashish-project-name`.
