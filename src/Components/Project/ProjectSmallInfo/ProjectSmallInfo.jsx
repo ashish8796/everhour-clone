@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/ProjectSmallInfo.module.css';
+import styles from './ProjectSmallInfo.module.css';
 
 const ProjectSmallInfo = () => {
     return (
