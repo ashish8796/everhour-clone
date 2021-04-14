@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { setAllProjects } from "../../store/projects/actions";
+import MainpageNav from "../MainpageNavbar/MainpageNav";
 import SearchProject from "./SearchProject";
 import Timer from "./Timer";
 
@@ -23,6 +24,8 @@ export default function Time() {
   }, [dispatch]);
 
   return (
+    <div>
+      <MainpageNav/>
     <TimeWrapper className="flex-column align-center">
       <CurrentDataCont>
         <CurrentProject>{currentProject?.name}</CurrentProject>
@@ -35,6 +38,7 @@ export default function Time() {
         <Timer />
       </FeatureSection>
     </TimeWrapper>
+    </div>
   );
 }
 

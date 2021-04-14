@@ -39,3 +39,11 @@ export const postData = () => {
 export const deleteData = () => {
   return axios.delete("/endPoint");
 };
+
+export const getTimer = () => {
+  return axios.get("/team/timers");
+};
+
+export const getTimeSheet = () => {
+  return axios.get("/timecards?from=2020-10-01&to=2020-11-01");
+};

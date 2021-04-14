@@ -1,3 +1,4 @@
+import MainpageNav from '../Components/MainpageNavbar/MainpageNav';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setAllProjects } from '../../store/projects/actions';
@@ -29,6 +30,7 @@ const Project = () => {
     const projects = useSelector((state) => state.projects, shallowEqual);
     console.log(projects.projects)
     return (
+        <div><MainpageNav/>
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
                 <h3>Project</h3>
@@ -60,6 +62,7 @@ const Project = () => {
                     <ProjectSmallInfo key={el.id} {...el}/>
                 ))}
             </div>
+        </div>
         </div>
     )
 }
