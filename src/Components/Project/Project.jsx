@@ -15,7 +15,7 @@ const Project = () => {
     }, [dispatch]);
 
     const createData = {
-        "name": "Clone of Hello",
+        "name": "Clone of Hi",
         "type": "board",
         "users": [
           1304,

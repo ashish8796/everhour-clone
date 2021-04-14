@@ -1,15 +1,10 @@
-<<<<<<< HEAD
-import { getAllProjects } from "./../../api/api";
-import { createProjects } from "./../../api/api";
+import { createProjects, getAllProjects, getTasksOfProject } from "./../../api/api";
 import {
   CREATE_ALL_PROJECTS,
   CREATE_PROJECTS_ERROR,
   CREATE_PROJECTS_LOADING,
 } from "./actionsTypes";
 
-=======
-import { getAllProjects, getTasksOfProject } from "./../../api/api";
->>>>>>> d2f5041810822950d8159b4fab55e74887b316f1
 import {
   SET_ALL_PROJECTS,
   SET_PROJECTS_ERROR,
