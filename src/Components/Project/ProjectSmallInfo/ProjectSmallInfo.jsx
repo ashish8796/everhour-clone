@@ -1,15 +1,15 @@
 import React from 'react';
 import styles from './ProjectSmallInfo.module.css';
 
-const ProjectSmallInfo = () => {
+const ProjectSmallInfo = ({name, createdAt}) => {
     return (
         <div className={styles.divPartMain}>
             <div>
                 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt=""/>
             </div>
             <div>
-                <h6>Bio</h6>
-                <p>Prasun</p>
+                <h6>{name}</h6>
+                <p>{createdAt}</p>
             </div>
             <div title="Favourite">
                 <input type="checkbox"/>
