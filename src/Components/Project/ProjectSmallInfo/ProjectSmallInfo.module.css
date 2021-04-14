@@ -1,6 +1,8 @@
 .divPartMain {
-  background-color: rgba(243, 243, 243, 0.562);
+  background-color: rgba(243, 243, 243, 0.267);
   display: flex;
+  max-width: 96%;
+  margin-bottom: 2px;
 }
 .divPartMain > div {
   padding: 1%;
@@ -44,7 +46,7 @@
   margin-left: 5px;
 }
 .divPartMain > div > button {
-  background-color: rgba(105, 105, 105, 0.397);
+  background-color: rgba(189, 188, 188, 0.308);
   padding: 5% 12%;
   border-radius: 20px;
   font-size: 16px;

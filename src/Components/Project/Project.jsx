@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../css/project.module.css';
-import { ProjectSmallInfo } from './ProjectSmallInfo';
+import styles from './project.module.css'
+import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
 
 const Project = () => {
 

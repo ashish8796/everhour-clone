@@ -62,3 +62,7 @@
 }
 
 /* div3 design */
+.divProject3 {
+  max-height: 450px;
+  overflow: auto;
+}
