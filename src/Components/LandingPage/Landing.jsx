@@ -7,10 +7,11 @@ import { Review } from './Review/Review'
 import { WhatsInside } from './WhatsInside/WhatsInside'
 
 const Container = styled.div`
-  position:absolute;
-  top:140px;
+  /* position:absolute; */
+  margin-top:140px;
+  /* top:140px;
   left:0px;
-  width:100%;
+  width:100%; */
   &  > div{
     margin:auto;
   }
