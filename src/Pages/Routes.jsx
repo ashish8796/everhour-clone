@@ -3,6 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Time from "./Time";
 import { Project } from "./Project";
+import TeamTimer from "./TeamTimer";
+import TeamTimesheet from "./TeamTimesheet";
+import TeamMembers from "./TeamMembers";
 
 export default function Routes() {
   return (
@@ -15,7 +18,17 @@ export default function Routes() {
         <Time />
       </Route>
 
-      <Route path="/project" exact>
+      <Route exact path="/timer">
+        <TeamTimer/>
+      </Route>
+      <Route exact path="/timesheet">
+        <TeamTimesheet/>
+      </Route>
+      <Route exact path="/members">
+        <TeamMembers/>
+      </Route>
+
+      <Route path="/projects" exact>
         <Project />
       </Route>
     </Switch>

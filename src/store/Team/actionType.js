@@ -1,0 +1,10 @@
+// getting Timers info
+
+export const TIMERREQUEST = "TIMERREQUEST";
+export const TIMERSUCCESS = "TIMERSUCCESS";
+export const TIMERFAILURE = "TIMERFAILURE";
+
+//getting TimeSheets info
+export const TIMESHEETREQUEST = "TIMESHEETREQUEST";
+export const TIMESHEETSUCCESS = "TIMESHEETSUCCESS";
+export const TIMESHEETFAILURE = "TIMESHEETFAILURE";

@@ -1,10 +1,12 @@
 import React from 'react';
+import MainpageNav from '../Components/MainpageNavbar/MainpageNav';
 import styles from '../css/project.module.css';
 import { ProjectSmallInfo } from './ProjectSmallInfo';
 
 const Project = () => {
 
     return (
+        <div><MainpageNav/>
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
                 <h3>Project</h3>
@@ -38,6 +40,7 @@ const Project = () => {
                 <ProjectSmallInfo />
                 <ProjectSmallInfo />
             </div>
+        </div>
         </div>
     )
 }
