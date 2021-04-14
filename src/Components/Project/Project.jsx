@@ -1,4 +1,4 @@
-import MainpageNav from '../Components/MainpageNavbar/MainpageNav';
+import MainpageNav from "../MainpageNavbar/MainpageNav"
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setAllProjects } from '../../store/projects/actions';
