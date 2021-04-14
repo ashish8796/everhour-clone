@@ -1,5 +1,5 @@
 .divProjectMain {
-  background-color: rgba(255, 255, 255, 0.459);
+  background-color: rgba(255, 255, 255, 0.363);
   padding: 3%;
   max-width: 82%;
   margin: auto;
@@ -16,13 +16,20 @@
   font-weight: 500;
   padding: 1%;
 }
+.divProject1 > input {
+  margin-left: auto;
+  padding: 2%;
+  margin-right: 4%;
+  border-radius: 40px;
+  background-color: rgba(241, 220, 220, 0.432);
+  color: black;
+}
 .divProject1 > button {
   background-color: rgba(4, 158, 4, 0.671);
   color: white;
   font-size: 16px;
   padding: 0 2%;
   margin-right: 3%;
-  margin-left: auto;
 }
 
 /* project div 2 */
