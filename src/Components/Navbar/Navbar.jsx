@@ -47,9 +47,9 @@ const Nav = styled.nav`
    display:flex;
    justify-content:space-between;
    align-items:center;
-   width:96%;
+   width:100%;
    margin:auto;
-   padding:40px 20px 20px;
+   padding:40px 60px 20px;
  }
  ul {
    display:flex;

@@ -1,16 +1,40 @@
-import React from 'react';
 import MainpageNav from '../Components/MainpageNavbar/MainpageNav';
-import styles from '../css/project.module.css';
-import { ProjectSmallInfo } from './ProjectSmallInfo';
+import React, { useEffect } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { setAllProjects } from '../../store/projects/actions';
+import { createAllProjects } from '../../store/projects/actions';
+import styles from './project.module.css'
+import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
 
 const Project = () => {
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+      (async () => {
+        dispatch(setAllProjects());
+      })();
+    }, [dispatch]);
+
+    const createData = {
+        "name": "Clone of Hi",
+        "type": "board",
+        "users": [
+          1304,
+          1543
+        ]
+    }
+    const handleCreateProject = () => {
+        dispatch(createAllProjects(createData));
+    }
+
+    const projects = useSelector((state) => state.projects, shallowEqual);
+    console.log(projects.projects)
     return (
         <div><MainpageNav/>
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
                 <h3>Project</h3>
-                <button>Create Project</button>
+                <button onClick={handleCreateProject}>Create Project</button>
             </div>
             <div className={styles.divProject2}>
                 <div className={styles.divProject2sub1}>
@@ -34,11 +58,9 @@ const Project = () => {
                 </div>
             </div>
             <div className={styles.divProject3}>
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
+                {projects.projects.length>0 && projects.projects.map((el)=>(
+                    <ProjectSmallInfo key={el.id} {...el}/>
+                ))}
             </div>
         </div>
         </div>

@@ -13,7 +13,19 @@ const axios = Axios.create({
 });
 
 export const getAllProjects = () => {
-  return axios.get("/projects");
+   return axios.get("/projects");
+};
+
+export const createProjects = (createData) => {
+  console.log(createData);
+  return axios.post("/projects",{
+    name: createData.name,
+    type: createData.type
+  });
+}
+
+export const getTasksOfProject = (project_id) => {
+  return axios.get(`projects/${project_id}/tasks`);
 };
 
 export const getData = () => {

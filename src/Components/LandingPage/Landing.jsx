@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Blog } from './Blog/Blog'
+import { Integeration } from './Integeration/Integeration'
 import { Intro } from './Intro/Intro'
+import { Review } from './Review/Review'
 import { WhatsInside } from './WhatsInside/WhatsInside'
 
 const Container = styled.div`
@@ -9,9 +12,7 @@ const Container = styled.div`
   left:0px;
   width:100%;
   &  > div{
-    /* width:70%; */
     margin:auto;
-    /* border:1px solid red; */
   }
 `
 
@@ -21,6 +22,9 @@ const Landing = () => {
     <div>
       <Intro />
       <WhatsInside />
+      <Integeration />
+      <Review />
+      <Blog />
     </div>
   </Container>
   )
