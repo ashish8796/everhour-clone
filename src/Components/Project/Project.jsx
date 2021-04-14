@@ -1,10 +1,10 @@
-import MainpageNav from '../Components/MainpageNavbar/MainpageNav';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setAllProjects } from '../../store/projects/actions';
 import { createAllProjects } from '../../store/projects/actions';
 import styles from './project.module.css'
 import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
+import MainpageNav from "../MainpageNavbar/MainpageNav"
 
 const Project = () => {
     const dispatch = useDispatch();
