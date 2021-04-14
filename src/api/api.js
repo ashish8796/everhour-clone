@@ -16,6 +16,11 @@ export const getAllProjects = () => {
    return axios.get("/projects");
 };
 
+export const deleteProjects = (id) => {
+  let delete_url = "/projects/" + id;
+  return axios.delete(delete_url);
+};
+
 export const createProjects = (createData) => {
   console.log(createData);
   return axios.post("/projects",{

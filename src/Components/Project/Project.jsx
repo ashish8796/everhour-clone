@@ -6,6 +6,7 @@ import styles from './project.module.css'
 import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
 
 const Project = () => {
+    const [createProjectTitle, setCreateProjectTitle] = React.useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +16,6 @@ const Project = () => {
     }, [dispatch]);
 
     const createData = {
-        "name": "Clone of Hi",
         "type": "board",
         "users": [
           1304,
@@ -23,7 +23,15 @@ const Project = () => {
         ]
     }
     const handleCreateProject = () => {
-        dispatch(createAllProjects(createData));
+        const payload = {
+            name: createProjectTitle
+        }
+        console.log(payload)
+        if(payload.name!==""){
+            dispatch(createAllProjects({...createData, ...payload}));
+        } else {
+            alert("Please fill your project name")
+        }
     }
 
     const projects = useSelector((state) => state.projects, shallowEqual);
@@ -32,6 +40,7 @@ const Project = () => {
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
                 <h3>Project</h3>
+                <input type="text" placeholder="Title Of the project" onChange={(e)=>setCreateProjectTitle(e.target.value)}/>
                 <button onClick={handleCreateProject}>Create Project</button>
             </div>
             <div className={styles.divProject2}>

@@ -3,17 +3,18 @@
   display: flex;
   max-width: 96%;
   margin-bottom: 2px;
+  text-align: center;
 }
 .divPartMain > div {
   padding: 1%;
   margin: 1% 3.5%;
-  min-width: 110px;
+  min-width: 120px;
 }
 .divPartMain > div:nth-child(1) {
   margin: 1% 1.5%;
 }
 .divPartMain > div:nth-child(5) {
-  margin: 1% 6.5%;
+  margin: 1% 3.5%;
 }
 .divPartMain > div:nth-last-child(1) {
   margin: 1% 2.5%;
@@ -27,7 +28,7 @@
   margin: 0 2%;
 }
 .star {
-  font-size: 25px;
+  font-size: 23px;
   color: greenyellow;
 }
 .divPartMain > div > h6 {
@@ -47,7 +48,7 @@
 }
 .divPartMain > div > button {
   background-color: rgba(189, 188, 188, 0.308);
-  padding: 5% 12%;
+  padding: 6% 18%;
   border-radius: 20px;
   font-size: 16px;
   font-weight: 300;
