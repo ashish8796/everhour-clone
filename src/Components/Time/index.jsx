@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { setAllProjects } from "../../store/projects/actions";
 import SearchProject from "./SearchProject";
@@ -7,6 +7,14 @@ import Timer from "./Timer";
 
 export default function Time() {
   const dispatch = useDispatch();
+  const { currentProject, currentTask } = useSelector(
+    (state) => state.time,
+    shallowEqual
+  );
+  const { projects, taskOfProject } = useSelector(
+    (state) => state.projects,
+    shallowEqual
+  );
 
   useEffect(() => {
     (async () => {
@@ -15,9 +23,17 @@ export default function Time() {
   }, [dispatch]);
 
   return (
-    <TimeWrapper className="flex justify-center">
-      <SearchProject />
-      <Timer />
+    <TimeWrapper className="flex-column align-center">
+      <CurrentDataCont>
+        <CurrentProject>{currentProject?.name}</CurrentProject>
+
+        <CurrentTask>{currentTask?.name}</CurrentTask>
+      </CurrentDataCont>
+
+      <FeatureSection className="flex justify-center">
+        <SearchProject />
+        <Timer />
+      </FeatureSection>
     </TimeWrapper>
   );
 }
@@ -25,3 +41,11 @@ export default function Time() {
 const TimeWrapper = styled.div`
   margin: auto;
 `;
+
+const Section = styled.section``;
+
+const CurrentDataCont = styled(Section)``;
+const FeatureSection = styled(Section)``;
+
+const CurrentProject = styled.div``;
+const CurrentTask = styled.div``;

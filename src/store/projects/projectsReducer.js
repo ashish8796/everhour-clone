@@ -2,12 +2,14 @@ import {
   SET_ALL_PROJECTS,
   SET_PROJECTS_ERROR,
   SET_PROJECTS_LOADING,
+  SET_TASKS_OF_PROJECT,
 } from "./actionsTypes";
 
 const initState = {
   projects: [],
   isProjectsLoading: false,
   isProjectsError: false,
+  tasksOfProject: [],
 };
 
 function projectsReducer(state = initState, { type, payload }) {
@@ -30,9 +32,16 @@ function projectsReducer(state = initState, { type, payload }) {
       return {
         ...state,
         projects: payload,
-        isProjectsLoading: true,
+        isProjectsLoading: false,
         isProjectsError: false,
       };
+
+    case SET_TASKS_OF_PROJECT: {
+      return {
+        ...state,
+        tasksOfProject: payload,
+      };
+    }
 
     default:
       return state;
