@@ -13,6 +13,8 @@ export default function SearchProject() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isTaskVisible, setIsTaskVisible] = useState(false);
+  const [inputName, setInputName] = useState("project");
+  // const [];
 
   const { projects } = useSelector((state) => state.projects, shallowEqual);
 
@@ -21,7 +23,15 @@ export default function SearchProject() {
   };
 
   const handleSearchFocus = (e) => {
-    setAreProjectsVisible(true);
+    const { name } = e.target;
+    if (name === "project") {
+      setAreProjectsVisible(true);
+      setInputName("task");
+    } else if (name === "task") {
+      setIsTaskVisible(true);
+      setInputName("progress");
+    } else if (name === "progress") {
+    }
   };
 
   return (
@@ -32,6 +42,7 @@ export default function SearchProject() {
         handleOnChange={handleOnChange}
         placeholder="Start typing or select project below"
         handleOnFocus={handleSearchFocus}
+        name={inputName}
       />
 
       {areProjectsVisible && (
@@ -59,7 +70,7 @@ const SearchWrapper = styled.div`
 
   input {
     padding: 8px 15px;
-    font-size: 20px;
     width: 80%;
+    font-size: 20px;
   }
 `;
