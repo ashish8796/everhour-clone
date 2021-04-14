@@ -3,7 +3,7 @@ import { TIMERFAILURE, TIMERREQUEST, TIMERSUCCESS, TIMESHEETFAILURE, TIMESHEETRE
 const init = {
     isLoading:false,
     isError:false,
-    arr:[]
+    data:[]
 }
 
 export const teamReducer = (state=init,{type,payload}) => {
@@ -17,33 +17,31 @@ export const teamReducer = (state=init,{type,payload}) => {
             return{
                 ...state,
                 isLoading:false,
-                arr:[...state.arr,payload]
+                data:payload
             }
-            case TIMERFAILURE:
+        case TIMERFAILURE:
+        return{
+            ...state,
+            isLoading:false,
+            isError:true
+        }
+        case TIMESHEETREQUEST:
+            return{
+                ...state,
+                isLoading:true
+            }
+        case TIMESHEETSUCCESS:
+            return{
+                ...state,
+                isLoading:false,
+                data:payload
+            }
+            case TIMESHEETFAILURE:
             return{
                 ...state,
                 isLoading:false,
                 isError:true
             }
-            case TIMESHEETREQUEST:
-                return{
-                    ...state,
-                    isLoading:true
-                }
-            case TIMESHEETSUCCESS:
-                return{
-                    ...state,
-                    isLoading:false,
-                    arr:[...state.arr,payload]
-                }
-                case TIMESHEETFAILURE:
-                return{
-                    ...state,
-                    isLoading:false,
-                    isError:true
-                }
-            
-        
             default:
                 return state;
     }
