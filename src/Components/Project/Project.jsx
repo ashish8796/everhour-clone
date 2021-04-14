@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { setAllProjects } from '../../store/projects/actions';
 import styles from './project.module.css'
 import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
 
 const Project = () => {
+    const [getProjectData, setGetProjectData] = React.useState([]);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+      (async () => {
+        dispatch(setAllProjects());
+      })();
+    }, [dispatch]);
+
+    const projects = useSelector((state) => state.projects, shallowEqual);
+    console.log(projects.projects)
     return (
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
@@ -32,11 +44,9 @@ const Project = () => {
                 </div>
             </div>
             <div className={styles.divProject3}>
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
-                <ProjectSmallInfo />
+                {projects.projects.map((el)=>(
+                    <ProjectSmallInfo key={el.id} {...el}/>
+                ))}
             </div>
         </div>
     )

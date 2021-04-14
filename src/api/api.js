@@ -13,7 +13,7 @@ const axios = Axios.create({
 });
 
 export const getAllProjects = () => {
-  return axios.get("/projects");
+   return axios.get("/projects");
 };
 
 export const getData = () => {

@@ -1,7 +1,7 @@
 .divProjectMain {
   background-color: rgba(255, 255, 255, 0.459);
   padding: 3%;
-  width: 80%;
+  max-width: 82%;
   margin: auto;
 }
 .divProject1 {
