@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 export default function CreateInput({
   type,
-  name,
+  name = "",
   value,
-  label,
+  label = "",
   handleOnChange = () => {},
   handleOnClick = () => {},
+  placeholder = "",
   required = false,
 }) {
   return (
@@ -19,6 +20,7 @@ export default function CreateInput({
         value={value}
         onChange={handleOnChange}
         required={required}
+        placeholder={placeholder}
       />
     </Label>
   );
@@ -26,5 +28,5 @@ export default function CreateInput({
 
 const Label = styled.label`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `;
