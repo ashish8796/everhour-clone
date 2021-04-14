@@ -22,6 +22,10 @@ export const createProjects = (createData) => {
     name: createData.name,
     type: createData.type
   });
+}
+
+export const getTasksOfProject = (project_id) => {
+  return axios.get(`projects/${project_id}/tasks`);
 };
 
 export const getData = () => {

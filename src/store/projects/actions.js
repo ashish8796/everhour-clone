@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { getAllProjects } from "./../../api/api";
 import { createProjects } from "./../../api/api";
 import {
@@ -6,10 +7,14 @@ import {
   CREATE_PROJECTS_LOADING,
 } from "./actionsTypes";
 
+=======
+import { getAllProjects, getTasksOfProject } from "./../../api/api";
+>>>>>>> d2f5041810822950d8159b4fab55e74887b316f1
 import {
   SET_ALL_PROJECTS,
   SET_PROJECTS_ERROR,
   SET_PROJECTS_LOADING,
+  SET_TASKS_OF_PROJECT,
 } from "./actionsTypes";
 
 export const createProjectsLoading = () => {
@@ -64,5 +69,17 @@ export const createAllProjects = (createData) => async (dispatch) => {
     });
   } catch (error) {
     dispatch(createProjectsError());
+  }
+};
+export const setTasksOfProject = (project_id) => async (dispatch) => {
+  try {
+    const { data } = await getTasksOfProject(project_id);
+
+    console.log(data);
+
+    dispatch({ type: SET_TASKS_OF_PROJECT, payload: data });
+    return true;
+  } catch (error) {
+    return error;
   }
 };

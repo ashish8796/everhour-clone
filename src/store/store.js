@@ -2,8 +2,12 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import homeReducer from "./home/homeReducer";
 import { projectsReducer } from "./projects/projectsReducer";
+import timeReducer from "./time/timeReducer";
 
-const rootReducer = combineReducers({ projects: projectsReducer});
+const rootReducer = combineReducers({
+  projects: projectsReducer,
+  time: timeReducer,
+});
 
 const store = createStore(
   rootReducer,

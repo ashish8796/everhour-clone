@@ -10,6 +10,8 @@ export default function CreateInput({
   handleOnClick = () => {},
   placeholder = "",
   required = false,
+  handleOnFocus = () => {},
+  handleOnBlur = () => {},
 }) {
   return (
     <Label>
@@ -21,6 +23,8 @@ export default function CreateInput({
         onChange={handleOnChange}
         required={required}
         placeholder={placeholder}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
       />
     </Label>
   );
