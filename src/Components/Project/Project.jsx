@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setAllProjects } from '../../store/projects/actions';
+import { createAllProjects } from '../../store/projects/actions';
 import styles from './project.module.css'
 import { ProjectSmallInfo } from './ProjectSmallInfo/ProjectSmallInfo';
 
 const Project = () => {
-    const [getProjectData, setGetProjectData] = React.useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -14,13 +14,25 @@ const Project = () => {
       })();
     }, [dispatch]);
 
+    const createData = {
+        "name": "Clone of Hello",
+        "type": "board",
+        "users": [
+          1304,
+          1543
+        ]
+    }
+    const handleCreateProject = () => {
+        dispatch(createAllProjects(createData));
+    }
+
     const projects = useSelector((state) => state.projects, shallowEqual);
     console.log(projects.projects)
     return (
         <div className={styles.divProjectMain}>
             <div className={styles.divProject1}>
                 <h3>Project</h3>
-                <button>Create Project</button>
+                <button onClick={handleCreateProject}>Create Project</button>
             </div>
             <div className={styles.divProject2}>
                 <div className={styles.divProject2sub1}>
@@ -44,7 +56,7 @@ const Project = () => {
                 </div>
             </div>
             <div className={styles.divProject3}>
-                {projects.projects.map((el)=>(
+                {projects.projects.length>0 && projects.projects.map((el)=>(
                     <ProjectSmallInfo key={el.id} {...el}/>
                 ))}
             </div>

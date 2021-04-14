@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './ProjectSmallInfo.module.css';
 
-const ProjectSmallInfo = ({name, createdAt}) => {
+const ProjectSmallInfo = ({name, createdAt, id}) => {
+    const handleSmallInfo = (id) => {
+        console.log(id);
+    }
     return (
         <div className={styles.divPartMain}>
             <div>
@@ -22,7 +25,7 @@ const ProjectSmallInfo = ({name, createdAt}) => {
                 <img src="https://media-exp1.licdn.com/dms/image/C4D03AQHBXKGKLIMtFw/profile-displayphoto-shrink_200_200/0/1596092838135?e=1623888000&v=beta&t=MHN3wmj1gf1JrlyJnfHcU00xsBG0uUpsRcPWofguqW8" alt=""/>
             </div>
             <div>
-                <button>$</button>
+                <button onClick={()=>handleSmallInfo(id)}>$</button>
             </div>
         </div>
     )
