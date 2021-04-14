@@ -3,6 +3,11 @@ import {
   SET_PROJECTS_ERROR,
   SET_PROJECTS_LOADING,
 } from "./actionsTypes";
+import {
+  CREATE_ALL_PROJECTS,
+  CREATE_PROJECTS_ERROR,
+  CREATE_PROJECTS_LOADING,
+} from "./actionsTypes";
 
 const initState = {
   projects: [],
@@ -33,6 +38,28 @@ function projectsReducer(state = initState, { type, payload }) {
         isProjectsLoading: true,
         isProjectsError: false,
       };
+    
+      case CREATE_PROJECTS_LOADING:
+        return {
+          ...state,
+          isProjectsLoading: true,
+          isProjectsError: false,
+        };
+  
+      case CREATE_PROJECTS_ERROR:
+        return {
+          ...state,
+          isProjectsLoading: false,
+          isProjectsError: true,
+        };
+  
+      case CREATE_ALL_PROJECTS:
+        return {
+          ...state,
+          projects: payload,
+          isProjectsLoading: true,
+          isProjectsError: false,
+        };
 
     default:
       return state;

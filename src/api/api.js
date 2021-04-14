@@ -16,6 +16,14 @@ export const getAllProjects = () => {
    return axios.get("/projects");
 };
 
+export const createProjects = (createData) => {
+  console.log(createData);
+  return axios.post("/projects",{
+    name: createData.name,
+    type: createData.type
+  });
+};
+
 export const getData = () => {
   return axios.get("/endPoint");
 };

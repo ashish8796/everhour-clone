@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import homeReducer from "./home/homeReducer";
 import { projectsReducer } from "./projects/projectsReducer";
 
-const rootReducer = combineReducers({ projects: projectsReducer });
+const rootReducer = combineReducers({ projects: projectsReducer});
 
 const store = createStore(
   rootReducer,
