@@ -225,8 +225,5 @@ const TryFree = styled.div`
       }
     }
   }
-
-
- 
 `
 
