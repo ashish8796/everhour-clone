@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import allIntegration from './Images/allIntegration.png'
 
 const sliderImgs = ['https://blog-cdn.everhour.com/assets/images/new-design/screens/integrations/asana-primary@2x.webp','https://blog-cdn.everhour.com/assets/images/new-design/screens/integrations/trello-primary@2x.webp','https://blog-cdn.everhour.com/assets/images/new-design/screens/integrations/basecamp-primary@2x.webp']
 
@@ -82,6 +83,11 @@ const Integeration = () => {
           </div>
         </div>
       </div>
+
+      <AllIntegration>
+        <img src={allIntegration} alt=""/>
+        {/* <button>All Integration</button> */}
+      </AllIntegration>
     </Container>
   )
 }
@@ -184,4 +190,23 @@ const Container = styled.div`
     }
   }
   
+`
+const AllIntegration = styled.div`
+  width:100vw;
+  margin-top:10px;
+  position: relative;
+  img{
+    max-width:100%;
+  }
+  /* button{
+    border-radius:6px;
+      padding:16px 22px;
+      font-size:16px;
+      margin:30px 16px;
+      background-color:#58BC71;
+      color:white;
+      position:absolute;
+      top:50%;
+      left:50%;
+  } */
 `

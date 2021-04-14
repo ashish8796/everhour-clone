@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Blog } from './Blog/Blog'
 import { Integeration } from './Integeration/Integeration'
 import { Intro } from './Intro/Intro'
+import { Review } from './Review/Review'
 import { WhatsInside } from './WhatsInside/WhatsInside'
 
 const Container = styled.div`
@@ -21,6 +23,8 @@ const Landing = () => {
       <Intro />
       <WhatsInside />
       <Integeration />
+      <Review />
+      <Blog />
     </div>
   </Container>
   )
