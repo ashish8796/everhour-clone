@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Intro } from './Intro/Intro'
+import { WhatsInside } from './WhatsInside/WhatsInside'
 
 const Container = styled.div`
   position:absolute;
@@ -19,6 +20,7 @@ const Landing = () => {
   <Container>
     <div>
       <Intro />
+      <WhatsInside />
     </div>
   </Container>
   )

@@ -39,7 +39,7 @@ const Conatiner = styled.div`
     h3{
       color:#767676;
       margin-top:16px;
-      font-size:23px;
+      font-size:22px;
       line-height:1.4;
       a{
         color:#4B8FE2;
@@ -69,5 +69,12 @@ const Conatiner = styled.div`
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
+  }
+  & > div:nth-child(3){
+    p{
+      font-size:20px;
+      color: #767676;
+      margin-bottom:80px;
+    }
   }
 `
