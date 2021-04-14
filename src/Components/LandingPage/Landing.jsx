@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Integeration } from './Integeration/Integeration'
 import { Intro } from './Intro/Intro'
 import { WhatsInside } from './WhatsInside/WhatsInside'
 
@@ -9,9 +10,7 @@ const Container = styled.div`
   left:0px;
   width:100%;
   &  > div{
-    /* width:70%; */
     margin:auto;
-    /* border:1px solid red; */
   }
 `
 
@@ -21,6 +20,7 @@ const Landing = () => {
     <div>
       <Intro />
       <WhatsInside />
+      <Integeration />
     </div>
   </Container>
   )

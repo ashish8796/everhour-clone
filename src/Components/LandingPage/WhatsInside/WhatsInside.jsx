@@ -121,6 +121,7 @@ const Wrapper = styled.div`
     padding-left:30px;
   }
   & > div:nth-child(2){
+    overflow-x:hidden;
     position:absolute;
     top:0;
     left:36%;
