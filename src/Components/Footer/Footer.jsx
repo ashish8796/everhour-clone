@@ -123,6 +123,8 @@ const FooterCont = styled.footer`
   &  > div > div:nth-child(2){
     display:flex;
     justify-content:space-between;
+    font-size:16px;
+    margin-top:40px;
 
     a{
       color:white;
@@ -142,6 +144,3 @@ const Logo = styled.div`
     width:40px;
   }
 `
-
-
-// #A1A2A2
