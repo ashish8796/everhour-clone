@@ -10,18 +10,20 @@ const Bottom = styled.div`
     margin:auto;
     border:1px solid lightgray;
     padding:0 40px;
-    thead{
-        margin-bottom:50px;
-        font-size:30px;
-    }
+    color:#333333;
+   
 `
 const Th = styled.th`
     color:#666666;
     font-size:20px;
     padding-right:80px;
+    margin-bottom:100px;
 `
 const Td = styled.td`
+
 `
+
+
 const Bottombox = () => {
     return (
         <Bottom>
@@ -40,12 +42,12 @@ const Bottombox = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <Bigrow>daD</Bigrow>
-                        <Td>daD</Td>
-                        <Td>daD</Td>
-                        <Td>daD</Td>
-                        <Td>daD</Td>
-                        <Td>daD</Td>
+                        <Bigrow>Smith Rakesh</Bigrow>
+                        <Td>$50</Td>
+                        <Td>"30"</Td>
+                        <Td>unlimited</Td>
+                        <Td>20</Td>
+                        <Td>1</Td>
                     </tr>
                 </tbody>
             </table>

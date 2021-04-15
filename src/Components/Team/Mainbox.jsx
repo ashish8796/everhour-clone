@@ -39,7 +39,7 @@ const Mainbox = () => {
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span>...</span>
                 <Blocks>
-                    <NavLink to={"timers"}>Timers</NavLink>
+                    <NavLink to={"/timer"}>Timers</NavLink>
                     <NavLink to={"/timesheet"}>TimeSheet</NavLink>
                     <NavLink to={"/members"}>Members</NavLink>
                 </Blocks>
