@@ -6,12 +6,22 @@ import Time from "./Time";
 import TeamTimer from "./TeamTimer";
 import TeamTimesheet from "./TeamTimesheet";
 import TeamMembers from "./TeamMembers";
+import { Login } from "../Components/Auth/Login/Login";
+import { Signup } from "../Components/Auth/Signup/Signup";
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact>
         <Home />
+      </Route>
+
+      <Route path="/login">
+        <Login />
+      </Route>
+
+      <Route path="/signup">
+        <Signup />
       </Route>
 
       <Route path="/time">
