@@ -13,7 +13,7 @@ const axios = Axios.create({
 });
 
 export const getAllProjects = () => {
-   return axios.get("/projects");
+  return axios.get("/projects");
 };
 
 export const deleteProjects = (id) => {
@@ -23,26 +23,22 @@ export const deleteProjects = (id) => {
 
 export const createProjects = (createData) => {
   console.log(createData);
-  return axios.post("/projects",{
+  return axios.post("/projects", {
     name: createData.name,
-    type: createData.type
+    type: createData.type,
   });
-}
+};
 
 export const getTasksOfProject = (project_id) => {
   return axios.get(`projects/${project_id}/tasks`);
 };
 
-export const getData = () => {
-  return axios.get("/endPoint");
+export const postStartTimer = (payload) => {
+  return axios.post(`/timers`, payload);
 };
 
-export const postData = () => {
-  return axios.post("/endPoint");
-};
-
-export const deleteData = () => {
-  return axios.delete("/endPoint");
+export const deleteTimer = () => {
+  return axios.delete("/timers/current");
 };
 
 export const getTimer = () => {
@@ -55,4 +51,11 @@ export const getTimeSheet = () => {
 
 export const getSectionOfProject = (project_id) => {
   return axios.get(`projects/${project_id}/sections`);
+};
+export const getUser = () => {
+  return axios.get("/users/me");
+};
+
+export const getUserTime = (id) => {
+  return axios.get(`/users/${id}/time`);
 };

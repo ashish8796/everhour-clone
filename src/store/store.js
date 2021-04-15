@@ -5,12 +5,15 @@ import { projectsReducer } from "./projects/projectsReducer";
 import timeReducer from "./time/timeReducer";
 import {teamReducer} from "./Team/teamReducer"
 import { sectionsReducer } from "./task/sectionReducer";
+import userReducer from "./user/userReducer";
 
 const rootReducer = combineReducers({
   projects: projectsReducer,
   time: timeReducer,
   team:teamReducer,
-  sections: sectionsReducer
+  sections: sectionsReducer,
+  user: userReducer,
+  team: teamReducer,
 });
 
 const store = createStore(
