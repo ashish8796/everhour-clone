@@ -54,3 +54,79 @@
   font-weight: 300;
   margin-left: 5px;
 }
+
+/*pop up */
+.divPartBilling {
+  width: 400px;
+  height: 425px;
+  position: absolute;
+  top: 130px;
+  left: 500px;
+  margin: 2%;
+  padding: 1%;
+  color: black;
+  font-size: 20px;
+  z-index: 0.9;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 10px 10px solid orange;
+  border: 1px solid rgba(68, 67, 67, 0.308);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.divPartBilling > div > div > img {
+  width: 40px;
+  border-radius: 20px;
+}
+.divPartBilling > div > div > h6 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.divPartBilling > div > div > p {
+  font-size: 16px;
+}
+.divPartBilling > h3 {
+  font-size: 25px;
+  padding: 2%;
+  margin: 1% 5%;
+  color: rgb(51, 51, 51);
+}
+.divPartBilling > button {
+  font-size: 20px;
+  padding: 2% 10%;
+  margin: 1% 7%;
+  background-color: rgba(59, 153, 15, 0.664);
+  color: white;
+}
+.divPartBillingFlex {
+  display: flex;
+  padding: 1% 5%;
+  text-align: center;
+  background-color: rgba(250, 242, 232, 0.418);
+  margin: 5% 0;
+}
+.divPartBillingFlex > div {
+  margin: 0.5% 3%;
+}
+.divPartBilling > label {
+  font-size: 20px;
+  padding: 2%;
+  margin: 5%;
+}
+.divPartBillingInput > input {
+  padding: 1%;
+  margin: 2%;
+  font-size: 17px;
+  width: auto;
+  max-width: 100px;
+  border: 1px solid rgba(68, 68, 68, 0.356);
+}
+.divPartBillingInput > select {
+  padding: 1%;
+  margin: 2%;
+  font-size: 17px;
+  color: rgb(56, 55, 55);
+  border: 1px solid rgba(68, 68, 68, 0.356);
+}
+.divPartBillingInput {
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
