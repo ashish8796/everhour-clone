@@ -83,7 +83,7 @@ const Container = styled.div`
     z-index:100;
     border-radius:6px;
     overflow:hidden;
-    box-shadow:1px 1px 1px #767676, -1px -1px 1px #767676;
+    box-shadow:0 2px 4px 0 rgb(0 0 0 / 17%),0 -2px 4px 0 rgb(0 0 0 / 17%);
     & > div:first-child{
       background-color:#58BC71;
       padding:20px 10px;
@@ -122,11 +122,11 @@ const Container = styled.div`
         padding:30px 0px 40px;
         input,div{
           border:1px solid #767676;
-          color:#767676;
-          opacity:0.6;
+          color:#333;
           padding:10px;
           width:100%;
           margin-top:10px;
+          cursor:	auto;
         }
         div{
           background-color:white;
