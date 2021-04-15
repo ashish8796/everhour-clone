@@ -52,3 +52,7 @@ export const getTimer = () => {
 export const getTimeSheet = () => {
   return axios.get("/timecards?from=2020-10-01&to=2020-11-01");
 };
+
+export const getSectionOfProject = (project_id) => {
+  return axios.get(`projects/${project_id}/sections`);
+};

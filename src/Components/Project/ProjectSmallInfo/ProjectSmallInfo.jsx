@@ -31,7 +31,7 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
     const handleProjectTask =()=>{
         setRedProjectTask(true);
         history.push("/projects");
-        setRedURL("/task/"+id)
+        setRedURL("/task/"+id);
     }
     return !billingVisible && !redProjectTask?(
         <div className={styles.divPartMain}>
