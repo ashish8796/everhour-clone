@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { Chatbot } from '../../Chatbot/Chatbot'
 import Footer from '../../Footer/Footer'
 import { Navbar } from '../../Navbar/Navbar'
 
@@ -8,6 +9,7 @@ const Signup = () => {
   return(
     <div>
        <Navbar />
+       <Chatbot />
        <Headings>
           <h1>Let’s get you started</h1>
           <h3>Start with a 14-day free trial to see if Everhour works for your business. <br/>
