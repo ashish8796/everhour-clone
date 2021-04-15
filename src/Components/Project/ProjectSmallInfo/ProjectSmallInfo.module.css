@@ -68,9 +68,9 @@
   font-size: 20px;
   z-index: 0.9;
   background-color: rgb(255, 255, 255);
-  box-shadow: 10px 10px solid orange;
   border: 1px solid rgba(68, 67, 67, 0.308);
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: 100px 1px 100px 1000px #a5a4a49c;
 }
 .divPartBilling > div > div > img {
   width: 40px;
@@ -99,7 +99,6 @@
 .divPartBillingFlex {
   display: flex;
   padding: 1% 5%;
-  text-align: center;
   background-color: rgba(250, 242, 232, 0.418);
   margin: 5% 0;
 }
