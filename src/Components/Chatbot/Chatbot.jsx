@@ -7,8 +7,8 @@ const Chatbot = () => {
   return(
     <Container>
       <div onClick={() => setShowMsg(!showMsg)}>
-        {!showMsg ? <i class="far fa-comment fa-lg"></i> :
-        <i class="fas fa-times fa-lg"></i> }
+        {!showMsg ? <i className="far fa-comment fa-lg"></i> :
+        <i className="fas fa-times fa-lg"></i> }
       </div>
       {showMsg ?
       <div>
@@ -41,8 +41,8 @@ const Chatbot = () => {
             <input type="text" placeholder="Email address"/>
             <div><textarea name="" id="" cols="20" rows="5" placeholder="How can we help?"></textarea>
             <span>
-              <i class="fas fa-image fa-lg"></i>
-              <i class="fas fa-smile fa-lg"></i>
+              <i className="fas fa-image fa-lg"></i>
+              <i className="fas fa-smile fa-lg"></i>
             </span>
             </div>
             <button>Send a message</button>
