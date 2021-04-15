@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Chatbot } from '../../Chatbot/Chatbot'
@@ -6,6 +6,15 @@ import Footer from '../../Footer/Footer'
 import { Navbar } from '../../Navbar/Navbar'
 
 const Login = () => {
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+  const handleLogin = () => {
+    alert(password)
+    setEmail("");
+    setPassword("");
+  }
+
   return(
     <div>
        <Navbar />
@@ -27,10 +36,10 @@ const Login = () => {
                   </div>
                 </div>
                 <p>or</p>
-                <input type="text" placeholder="Enter your email..."/>
-                <input type="text" placeholder="Password..."/>
+                <input type="text" placeholder="Enter your email..." onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
                 <div>
-                  <button>Log in</button>
+                  <button onClick={handleLogin}>Log in</button>
                   <div><Link>Reset password</Link> <Link>More login options</Link></div>
                 </div>
               </div>
