@@ -1,27 +1,37 @@
 import React, { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { filterData } from "../../../utils/filterData";
 
-import CreateInput from "./../CreateContent/CreateInput";
+import CreateInput from "../../CreateContent/CreateInput";
 import ShowProjects from "./ShowProjects";
 import ShowTasks from "./ShowTasks";
 
 export default function SearchProject() {
   const [query, setQuery] = useState("");
-  const [areProjectsVisible, setAreProjectsVisible] = useState(false);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isTaskVisible, setIsTaskVisible] = useState(false);
+  const [inputName, setInputName] = useState("project");
+  const [isDataVisible, setIsDataVisible] = useState(false);
 
-  const { projects } = useSelector((state) => state.projects, shallowEqual);
+  const { projects, tasksOfProject } = useSelector(
+    (state) => state.projects,
+    shallowEqual
+  );
+
+  const {} = useSelector((state) => state.time, shallowEqual);
 
   const handleOnChange = (e) => {
     setQuery(e.target.value);
   };
 
+  // const handleOnBlur = (e) => {
+  //   setQuery("");
+  // };
+
   const handleSearchFocus = (e) => {
-    setAreProjectsVisible(true);
+    setIsDataVisible(true);
   };
 
   return (
@@ -32,21 +42,27 @@ export default function SearchProject() {
         handleOnChange={handleOnChange}
         placeholder="Start typing or select project below"
         handleOnFocus={handleSearchFocus}
+        name={inputName}
       />
 
-      {areProjectsVisible && (
+      {inputName === "project" && isDataVisible && (
         <ShowProjects
-          setAreProjectsVisible={setAreProjectsVisible}
+          projects={filterData(projects, query)}
           setIsError={setIsError}
           setIsLoading={setIsLoading}
-          setIsTaskVisible={setIsTaskVisible}
+          setInputName={setInputName}
+          setQuery={setQuery}
         />
       )}
 
       {isLoading ? (
         <p>...Loading</p>
-      ) : isTaskVisible ? (
-        <ShowTasks setIsTaskVisible={setIsTaskVisible} />
+      ) : inputName === "task" && isDataVisible ? (
+        <ShowTasks
+          tasksOfProject={filterData(tasksOfProject, query)}
+          setInputName={setInputName}
+          setQuery={setQuery}
+        />
       ) : (
         <></>
       )}
@@ -59,7 +75,7 @@ const SearchWrapper = styled.div`
 
   input {
     padding: 8px 15px;
-    font-size: 20px;
     width: 80%;
+    font-size: 20px;
   }
 `;
