@@ -7,11 +7,12 @@ import {
 } from './actionTypes';
 
 const isAuth = loadData('isAuth');
-const username = loadData('username');
+const fullName = loadData('username');
 
 const initState = {
   isAuth: isAuth ? true : false,
-  user: username ? username : '',
+  fullName: fullName ? fullName : '',
+  apiKey: '',
   isLoading: false,
   isError: false,
 };
@@ -27,13 +28,14 @@ export const authReducer = (state = initState, { type, payload }) => {
     }
     case LOGIN_SUCCESS: {
       console.log('pay', payload);
-      const { email } = payload;
+      const { fullName, apiKey } = payload;
       saveData('isAuth', true);
-      saveData('username', email);
+      saveData('fullName', fullName);
       return {
         ...state,
         isAuth: true,
-        user: username,
+        fullName: fullName,
+        apiKey: apiKey,
         isLoading: true,
         isError: false,
       };
@@ -47,11 +49,12 @@ export const authReducer = (state = initState, { type, payload }) => {
     }
     case LOGOUT_SUCCESS: {
       saveData('isAuth', false);
-      saveData('username', '');
+      saveData('fullName', '');
       return {
         ...state,
         isAuth: false,
-        user: '',
+        apiKey: '',
+        fullName: '',
       };
     }
     default:

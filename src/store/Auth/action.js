@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -23,14 +24,20 @@ export const loginFailure = () => {
 };
 
 export const loginUser = (payload) => (dispatch) => {
-  const { email, password } = payload;
-  console.log(email, password);
+  const { userEmail, userPassword } = payload;
+  console.log(userEmail, userPassword);
   dispatch(loginRequest());
-  if (email === 'admin' && password === 'admin') {
-    dispatch(loginSuccess(payload));
-  } else {
-    dispatch(loginFailure());
-  }
+  axios
+    .get('https://json-server-mocker-neeraj.herokuapp.com/fakeAuth')
+    .then((res) => {
+      console.log(res.data);
+      const currentUser = res.data.filter(({ email, password }) => {
+        return userEmail === email && userPassword === password;
+      });
+      const { fullName, apiKey } = currentUser;
+      dispatch(loginSuccess({ fullName, apiKey }));
+    })
+    .catch((err) => dispatch(loginFailure()));
 };
 
 export const logoutSuccess = () => {

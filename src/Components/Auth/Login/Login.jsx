@@ -9,16 +9,18 @@ import Footer from '../../Footer/Footer'
 import { Navbar } from '../../Navbar/Navbar'
 
 const Login = () => {
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+  const [userEmail,setUserEmail] = useState("");
+  const [userpassword,setUserPassword] = useState("");
 
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
+  const isLoading = useSelector(state => state.auth.isLoading);
+  const isError = useSelector(state => state.auth.isError);
 
   const handleLogin = () => {
-    dispatch(loginUser({email,password}))
-    setEmail("");
-    setPassword("");
+    dispatch(loginUser({userEmail,userpassword}))
+    setUserEmail("");
+    setUserPassword("");
   }
 
   if(isAuth){
@@ -46,14 +48,16 @@ const Login = () => {
                   </div>
                 </div>
                 <p>or</p>
-                <input type="text" placeholder="Enter your email..." onChange={(e) => setEmail(e.target.value)}/>
-                <input type="text" placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
+                {isError ? <div style={{color:"red",textAlign:'center',marginBottom:"20px",fontSize:"17px"}}>Invalid email/password</div>: null}
+                <input type="text" placeholder="Enter your email..." onChange={(e) => setUserEmail(e.target.value)}/>
+                <input type="text" placeholder="Password..." onChange={(e) => setUserPassword(e.target.value)}/>
                 <div>
                   <button onClick={handleLogin}>Log in</button>
                   <div><Link>Reset password</Link> <Link>More login options</Link></div>
                 </div>
               </div>
             </Firstdiv>
+            
             <Seconddiv>
               <div>
                 <h3>NEWS</h3>
