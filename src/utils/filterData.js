@@ -4,25 +4,27 @@ function filterData(arr, query) {
   );
 }
 
-function filterTask(arr) {
+function filterTaskByDate(arr) {
   const filteredArr = arr
-    .filter((time) => time.task)
-    .map((time) => ({
-      date: time.date,
-      ...time.task,
+    .filter((item) => item.task)
+    .map((item) => ({
+      date: item.date,
+      userTime: item.time,
+      comment: item.comment,
+      ...item.task,
     }));
 
   const taskByDate = {};
 
   filteredArr.forEach((task) => {
-    // console.log(taskByDate);
-    // taskByDate[task.date] =
-    //   taskByDate[task.date] == undefined
-    //     ? [task]
-    //     : taskByDate[task.date].push(task);
+    if (task.date in taskByDate) {
+      taskByDate[task.date].push(task);
+    } else {
+      taskByDate[task.date] = [task];
+    }
   });
 
   return taskByDate;
 }
 
-export { filterData, filterTask };
+export { filterData, filterTaskByDate };
