@@ -1,4 +1,5 @@
 import {
+  SET_COMMENT,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
   SET_TIMER_ACTIVE,
@@ -30,5 +31,12 @@ export const setTimerActive = () => {
 export const setTimerStopped = () => {
   return {
     type: SET_TIMER_STOPPED,
+  };
+};
+
+export const setComment = (comment) => {
+  return {
+    type: SET_COMMENT,
+    payload: comment,
   };
 };

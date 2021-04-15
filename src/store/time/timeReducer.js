@@ -1,4 +1,5 @@
 import {
+  SET_COMMENT,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
   SET_TIMER_ACTIVE,
@@ -7,6 +8,7 @@ import {
 const initState = {
   currentProjectId: "",
   currentProjectTaskId: "",
+  comment: "",
   timer: {
     timerStatus: "stopped",
   },
@@ -28,6 +30,10 @@ function timeReducer(state = initState, { type, payload }) {
 
     case SET_CURRENT_TASK: {
       return { ...state, timer: { ...state.timer, timerStatus: "stopped" } };
+    }
+
+    case SET_COMMENT: {
+      return { ...state, comment: payload };
     }
 
     default:

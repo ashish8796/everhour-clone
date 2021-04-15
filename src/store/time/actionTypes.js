@@ -3,3 +3,5 @@ export const SET_CURRENT_TASK = "SET_CURRENT_TASK";
 
 export const SET_TIMER_ACTIVE = "SET_TIMER_ACTIVE";
 export const SET_TIMER_STOPPED = "SET_TIMER_STOPPED";
+
+export const SET_COMMENT = "SET_COMMENT";
