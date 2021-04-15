@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import styled from "styled-components";
-import { filterTask } from "../../../utils/filterData";
+import { filterTaskByDate } from "../../../utils/filterData";
+import CreateTask from "./CreateTask";
 
 export default function TaskList() {
   const [tab, setTab] = useState("list");
   const { userTime } = useSelector((state) => state.user, shallowEqual);
   let tasks;
   if (userTime.length) {
-    tasks = filterTask(userTime);
+    tasks = filterTaskByDate(userTime);
     console.log(tasks);
   }
 
@@ -21,7 +22,13 @@ export default function TaskList() {
         <button>Timecard</button>
       </TabWrapper>
 
-      <DataWrapper>{tab === "list" && <></>}</DataWrapper>
+      <DataWrapper>
+        {tab === "list" &&
+          Object.keys(tasks).length > 0 &&
+          Object.keys(tasks).map((key) => (
+            <CreateTask key={key} date={key} tasks={tasks[key]} />
+          ))}
+      </DataWrapper>
     </div>
   );
 }
