@@ -52,6 +52,20 @@ const Login = () => {
          </Formbox>
        </div>
 
+       <TryFree>
+        <div>
+          <h2>New to Everhour?</h2>
+          <p>Try Everhour for free and see if it works for your business</p>
+          <div>
+            <input type="text" placeholder="Work email..."/>
+            <button>Try free</button>
+          </div>
+          <div>
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.icons8.com%2Fcolor%2F2x%2Fgoogle-logo.png&f=1&nofb=1" alt=""/>
+            <p>Or sign up with Google Account</p>
+          </div>
+        </div>
+      </TryFree>
       <Footer />
     </div>
   )
@@ -82,7 +96,10 @@ const Headings = styled.div`
 
 
 const Formbox = styled.div`
+  /* background:url('https://d3bnlkto289wdc.cloudfront.net/assets/illustrations/illo-c-2-person-scene-64506049637bebef1d29708ca19b08a92d09d06cd811fa4547d25278c54f0a99.svg'); */
+  
   & > div {
+    z-index:200;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -187,3 +204,53 @@ const Seconddiv = styled.div`
   
 `
 
+
+const TryFree = styled.div`
+  margin:80px auto;
+  width:42%;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  text-align:center; 
+
+  &  > div{
+    width:100%;
+    h2{
+
+      font-size:35px;
+      font-weight:540;
+      margin-bottom:10px;
+    }
+    p{
+      font-size:18px;
+      color:#767676;
+    }
+    button{
+      border-radius:6px;
+      width:30%;
+      padding:16px;
+      font-size:16px;
+      margin:30px 16px;
+      background-color:#58BC71;
+      color:white;
+    }
+
+    input{
+      width:54%;
+      border:1px solid black;
+      border-radius:6px;
+      font-size:16px;
+      padding:2.3% 3%;
+    }
+    img{
+      width:24px;
+      margin-right:10px;
+    }
+
+    & > div:last-child{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+  }
+`
