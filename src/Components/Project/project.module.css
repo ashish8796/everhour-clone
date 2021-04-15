@@ -1,6 +1,6 @@
 .divProjectMain {
   background-color: rgba(255, 255, 255, 0.363);
-  padding: 3%;
+  padding: 2% 3%;
   max-width: 82%;
   margin: auto;
 }
@@ -70,6 +70,6 @@
 
 /* div3 design */
 .divProject3 {
-  max-height: 450px;
+  max-height: 400px;
   overflow: auto;
 }

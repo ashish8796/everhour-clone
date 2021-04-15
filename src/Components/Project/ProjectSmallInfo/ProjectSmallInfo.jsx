@@ -1,10 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Redirect, Route, useHistory } from 'react-router';
 import { deleteProject } from '../../../store/projects/actions';
+import { ProjectTask } from '../Task/ProjectTask';
 import styles from './ProjectSmallInfo.module.css';
 
 const ProjectSmallInfo = ({name, createdAt, id}) => {
     const [billingVisible, setBillingVisible] = React.useState(false);
+    const [redProjectTask, setRedProjectTask] = React.useState(false);
+    let history = useHistory();
+    const [redURL, setRedURL] = React.useState("");
     const dispatch = useDispatch();
 
     const billingSmallInfo = (id) => {
@@ -23,10 +28,15 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
     const handleBillingSave = () => {
         setBillingVisible(false)
     }
-    return !billingVisible?(
+    const handleProjectTask =()=>{
+        setRedProjectTask(true);
+        history.push("/projects");
+        setRedURL("/task/"+id)
+    }
+    return !billingVisible && !redProjectTask?(
         <div className={styles.divPartMain}>
             <div>
-                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt=""/>
+                <button onClick={()=>handleProjectTask(id)}><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt=""/></button>
             </div>
             <div>
                 <h6>{name}</h6>
@@ -46,7 +56,7 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
                 <button onClick={()=>billingSmallInfo(id)}>$</button>
             </div>
         </div>
-    ):(
+    ):!redProjectTask?(
         <div className={styles.divPartBilling}>
             <h3>Project Billing</h3>
             <div className={styles.divPartBillingFlex}>
@@ -79,6 +89,11 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
                 <input type="number" placeholder="$ Budget" />
             </div>
             <button onClick={()=>handleBillingSave(id)}>Save</button>
+        </div>
+    ):(
+        <div>
+            {/* {console.log(redURL)} */}
+            <Redirect to={redURL} />
         </div>
     )
 }

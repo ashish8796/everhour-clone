@@ -6,6 +6,7 @@ import Time from "./Time";
 import TeamTimer from "./TeamTimer";
 import TeamTimesheet from "./TeamTimesheet";
 import TeamMembers from "./TeamMembers";
+import { ProjectTask } from "../Components/Project/Task/ProjectTask";
 
 export default function Routes() {
   return (
@@ -30,6 +31,10 @@ export default function Routes() {
 
       <Route path="/projects" exact>
         <Project />
+      </Route>
+
+      <Route path="/task">
+        <ProjectTask />
       </Route>
     </Switch>
   );
