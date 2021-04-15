@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
+import {loginUser } from '../../../store/Auth/action'
 import { Chatbot } from '../../Chatbot/Chatbot'
 import Footer from '../../Footer/Footer'
 import { Navbar } from '../../Navbar/Navbar'
@@ -9,10 +12,17 @@ const Login = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.auth.isAuth);
+
   const handleLogin = () => {
-    alert(password)
+    dispatch(loginUser({email,password}))
     setEmail("");
     setPassword("");
+  }
+
+  if(isAuth){
+    return <Redirect to="/projects"/>
   }
 
   return(

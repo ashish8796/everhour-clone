@@ -69,17 +69,17 @@ export default function Footer() {
       <div>
         <div>
           &#169; 2021 Everhour |
-          <Link>Terms | </Link>
-          <Link>Privacy | </Link>
-          <Link>Cookies | </Link>
-          <Link>Sitemap </Link>
+          <Link to="">Terms | </Link>
+          <Link to="">Privacy | </Link>
+          <Link to="">Cookies | </Link>
+          <Link to="">Sitemap </Link>
         </div>
 
         <div>
-        <i class="fab fa-facebook fa-lg"></i>
-        <i class="fab fa-twitter-square fa-lg"></i>
-        <i class="fab fa-linkedin fa-lg"></i>
-        <i class="fab fa-youtube fa-lg"></i>
+        <i className="fab fa-facebook fa-lg"></i>
+        <i className="fab fa-twitter-square fa-lg"></i>
+        <i className="fab fa-linkedin fa-lg"></i>
+        <i className="fab fa-youtube fa-lg"></i>
         </div>
       </div>
     </div>

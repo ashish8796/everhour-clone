@@ -1,19 +1,21 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import thunk from "redux-thunk";
-import homeReducer from "./home/homeReducer";
-import { projectsReducer } from "./projects/projectsReducer";
-import timeReducer from "./time/timeReducer";
-import {teamReducer} from "./Team/teamReducer"
-import { sectionsReducer } from "./task/sectionReducer";
-import userReducer from "./user/userReducer";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import homeReducer from './home/homeReducer';
+import { projectsReducer } from './projects/projectsReducer';
+import timeReducer from './time/timeReducer';
+import { teamReducer } from './Team/teamReducer';
+import { sectionsReducer } from './task/sectionReducer';
+import userReducer from './user/userReducer';
+import { authReducer } from './Auth/reducer';
 
 const rootReducer = combineReducers({
   projects: projectsReducer,
   time: timeReducer,
-  team:teamReducer,
+  team: teamReducer,
   sections: sectionsReducer,
   user: userReducer,
   team: teamReducer,
+  auth: authReducer,
 });
 
 const store = createStore(
