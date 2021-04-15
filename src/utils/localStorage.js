@@ -1,3 +1,4 @@
+// to get the data from the local storage
 export const loadData = (key) => {
   try {
     const data = localStorage.getItem(key);
@@ -7,6 +8,7 @@ export const loadData = (key) => {
   }
 };
 
+// to set the data in the local storage
 export const saveData = (key, data) => {
   try {
     localStorage.setItem(key, JSON.stringify(data));
