@@ -1,7 +1,9 @@
 export const SET_CURRENT_PROJECT = "SET_CURRENT_PROJECT";
 export const SET_CURRENT_TASK = "SET_CURRENT_TASK";
 
-export const SET_TIMER_ACTIVE = "SET_TIMER_ACTIVE";
-export const SET_TIMER_STOPPED = "SET_TIMER_STOPPED";
+export const START_TIMER = "START_TIMER";
+export const STOP_TIMER = "STOP_TIMER";
+
+export const SET_TIMER_STATUS = "SET_TIMER_STATUS";
 
 export const SET_COMMENT = "SET_COMMENT";

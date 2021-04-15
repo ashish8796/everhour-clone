@@ -2,7 +2,9 @@ import {
   SET_COMMENT,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
-  SET_TIMER_ACTIVE,
+  SET_TIMER_STATUS,
+  START_TIMER,
+  STOP_TIMER,
 } from "./actionTypes";
 
 const initState = {
@@ -10,7 +12,7 @@ const initState = {
   currentProjectTaskId: "",
   comment: "",
   timer: {
-    timerStatus: "stopped",
+    status: "stopped",
   },
 };
 
@@ -24,16 +26,20 @@ function timeReducer(state = initState, { type, payload }) {
       return { ...state, currentProjectTaskId: payload };
     }
 
-    case SET_TIMER_ACTIVE: {
-      return { ...state, timer: { ...state.timer, timerStatus: "active" } };
-    }
-
-    case SET_CURRENT_TASK: {
-      return { ...state, timer: { ...state.timer, timerStatus: "stopped" } };
+    case SET_TIMER_STATUS: {
+      return { ...state, timer: { ...state.timer, status: payload } };
     }
 
     case SET_COMMENT: {
       return { ...state, comment: payload };
+    }
+
+    case START_TIMER: {
+      return { ...state };
+    }
+
+    case STOP_TIMER: {
+      return { ...state };
     }
 
     default:

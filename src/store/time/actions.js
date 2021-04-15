@@ -1,9 +1,11 @@
+import { deleteTimer, postStartTimer } from "../../api/api";
 import {
   SET_COMMENT,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
-  SET_TIMER_ACTIVE,
-  SET_TIMER_STOPPED,
+  SET_TIMER_STATUS,
+  START_TIMER,
+  STOP_TIMER,
 } from "./actionTypes";
 
 export const setCurrentProject = (id) => {
@@ -22,15 +24,40 @@ export const setCurrentTask = (id) => {
   };
 };
 
-export const setTimerActive = () => {
-  return {
-    type: SET_TIMER_ACTIVE,
-  };
+export const startTimer = (payload) => async (dispatch) => {
+  try {
+    const { data } = await postStartTimer(payload);
+    console.log(data);
+
+    dispatch({
+      type: START_TIMER,
+      payload: data,
+    });
+    return data.status;
+  } catch (error) {
+    return error;
+  }
 };
 
-export const setTimerStopped = () => {
+export const stopTimer = () => async (dispatch) => {
+  try {
+    const { data } = await deleteTimer();
+    console.log(data);
+
+    dispatch({
+      type: STOP_TIMER,
+      payload: data,
+    });
+    return data.status;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const setTimerStatus = (status) => {
   return {
-    type: SET_TIMER_STOPPED,
+    type: SET_TIMER_STATUS,
+    payload: status,
   };
 };
 

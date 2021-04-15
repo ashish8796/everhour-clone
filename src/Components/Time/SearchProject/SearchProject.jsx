@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { setComment } from "../../../store/time/actions";
 import { filterData } from "../../../utils/filterData";
 
 import CreateInput from "../../CreateContent/CreateInput";
@@ -24,15 +25,23 @@ export default function SearchProject() {
 
   const handleOnChange = (e) => {
     setQuery(e.target.value);
+    dispatch(setComment(e.target.value));
   };
 
   // const handleOnBlur = (e) => {
-  //   setQuery("");
+  //   dispatch(setComment(query));
   // };
 
   const handleSearchFocus = (e) => {
     setIsDataVisible(true);
   };
+
+  useEffect(() => {
+    //cleanup
+    return () => {
+      setQuery("");
+    };
+  }, []);
 
   return (
     <SearchWrapper>
@@ -43,6 +52,7 @@ export default function SearchProject() {
         placeholder="Start typing or select project below"
         handleOnFocus={handleSearchFocus}
         name={inputName}
+        // handleOnBlur={handleOnBlur}
       />
 
       {inputName === "project" && isDataVisible && (
