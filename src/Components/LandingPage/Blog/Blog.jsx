@@ -33,7 +33,7 @@ const Blog = () => {
         <div>
           {boxes.map((({title,img}) => {
             return (
-              <div>
+              <div key={title}>
                 <img src={img} alt=""/>
                 <h3>{title}</h3>
               </div>
@@ -41,7 +41,7 @@ const Blog = () => {
           } ))}
         </div>
         <div>
-          <Link>More helpful guides</Link>
+          <Link to="">More helpful guides</Link>
         </div>
       </div>
 
