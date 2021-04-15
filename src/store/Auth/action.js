@@ -34,6 +34,9 @@ export const loginUser = (payload) => (dispatch) => {
       const currentUser = res.data.filter(({ email, password }) => {
         return userEmail === email && userPassword === password;
       });
+      if (currentUser === undefined) {
+        return dispatch(loginFailure());
+      }
       const { fullName, apiKey } = currentUser;
       dispatch(loginSuccess({ fullName, apiKey }));
     })
