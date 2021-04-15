@@ -3,6 +3,9 @@ import {
   SET_SECTION_ERROR,
   SET_SECTION_LOADING,
   SET_TASKS_OF_PROJECT,
+  SET_SPEC_PROJECT_ERROR,
+  SET_SPEC_PROJECT_LOADING,
+  SET_ALL_SPEC_PROJECT
 } from "./actionsTypes";
 
 const initState = {
@@ -10,6 +13,7 @@ const initState = {
   isSectionsLoading: false,
   isSectionsError: false,
   tasksOfProject: [],
+  project_name: []
 };
 
 function sectionsReducer(state = initState, { type, payload }) {
@@ -42,6 +46,28 @@ function sectionsReducer(state = initState, { type, payload }) {
         tasksOfProject: payload,
       };
     }
+
+    case SET_SPEC_PROJECT_LOADING:
+      return {
+        ...state,
+        isProjectsLoading: true,
+        isProjectsError: false,
+      };
+
+    case SET_SPEC_PROJECT_ERROR:
+      return {
+        ...state,
+        isProjectsLoading: false,
+        isProjectsError: true,
+      };
+
+    case SET_ALL_SPEC_PROJECT:
+      return {
+        ...state,
+        project_name: payload,
+        isProjectsLoading: false,
+        isProjectsError: false,
+      };
 
     default:
       return state;
