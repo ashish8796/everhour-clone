@@ -4,11 +4,13 @@ import homeReducer from "./home/homeReducer";
 import { projectsReducer } from "./projects/projectsReducer";
 import timeReducer from "./time/timeReducer";
 import userReducer from "./user/userReducer";
+import { teamReducer } from "./Team/teamReducer";
 
 const rootReducer = combineReducers({
   projects: projectsReducer,
   time: timeReducer,
   user: userReducer,
+  team: teamReducer,
 });
 
 const store = createStore(

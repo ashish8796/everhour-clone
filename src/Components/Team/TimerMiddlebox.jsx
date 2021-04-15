@@ -25,6 +25,11 @@ const Left = styled.div`
 `
 
 const Right = styled.div`
+
+    select{
+        border:1px solid #24be6a;
+        padding:10px;
+    }
     input{
         border:1px solid #24be6a;
         margin-left:20px;

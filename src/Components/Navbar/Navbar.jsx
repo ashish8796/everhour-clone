@@ -24,8 +24,8 @@ const Navbar = () => {
             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Femojipedia-us.s3.dualstack.us-west-1.amazonaws.com%2Fthumbs%2F120%2Ftwitter%2F154%2Fflag-for-united-kingdom_1f1ec-1f1e7.png&f=1&nofb=1" alt=""/>
             <p>{`EN >`}</p> 
           </div>
-          <button>Log in</button>
-          <button>Sign up</button>
+          <Link to="/login"><button>Log in</button></Link>
+          <Link to="/signup"><button>Sign up</button></Link>
         </div>
       </div>
     </Nav>
@@ -85,7 +85,7 @@ const Nav = styled.nav`
      font-size:17px;
      border-radius:5px;
    }
-   button + button{
+   a + a > button{
      background-color:#58BC71;
      color:white
 
