@@ -1,4 +1,4 @@
-import {TIMERFAILURE,TIMERREQUEST,TIMERSUCCESS,TIMESHEETFAILURE,TIMESHEETREQUEST,TIMESHEETSUCCESS} from "./actionType"
+import {ADDMEMBERFAILURE, ADDMEMBERREQUEST, ADDMEMBERSUCCESS, DELETEMEMBERFAILURE, DELETEMEMBERREQUEST, DELETEMEMBERSUCCESS, TIMERFAILURE,TIMERREQUEST,TIMERSUCCESS,TIMESHEETFAILURE,TIMESHEETREQUEST,TIMESHEETSUCCESS} from "./actionType"
 import {getTimer} from "../../api/api"
 import {getTimeSheet} from "../../api/api"
 
@@ -40,6 +40,45 @@ const timeSheetFailure = () => {
     }
 }
 
+const addMemberRequest = () => {
+    return{
+        type:ADDMEMBERREQUEST
+    }
+}
+
+const addMemberSuccess = payload => {
+    return{
+        type:ADDMEMBERSUCCESS,
+        payload
+    }
+}
+
+const addMemberFailure = () => {
+    return{
+        type:ADDMEMBERFAILURE
+    }
+}
+
+const deleteMemberRequest = () => {
+    return{
+        type:DELETEMEMBERREQUEST
+    }
+}
+
+const deleteMemberSuccess = payload => {
+    return{
+        type:DELETEMEMBERSUCCESS,
+        payload
+    }
+}
+
+const deleteMemberFailure = () => {
+    return{
+        type:DELETEMEMBERFAILURE
+    }
+}
+
+
 const getTimerDetails = payload => dispatch => {
     dispatch(timerRequest())
     return getTimer()
@@ -54,4 +93,26 @@ const getTimeSheetDetails = payload => dispatch => {
     .catch(res => dispatch(timeSheetFailure()))
 } 
 
-export {getTimeSheetDetails,getTimerDetails}
+const addMemberData = payload => dispatch => {
+    dispatch(addMemberRequest())
+    const info = {
+        name:payload,
+        active:true,
+        rate:"$50",
+        cost:"$30",
+        capacity:"35h",
+        limit:"no limit",
+        teamGroups:"no groups"
+    }
+    dispatch(addMemberSuccess(info))
+    dispatch(addMemberFailure())
+} 
+
+// const deleteMemberData = payload => dispatch => {
+//     dispatch(deleteMemberRequest())
+//     return deletemember(payload)
+//     .then(res => dispatch(deleteMemberSuccess(res.data)))
+//     .catch(res => dispatch(deleteMemberFailure()))
+// } 
+
+export {getTimeSheetDetails,getTimerDetails,addMemberData}

@@ -1,9 +1,10 @@
-import { TIMERFAILURE, TIMERREQUEST, TIMERSUCCESS, TIMESHEETFAILURE, TIMESHEETREQUEST, TIMESHEETSUCCESS } from "./actionType";
+import { TIMERFAILURE, TIMERREQUEST, TIMERSUCCESS, TIMESHEETFAILURE, TIMESHEETREQUEST, TIMESHEETSUCCESS,ADDMEMBERFAILURE,ADDMEMBERSUCCESS,ADDMEMBERREQUEST,DELETEMEMBERSUCCESS,DELETEMEMBERFAILURE,DELETEMEMBERREQUEST} from "./actionType";
 
 const init = {
     isLoading:false,
     isError:false,
-    data:[]
+    data:[],
+    members:[]
 }
 
 export const teamReducer = (state=init,{type,payload}) => {
@@ -42,6 +43,23 @@ export const teamReducer = (state=init,{type,payload}) => {
                 isLoading:false,
                 isError:true
             }
+            case ADDMEMBERREQUEST:
+                return{
+                    ...state,
+                    isLoading:true
+                }
+            case ADDMEMBERSUCCESS:
+                return{
+                    ...state,
+                    isLoading:false,
+                    members:[...state.members,payload]
+                }
+                case ADDMEMBERFAILURE:
+                return{
+                    ...state,
+                    isLoading:false,
+                    isError:true
+                }
             default:
                 return state;
     }

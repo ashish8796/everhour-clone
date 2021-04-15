@@ -21,15 +21,15 @@ const Bottom = styled.div`
     border:1px solid lightgray;
     padding:0 40px;
     color:#333333;
-
+    span{
+        color:blue;
+    }
 
 `
 
 const TimerBottombo = () => {
 
     const {data,isLoading,isError} = useSelector((state) => state.team,shallowEqual)
-    console.log(data)
-    console.log("hi")
     const dispatch  = useDispatch()
 
     useEffect(() => {
@@ -40,7 +40,6 @@ const TimerBottombo = () => {
         isError?<div>Something went wrong</div>:
         (
         <Bottom>
-            <div>{data.length === 0 && <h3>No Activity</h3>}</div>
             {data?.map(info => {
                 return (
                     <table>
@@ -54,7 +53,7 @@ const TimerBottombo = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{info.user.name} {info.status}</td>
+                                <td>{info.user.name} <span>{info.status}</span></td>
                                 <td>{info.startedAt}</td>
                                 <td>{info.comment}</td>
                                 <td>{info.duration}</td>
