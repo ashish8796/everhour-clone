@@ -6,6 +6,7 @@ import CreateButton from "../../CreateContent/CreateButton";
 
 export default function ShowTasks({ tasksOfProject, setInputName, setQuery }) {
   const dispatch = useDispatch();
+  // const {comment } = useSelector(state => state.)
 
   const handleOnClick = (id) => {
     setInputName("progress");
