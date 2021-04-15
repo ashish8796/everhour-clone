@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Project } from "../Components/Project/Project";
-import ShowProjects from "../Components/Time/ShowProjects";
 import Home from "./Home";
 import Time from "./Time";
 import TeamTimer from "./TeamTimer";
@@ -20,13 +19,13 @@ export default function Routes() {
       </Route>
 
       <Route exact path="/timer">
-        <TeamTimer/>
+        <TeamTimer />
       </Route>
       <Route exact path="/timesheet">
-        <TeamTimesheet/>
+        <TeamTimesheet />
       </Route>
       <Route exact path="/members">
-        <TeamMembers/>
+        <TeamMembers />
       </Route>
 
       <Route path="/projects" exact>

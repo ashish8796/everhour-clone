@@ -1,17 +1,34 @@
-import { SET_CURRENT_PROJECT, SET_CURRENT_TASK } from "./actionTypes";
+import {
+  SET_CURRENT_PROJECT,
+  SET_CURRENT_TASK,
+  SET_TIMER_ACTIVE,
+  SET_TIMER_STOPPED,
+} from "./actionTypes";
 
-export const setCurrentProject = (currentProject) => {
-  console.log(currentProject);
+export const setCurrentProject = (id) => {
+  console.log(id);
   return {
     type: SET_CURRENT_PROJECT,
-    payload: currentProject,
+    payload: id,
   };
 };
 
-export const setCurrentTask = (currentTask) => {
-  console.log(currentTask);
+export const setCurrentTask = (id) => {
+  console.log(id);
   return {
     type: SET_CURRENT_TASK,
-    payload: currentTask,
+    payload: id,
+  };
+};
+
+export const setTimerActive = () => {
+  return {
+    type: SET_TIMER_ACTIVE,
+  };
+};
+
+export const setTimerStopped = () => {
+  return {
+    type: SET_TIMER_STOPPED,
   };
 };

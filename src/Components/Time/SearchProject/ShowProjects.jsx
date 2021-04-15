@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { setTasksOfProject } from "../../store/projects/actions";
-import { setCurrentProject } from "../../store/time/actions";
-import { findItem } from "../../utils/findItem";
+import { setTasksOfProject } from "../../../store/projects/actions";
+
+import { setCurrentProject } from "../../../store/time/actions";
+
+import { findItem } from "../../../utils/findItem";
 
 export default function ShowProjects({
-  setAreProjectsVisible,
   setIsLoading,
   setIsError,
-  setIsTaskVisible,
+  projects,
+  setInputName,
+  setQuery,
 }) {
-  const projects = useSelector(
-    (state) => state.projects.projects,
-    shallowEqual
-  );
   const dispatch = useDispatch();
 
   const handleProjectClick = async (id) => {
-    setAreProjectsVisible(false);
-    const currentProject = findItem(id, projects);
-    dispatch(setCurrentProject(currentProject));
+    setInputName("task");
+    setQuery("");
+    // const currentProject = findItem(id, projects);
+    dispatch(setCurrentProject(id));
 
     try {
       setIsLoading(true);
       const data = await dispatch(setTasksOfProject(id));
 
       setIsLoading(false);
-      setIsTaskVisible(true);
     } catch (error) {
       console.log(error);
       setIsError(true);
