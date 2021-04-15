@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { Navbar } from '../../Navbar/Navbar'
 
 const Login = () => {
   const [userEmail,setUserEmail] = useState("");
-  const [userpassword,setUserPassword] = useState("");
+  const [userPassword,setUserPassword] = useState("");
 
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -18,7 +18,7 @@ const Login = () => {
   const isError = useSelector(state => state.auth.isError);
 
   const handleLogin = () => {
-    dispatch(loginUser({userEmail,userpassword}))
+    dispatch(loginUser({userEmail,userPassword}))
     setUserEmail("");
     setUserPassword("");
   }
@@ -27,6 +27,7 @@ const Login = () => {
     return <Redirect to="/projects"/>
   }
 
+  console.log(isAuth);
   return(
     <div>
        <Navbar />
@@ -34,7 +35,7 @@ const Login = () => {
        <div>
          <Headings>
           <h1>Log in to Everhour</h1>
-          <h3>Using the former version of Everhour? Please <Link>login here</Link></h3>
+          <h3>Using the former version of Everhour? Please <Link to="">login here</Link></h3>
          </Headings>
 
          <Formbox>
@@ -47,13 +48,17 @@ const Login = () => {
                     <p>Log in with Google</p>
                   </div>
                 </div>
+
                 <p>or</p>
+
                 {isError ? <div style={{color:"red",textAlign:'center',marginBottom:"20px",fontSize:"17px"}}>Invalid email/password</div>: null}
-                <input type="text" placeholder="Enter your email..." onChange={(e) => setUserEmail(e.target.value)}/>
-                <input type="text" placeholder="Password..." onChange={(e) => setUserPassword(e.target.value)}/>
+
+
+                <input type="text" value={userEmail} placeholder="Enter your email..." onChange={(e) => setUserEmail(e.target.value)}/>
+                <input type="text" value={userPassword} placeholder="Password..." onChange={(e) => setUserPassword(e.target.value)}/>
                 <div>
                   <button onClick={handleLogin}>Log in</button>
-                  <div><Link>Reset password</Link> <Link>More login options</Link></div>
+                  <div><Link to="">Reset password</Link> <Link to="">More login options</Link></div>
                 </div>
               </div>
             </Firstdiv>

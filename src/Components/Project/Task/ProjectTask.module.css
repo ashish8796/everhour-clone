@@ -1,0 +1,42 @@
+.MainTaskDiv {
+  background-color: rgba(255, 255, 255, 0.808);
+  text-align: center;
+  padding: 2%;
+  height: auto;
+  width: 80%;
+  margin: 2% auto;
+}
+.BodyPageSection {
+  background-color: rgba(236, 235, 234, 0.281);
+}
+.headerSection {
+  height: 70px;
+}
+.MainTaskDiv > div > h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgb(59, 59, 59);
+}
+.MainTaskDiv > div > div > h2 {
+  font-size: 26px;
+  padding: 1%;
+  margin: 1%;
+  font-weight: 600;
+  color: rgb(88, 17, 17);
+}
+.MainTaskDiv > div > h4 {
+  font-size: 20px;
+  padding: 0.5%;
+  font-weight: 500;
+  color: rgb(27, 27, 27);
+}
+.MainTaskDiv > div > div > button {
+  background-color: rgba(105, 105, 105, 0.548);
+  padding: 1%;
+  border-radius: 20px;
+  margin: 1%;
+}
+.DivTaskFlex {
+  display: flex;
+  margin-left: 44%;
+}

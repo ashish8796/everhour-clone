@@ -16,6 +16,11 @@ export const getAllProjects = () => {
   return axios.get("/projects");
 };
 
+export const getSpecificProject = (id) => {
+  let spec_url = "/projects/" + id;
+  return axios.get(spec_url);
+};
+
 export const deleteProjects = (id) => {
   let delete_url = "/projects/" + id;
   return axios.delete(delete_url);
