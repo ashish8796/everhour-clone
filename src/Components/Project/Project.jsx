@@ -35,7 +35,7 @@ const Project = () => {
   const projects = useSelector((state) => state.projects, shallowEqual);
   console.log(projects.projects);
   return (
-    <div>
+    <div className={styles.MainProductPageBody}>
       <MainpageNav />
       <div className={styles.divProjectMain}>
         <div className={styles.divProject1}>

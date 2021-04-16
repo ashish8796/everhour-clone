@@ -94,9 +94,6 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
     ):(
         <div><>
             {/* {console.log(redURL)} */}
-            <Route path="/task" >
-                <ProjectTask />
-            </Route>
             <Redirect to={redURL} />
             </>
         </div>
