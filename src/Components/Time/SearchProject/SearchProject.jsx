@@ -8,13 +8,16 @@ import CreateInput from "../../CreateContent/CreateInput";
 import ShowProjects from "./ShowProjects";
 import ShowTasks from "./ShowTasks";
 
-export default function SearchProject() {
+export default function SearchProject({ inputName, setInputName }) {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [inputName, setInputName] = useState("project");
+
   const [isDataVisible, setIsDataVisible] = useState(false);
+  const [placeholder, setPlaceholder] = useState(
+    "Start typing or select project below"
+  );
 
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
@@ -40,19 +43,19 @@ export default function SearchProject() {
     //cleanup
     return () => {
       setQuery("");
+      setPlaceholder("Start typing or select project below");
     };
   }, []);
 
   return (
-    <SearchWrapper>
+    <SearchWrapper className="flex-column justify-center">
       <CreateInput
         type="text"
         value={query}
         handleOnChange={handleOnChange}
-        placeholder="Start typing or select project below"
+        placeholder={placeholder}
         handleOnFocus={handleSearchFocus}
         name={inputName}
-        // handleOnBlur={handleOnBlur}
       />
 
       {inputName === "project" && isDataVisible && (
@@ -62,6 +65,7 @@ export default function SearchProject() {
           setIsLoading={setIsLoading}
           setInputName={setInputName}
           setQuery={setQuery}
+          setPlaceholder={setPlaceholder}
         />
       )}
 
@@ -72,6 +76,7 @@ export default function SearchProject() {
           tasksOfProject={filterData(tasksOfProject, query)}
           setInputName={setInputName}
           setQuery={setQuery}
+          setPlaceholder={setPlaceholder}
         />
       ) : (
         <></>
@@ -81,11 +86,25 @@ export default function SearchProject() {
 }
 
 const SearchWrapper = styled.div`
-  border: 1px solid lightgrey;
+  width: 100%;
+  position: relative;
+
+  div {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    left: 0;
+  }
 
   input {
+    width: 100%;
     padding: 8px 15px;
-    width: 80%;
+    height: 55px;
     font-size: 20px;
+    display: block;
+    &::placeholder {
+      font-size: 16px;
+      color: #d4d4d4;
+    }
   }
 `;
