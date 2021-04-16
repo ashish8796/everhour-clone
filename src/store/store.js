@@ -7,7 +7,9 @@ import { teamReducer } from './Team/teamReducer';
 import { sectionsReducer } from './task/sectionReducer';
 import userReducer from './user/userReducer';
 import { authReducer } from './Auth/reducer';
+import { invoiceReducer } from './Invoices/reducer';
 import { clientReducer } from './Client/clientReducer';
+
 
 const rootReducer = combineReducers({
   projects: projectsReducer,
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   team: teamReducer,
   auth: authReducer,
+  invoice: invoiceReducer,
   client:clientReducer
 });
 
