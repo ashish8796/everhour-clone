@@ -64,3 +64,7 @@ export const getUser = () => {
 export const getUserTime = (id) => {
   return axios.get(`/users/${id}/time`);
 };
+
+export const createClient = (payload) => {
+  return axios.post("/clients",payload)
+}

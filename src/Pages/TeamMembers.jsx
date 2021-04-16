@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainpageNav from '../Components/MainpageNavbar/MainpageNav'
 import Bottombox from '../Components/Team/Bottombox'
 import Mainbox from '../Components/Team/Mainbox'
@@ -41,6 +41,7 @@ const TeamMembers = () => {
         dispatch(addMemberData(member))
         setMember("")
     }
+  
     return (
         <div>
             <MainpageNav/>
