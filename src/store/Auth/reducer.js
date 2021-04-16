@@ -7,11 +7,15 @@ import {
 } from './actionTypes';
 
 const isAuth = loadData('isAuth');
-const username = loadData('username');
+const fullName = loadData('username');
+const apiKey = loadData('apiKey');
+const avatar = loadData('avatar');
 
 const initState = {
   isAuth: isAuth ? true : false,
-  user: username ? username : '',
+  fullName: fullName ? fullName : '',
+  apiKey: apiKey ? apiKey : '',
+  avatar: avatar ? avatar : '',
   isLoading: false,
   isError: false,
 };
@@ -26,14 +30,17 @@ export const authReducer = (state = initState, { type, payload }) => {
       };
     }
     case LOGIN_SUCCESS: {
-      console.log('pay', payload);
-      const { email } = payload;
+      const { fullName, apiKey, avatar } = payload;
       saveData('isAuth', true);
-      saveData('username', email);
+      saveData('fullName', fullName);
+      saveData('apiKey', apiKey);
+      saveData('avatar', avatar);
       return {
         ...state,
         isAuth: true,
-        user: username,
+        fullName: fullName,
+        apiKey: apiKey,
+        avatar: avatar,
         isLoading: true,
         isError: false,
       };
@@ -47,11 +54,15 @@ export const authReducer = (state = initState, { type, payload }) => {
     }
     case LOGOUT_SUCCESS: {
       saveData('isAuth', false);
-      saveData('username', '');
+      saveData('fullName', '');
+      saveData('apiKey', '');
+      saveData('avatar', '');
       return {
         ...state,
         isAuth: false,
-        user: '',
+        avatar: '',
+        apiKey: '',
+        fullName: '',
       };
     }
     default:

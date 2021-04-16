@@ -73,7 +73,7 @@ const WhatsInside = () => {
           <h1>What’s inside?</h1>
           <ul>
             {insideItems.map(({title,desc,url,icon},index) => {
-            return show ===index ? <li style={{backgroundColor:"#F0FBF5"}}> 
+            return show ===index ? <li key={title} style={{backgroundColor:"#F0FBF5"}}> 
               <div>
               <img src={icon} alt="icon"/>
               </div>
@@ -81,7 +81,7 @@ const WhatsInside = () => {
                 <h3 onClick={() => handleImgChange(url,index)} >{title}</h3>
                 <p>{desc}</p>
               </div>
-            </li> : <li> 
+            </li> : <li key={title}> 
               <div>
               <img src={icon} alt="icon"/>
               </div>
