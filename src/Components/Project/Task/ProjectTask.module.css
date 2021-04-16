@@ -27,11 +27,23 @@
   font-weight: 600;
   color: rgb(68, 68, 68);
 }
+.MainTaskDiv > div > div > h4 {
+  font-size: 18px;
+  padding: 0.5%;
+  font-weight: 500;
+  color: rgb(27, 27, 27);
+}
 .MainTaskDiv > div > h4 {
   font-size: 18px;
   padding: 0.5%;
   font-weight: 500;
   color: rgb(27, 27, 27);
+}
+.tasksDivOfProject {
+  display: flex;
+}
+.tasksDivOfProject > div {
+  margin: 1%;
 }
 .MainTaskDiv > div > div > button {
   background-color: #e7e7e796;

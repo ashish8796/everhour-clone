@@ -86,7 +86,7 @@ const ProjectTask =()=>{
                 <h2>Listed Tasks</h2>
                 <button onClick={handleCreateTask}>Add Task</button>
                 </div>
-                {sections.tasksOfProject.map((item)=><h4>{item.name} - {item.iteration}</h4>)}
+                {sections.tasksOfProject.map((item)=><div className={styles.tasksDivOfProject}><div style={item.status==="open"?{background: "green", width: "15px", height: "15px", borderRadius: "8px"}:{background: "dimgrey", width: "15px", height: "15px", borderRadius: "8px"}}></div><h4>{item.name} - {item.iteration}</h4></div>)}
             </div>
         </div>
         </div>
