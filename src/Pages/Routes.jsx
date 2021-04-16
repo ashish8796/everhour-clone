@@ -9,6 +9,7 @@ import TeamMembers from "./TeamMembers";
 import { ProjectTask } from "../Components/Project/Task/ProjectTask";
 import { Login } from "../Components/Auth/Login/Login";
 import { Signup } from "../Components/Auth/Signup/Signup";
+import { PrivateRoute } from "./PrivateRoute";
 
 export default function Routes() {
   return (
@@ -25,27 +26,34 @@ export default function Routes() {
         <Signup />
       </Route>
 
-      <Route path="/time">
+      <PrivateRoute path="/time">
         <Time />
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/timer">
+      <PrivateRoute exact path="/timer">
         <TeamTimer />
-      </Route>
-      <Route exact path="/timesheet">
+      </PrivateRoute>
+
+      <PrivateRoute exact path="/timesheet">
         <TeamTimesheet />
-      </Route>
-      <Route exact path="/members">
+      </PrivateRoute>
+
+      <PrivateRoute exact path="/members">
         <TeamMembers />
-      </Route>
+      </PrivateRoute>
 
-      <Route path="/projects" exact>
+      <PrivateRoute path="/projects" exact>
         <Project />
+      </PrivateRoute>
+
+      <PrivateRoute path="/task">
+        <ProjectTask />
+      </PrivateRoute>
+
+      <Route>
+        <h1>404! Sorry Page not found</h1>
       </Route>
 
-      <Route path="/task">
-        <ProjectTask />
-      </Route>
     </Switch>
   );
 }
