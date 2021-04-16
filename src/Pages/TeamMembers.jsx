@@ -38,8 +38,13 @@ const TeamMembers = () => {
     const dispatch = useDispatch()
 
     const addMembers = () => {
+        if(member === ""){
+            alert("input cannot be empty")
+        }
+        else{
         dispatch(addMemberData(member))
         setMember("")
+        }
     }
   
     return (
