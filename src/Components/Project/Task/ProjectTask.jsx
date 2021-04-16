@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import queryString from 'query-string'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { createSection, setAllSections, setSpecProjects } from '../../../store/task/actions';
+import { createSection, createTask, setAllSections, setSpecProjects } from '../../../store/task/actions';
 import { setTasksOfProject } from '../../../store/task/actions';
 import MainpageNav from '../../MainpageNavbar/MainpageNav';
 import styles from './ProjectTask.module.css';
@@ -40,11 +40,20 @@ const ProjectTask =()=>{
 
     const createSectionData = {
         name: "Authentication",
-        id: "ev:236473904968350"
+        id: params
     }
 
     const handleCreateSection = () => {
         dispatch(createSection(createSectionData.id, createSectionData.name));
+    }
+
+    const createTasksData = {
+        name: "Designing",
+        sec_id: "517803",
+        id: params
+    }
+    const handleCreateTask = () => {
+        dispatch(createTask(createTasksData.id ,createTasksData.sec_id,createTasksData.name))
     }
 
     const sections = useSelector((state) => state.sections, shallowEqual);
@@ -75,7 +84,7 @@ const ProjectTask =()=>{
             <div>
                 <div className={styles.DivTaskFlex}>
                 <h2>Listed Tasks</h2>
-                <button>Add Task</button>
+                <button onClick={handleCreateTask}>Add Task</button>
                 </div>
                 {sections.tasksOfProject.map((item)=><h4>{item.name} - {item.iteration}</h4>)}
             </div>
