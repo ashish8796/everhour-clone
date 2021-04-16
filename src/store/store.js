@@ -7,6 +7,7 @@ import { teamReducer } from './Team/teamReducer';
 import { sectionsReducer } from './task/sectionReducer';
 import userReducer from './user/userReducer';
 import { authReducer } from './Auth/reducer';
+import { clientReducer } from './Client/clientReducer';
 
 const rootReducer = combineReducers({
   projects: projectsReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   team: teamReducer,
   auth: authReducer,
+  client:clientReducer
 });
 
 const store = createStore(
