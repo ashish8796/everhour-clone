@@ -53,6 +53,8 @@ export default function Time() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     (async () => {
       if (user.id) {
@@ -106,7 +108,10 @@ export default function Time() {
           </CurrentDataCont>
         )}
 
-        <FeatureSection className="flex justify-center background-white">
+        <FeatureSection
+          className="flex justify-center background-white"
+          status={status}
+        >
           {status === "stopped" ? (
             <SearchProject
               inputName={inputName}
@@ -118,7 +123,7 @@ export default function Time() {
             <ShowTaskProgress />
           )}
 
-          <Timer />
+          <Timer setInputName={setInputName} />
         </FeatureSection>
 
         <TaskListSection
@@ -149,8 +154,10 @@ const Section = styled.section`
 const CurrentDataCont = styled(Section)``;
 
 const FeatureSection = styled(Section)`
-  border: 1px solid lightgrey;
-  padding: 1px;
+  align-items: center;
+  border: 1px solid
+    ${(props) => (props.status === "stopped" ? "lightgrey" : "#f3c9ca")};
+  padding: ${(props) => (props.status === "stopped" ? "1px" : "10px 40px")};
   border-radius: 3px;
 `;
 

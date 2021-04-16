@@ -4,4 +4,16 @@ function changeTimeIntoMinHr(sec) {
     : sec / 60 + `m`;
 }
 
-export { changeTimeIntoMinHr };
+function convertSecIntoTime(sec) {
+  if (sec < 59) {
+    return `00:00:${sec}`;
+  } else if (sec > 59 && sec < 3600) {
+    return `00:${Math.floor(sec / 60)}:${sec % 60}`;
+  } else if (sec >= 3600) {
+    return `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60)}:${
+      (sec % 3600) % 60
+    }`;
+  }
+}
+
+export { changeTimeIntoMinHr, convertSecIntoTime };
