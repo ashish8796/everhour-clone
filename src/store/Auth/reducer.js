@@ -9,11 +9,13 @@ import {
 const isAuth = loadData('isAuth');
 const fullName = loadData('username');
 const apiKey = loadData('apiKey');
+const avatar = loadData('avatar');
 
 const initState = {
   isAuth: isAuth ? true : false,
   fullName: fullName ? fullName : '',
   apiKey: apiKey ? apiKey : '',
+  avatar: avatar ? avatar : '',
   isLoading: false,
   isError: false,
 };
@@ -28,15 +30,17 @@ export const authReducer = (state = initState, { type, payload }) => {
       };
     }
     case LOGIN_SUCCESS: {
-      const { fullName, apiKey } = payload;
+      const { fullName, apiKey, avatar } = payload;
       saveData('isAuth', true);
       saveData('fullName', fullName);
       saveData('apiKey', apiKey);
+      saveData('avatar', avatar);
       return {
         ...state,
         isAuth: true,
         fullName: fullName,
         apiKey: apiKey,
+        avatar: avatar,
         isLoading: true,
         isError: false,
       };
@@ -52,9 +56,11 @@ export const authReducer = (state = initState, { type, payload }) => {
       saveData('isAuth', false);
       saveData('fullName', '');
       saveData('apiKey', '');
+      saveData('avatar', '');
       return {
         ...state,
         isAuth: false,
+        avatar: '',
         apiKey: '',
         fullName: '',
       };

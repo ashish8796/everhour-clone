@@ -54,8 +54,8 @@ const Login = () => {
                 {isError ? <div style={{color:"red",textAlign:'center',marginBottom:"20px",fontSize:"17px"}}>Invalid email/password</div>: null}
 
 
-                <input type="text" value={userEmail} placeholder="Enter your email..." onChange={(e) => setUserEmail(e.target.value)}/>
-                <input type="text" value={userPassword} placeholder="Password..." onChange={(e) => setUserPassword(e.target.value)}/>
+                <input type="email" value={userEmail} placeholder="Enter your email..." onChange={(e) => setUserEmail(e.target.value)}/>
+                <input type="password" value={userPassword} placeholder="Password..." onChange={(e) => setUserPassword(e.target.value)}/>
                 <div>
                   <button onClick={handleLogin}>Log in</button>
                   <div><Link to="">Reset password</Link> <Link to="">More login options</Link></div>

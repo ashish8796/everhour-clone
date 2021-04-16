@@ -35,8 +35,8 @@ export const loginUser = (payload) => (dispatch) => {
       if (currentUser.length === 0) {
         return dispatch(loginFailure());
       }
-      const { fullName, apiKey } = currentUser[0];
-      dispatch(loginSuccess({ fullName, apiKey }));
+      const { fullName, apiKey, avatar } = currentUser[0];
+      dispatch(loginSuccess({ fullName, apiKey, avatar }));
     })
     .catch((err) => dispatch(loginFailure()));
 };
