@@ -1,14 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { startTimer, stopTimer } from "../../../store/time/actions";
 
 export default function CreateTaskTimerButton({ id }) {
-  console.log(id);
+  const dispatch = useDispatch();
+  const { timer } = useSelector((state) => state.time);
+  console.log({ id, status: timer.status });
 
-  const handleTimer = () => {};
+  const handleStartTimer = () => {
+    console.log("Start Timer working");
+    const payload = { task: id };
+    console.log(payload);
+    dispatch(startTimer(payload));
+  };
+
+  const handleStopTimer = () => {
+    dispatch(stopTimer());
+  };
 
   return (
-    <TimerButton onClick={handleTimer}>
-      <img src="/assets/start.svg" alt="logo" />
+    <TimerButton
+      onClick={timer.status === "stopped" ? handleStartTimer : handleStopTimer}
+    >
+      <img
+        src={
+          timer.status === "stopped" ? "/assets/start.svg" : "/assets/stop.svg"
+        }
+        alt="logo"
+      />
     </TimerButton>
   );
 }

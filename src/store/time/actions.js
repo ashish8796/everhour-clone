@@ -3,7 +3,6 @@ import {
   SET_COMMENT,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
-  SET_TIMER_STATUS,
   START_TIMER,
   STOP_TIMER,
 } from "./actionTypes";
@@ -52,13 +51,6 @@ export const stopTimer = () => async (dispatch) => {
   } catch (error) {
     return error;
   }
-};
-
-export const setTimerStatus = (status) => {
-  return {
-    type: SET_TIMER_STATUS,
-    payload: status,
-  };
 };
 
 export const setComment = (comment) => {
