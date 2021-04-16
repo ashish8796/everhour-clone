@@ -21,8 +21,6 @@ export default function Timer({ setInputName }) {
     timer,
   } = useSelector((state) => state.time);
 
-  console.log(timer);
-
   const handleStartTimer = async () => {
     try {
       const payload = {

@@ -51,8 +51,6 @@ export default function SearchProject({
       placeholder = "Explain your progress...";
   }
 
-  console.log(placeholder);
-
   useEffect(() => {
     //cleanup
     return () => {
