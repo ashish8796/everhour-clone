@@ -9,7 +9,6 @@ export default function ShowTasks({
   tasksOfProject,
   setInputName,
   setQuery,
-  setPlaceholder,
   setIsDataVisible,
 }) {
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ export default function ShowTasks({
     setIsDataVisible(false);
     setInputName("progress");
     setQuery("");
-    setPlaceholder("Explain progress");
     dispatch(setCurrentTask(id));
   };
 

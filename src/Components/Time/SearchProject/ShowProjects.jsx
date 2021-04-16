@@ -13,7 +13,6 @@ export default function ShowProjects({
   projects,
   setInputName,
   setQuery,
-  setPlaceholder,
   setIsDataVisible,
 }) {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export default function ShowProjects({
   const handleProjectClick = async (id) => {
     setInputName("task");
     setQuery("");
-    setPlaceholder("Select Task");
+
     // const currentProject = findItem(id, projects);
     dispatch(setCurrentProject(id));
 

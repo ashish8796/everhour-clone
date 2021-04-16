@@ -19,9 +19,9 @@ export default function SearchProject({
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [placeholder, setPlaceholder] = useState(
-    "Start typing or select project below"
-  );
+  // const [placeholder, setPlaceholder] = useState(
+  //
+  // );
 
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
@@ -41,11 +41,26 @@ export default function SearchProject({
     setIsDataVisible(true);
   };
 
+  let placeholder;
+  switch (inputName) {
+    case "project":
+      placeholder = "Start typing or select project below";
+      break;
+
+    case "task":
+      placeholder = "Start typing or select task below";
+      break;
+
+    default:
+      placeholder = "Explain your progress...";
+  }
+
+  console.log(placeholder);
+
   useEffect(() => {
     //cleanup
     return () => {
       setQuery("");
-      setPlaceholder("Start typing or select project below");
     };
   }, []);
 
@@ -68,7 +83,6 @@ export default function SearchProject({
           setIsLoading={setIsLoading}
           setInputName={setInputName}
           setQuery={setQuery}
-          setPlaceholder={setPlaceholder}
           setIsDataVisible={setIsDataVisible}
         />
       )}
@@ -80,7 +94,6 @@ export default function SearchProject({
           tasksOfProject={filterData(tasksOfProject, query)}
           setInputName={setInputName}
           setQuery={setQuery}
-          setPlaceholder={setPlaceholder}
           setIsDataVisible={setIsDataVisible}
         />
       ) : (
