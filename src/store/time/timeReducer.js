@@ -11,8 +11,10 @@ const initState = {
   currentProjectId: "",
   currentProjectTaskId: "",
   comment: "",
+  currentTask: {},
   timer: {
     status: "stopped",
+    value: 0,
   },
 };
 
@@ -35,11 +37,20 @@ function timeReducer(state = initState, { type, payload }) {
     }
 
     case START_TIMER: {
-      return { ...state };
+      return {
+        ...state,
+        currentProjectId: payload.task.projects[0],
+        currentProjectTaskId: payload.task.id,
+        currentTask: payload,
+        timer: {
+          status: payload.status,
+          value: payload.today,
+        },
+      };
     }
 
     case STOP_TIMER: {
-      return { ...state };
+      return { ...state, timer: { status: payload.status, value: 0 } };
     }
 
     default:

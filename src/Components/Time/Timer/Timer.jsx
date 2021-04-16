@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   setCurrentTask,
-  setTimerStatus,
   startTimer,
   stopTimer,
 } from "../../../store/time/actions";
@@ -12,7 +11,6 @@ import { convertSecIntoTime } from "../../../utils/utility";
 export default function Timer({ setInputName }) {
   const dispatch = useDispatch();
   const timerRef = useRef(null);
-  const [time, setTime] = useState(0);
   const [isError, setIsError] = useState(false);
   const {
     comment,
@@ -20,6 +18,10 @@ export default function Timer({ setInputName }) {
     currentProjectTaskId,
     timer,
   } = useSelector((state) => state.time);
+
+  const [time, setTime] = useState(timer.value);
+
+  console.log({ time });
 
   const handleStartTimer = async () => {
     try {
@@ -29,9 +31,7 @@ export default function Timer({ setInputName }) {
         userDate: new Date().toISOString().split("T")[0],
       };
 
-      const status = await dispatch(startTimer(payload));
-      dispatch(setTimerStatus(status));
-
+      await dispatch(startTimer(payload));
       timerRef.current = setInterval(() => {
         setTime((time) => time + 1);
       }, 1000);
@@ -41,13 +41,12 @@ export default function Timer({ setInputName }) {
   };
 
   const handleStopTimer = async () => {
+    clearInterval(timerRef.current);
+    timerRef.current = null;
     try {
-      const status = await dispatch(stopTimer());
-      dispatch(setTimerStatus(status));
+      await dispatch(stopTimer());
       dispatch(setCurrentTask(""));
       setInputName("task");
-      clearInterval(timerRef.current);
-      timerRef.current = null;
       setTime(0);
     } catch (error) {
       setIsError(true);
@@ -55,10 +54,15 @@ export default function Timer({ setInputName }) {
   };
 
   useEffect(() => {
+    if (timer.status) {
+      timerRef.current = setInterval(() => {
+        setTime((time) => time + 1);
+      }, 1000);
+    }
     return () => {
       clearInterval(timerRef.current);
     };
-  }, []);
+  }, [timer.status]);
 
   return (
     <TimerCont className="flex">

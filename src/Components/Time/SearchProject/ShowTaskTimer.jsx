@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { findItem } from "../../../utils/findItem";
 
 export default function ShowTaskProgress() {
-  const { currentProjectId, currentProjectTaskId, comment } = useSelector(
-    (state) => state.time,
-    shallowEqual
-  );
+  const {
+    currentProjectId,
+    currentProjectTaskId,
+    comment,
+    timer,
+    currentTask,
+  } = useSelector((state) => state.time, shallowEqual);
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
     shallowEqual
@@ -15,7 +18,11 @@ export default function ShowTaskProgress() {
 
   return (
     <TaskTimerCont>
-      <h2>{findItem(currentProjectTaskId, tasksOfProject).name}</h2>
+      <h2>
+        {timer.status === "stopped"
+          ? findItem(currentProjectTaskId, tasksOfProject).name
+          : currentTask.task.name}
+      </h2>
       <div className="flex">
         <p className="flex align-center">
           <img src="/assets/Everhour_logo.svg" alt="logo" />
