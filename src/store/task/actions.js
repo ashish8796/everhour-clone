@@ -1,4 +1,4 @@
-import { createProjects, getAllProjects, getTasksOfProject, deleteProjects, getSectionOfProject, getSpecificProject } from "./../../api/api";
+import { createProjects, getAllProjects, getTasksOfProject, deleteProjects, getSectionOfProject, getSpecificProject, createSectionProject } from "./../../api/api";
 
 import {
   SET_ALL_SECTION,
@@ -7,7 +7,10 @@ import {
   SET_SECTION_LOADING,
   SET_TASKS_OF_PROJECT,
   SET_SPEC_PROJECT_ERROR,
-  SET_SPEC_PROJECT_LOADING
+  SET_SPEC_PROJECT_LOADING,
+  CREATE_SECTION,
+  CREATE_SECTION_ERROR,
+  CREATE_SECTION_LOADING
 } from "./actionsTypes";
 
 export const setSectionsLoading = () => {
@@ -19,6 +22,18 @@ export const setSectionsLoading = () => {
 export const setSectionsError = () => {
   return {
     type: SET_SECTION_ERROR,
+  };
+};
+
+export const createSectionsLoading = () => {
+  return {
+    type: CREATE_SECTION_LOADING,
+  };
+};
+
+export const createSectionsError = () => {
+  return {
+    type: CREATE_SECTION_ERROR,
   };
 };
 
@@ -73,5 +88,20 @@ export const setTasksOfProject = (project_id) => async (dispatch) => {
     return true;
   } catch (error) {
     return error;
+  }
+};
+
+export const createSection = (id,createData) => async (dispatch) => {
+
+  try {
+    await createSectionProject(id,createData);
+    const {data} = await getSectionOfProject(id);
+    console.log(data);
+    dispatch({
+      type: SET_ALL_SECTION,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch(setSectionsError());
   }
 };

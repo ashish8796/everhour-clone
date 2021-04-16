@@ -1,11 +1,15 @@
 .divProjectMain {
-  background-color: rgba(255, 255, 255, 0.363);
+  background-color: #ffffff;
   padding: 2% 3%;
   max-width: 82%;
-  margin: auto;
+  margin: 0.5% auto;
+  font-family: "Lato", sans-serif;
+}
+.MainProductPageBody {
+  background-color: #f7f7f779;
 }
 .divProject1 {
-  background-color: rgba(243, 243, 243, 0.349);
+  background-color: rgba(255, 253, 253, 0.349);
   display: flex;
   padding: 1% 0;
   margin: 1% 0;
@@ -25,7 +29,7 @@
   color: black;
 }
 .divProject1 > button {
-  background-color: rgba(4, 158, 4, 0.671);
+  background-color: #24be6a;
   color: white;
   font-size: 16px;
   padding: 0 2%;
@@ -59,7 +63,7 @@
 }
 .divProject2sub2 > select > * {
   padding: 5%;
-  color: rgb(44, 44, 44);
+  color: rgb(68, 44, 44);
 }
 .divProject2sub2 > input {
   margin: 0 2%;

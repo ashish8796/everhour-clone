@@ -5,7 +5,8 @@ import {
   SET_TASKS_OF_PROJECT,
   SET_SPEC_PROJECT_ERROR,
   SET_SPEC_PROJECT_LOADING,
-  SET_ALL_SPEC_PROJECT
+  SET_ALL_SPEC_PROJECT,
+  CREATE_SECTION
 } from "./actionsTypes";
 
 const initState = {
@@ -68,6 +69,14 @@ function sectionsReducer(state = initState, { type, payload }) {
         isProjectsLoading: false,
         isProjectsError: false,
       };
+    
+    case CREATE_SECTION:
+      return {
+        ...state,
+        sections: payload,
+        isSectionsLoading: false,
+        isSectionsError: false,
+      }
 
     default:
       return state;
