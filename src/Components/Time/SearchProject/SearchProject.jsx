@@ -8,13 +8,20 @@ import CreateInput from "../../CreateContent/CreateInput";
 import ShowProjects from "./ShowProjects";
 import ShowTasks from "./ShowTasks";
 
-export default function SearchProject() {
+export default function SearchProject({
+  inputName,
+  setInputName,
+  setIsDataVisible,
+  isDataVisible,
+}) {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [inputName, setInputName] = useState("project");
-  const [isDataVisible, setIsDataVisible] = useState(false);
+
+  // const [placeholder, setPlaceholder] = useState(
+  //
+  // );
 
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
@@ -28,13 +35,27 @@ export default function SearchProject() {
     dispatch(setComment(e.target.value));
   };
 
-  // const handleOnBlur = (e) => {
-  //   dispatch(setComment(query));
-  // };
+  const handleOnBlur = (e) => {};
 
   const handleSearchFocus = (e) => {
     setIsDataVisible(true);
   };
+
+  let placeholder;
+  switch (inputName) {
+    case "project":
+      placeholder = "Start typing or select project below";
+      break;
+
+    case "task":
+      placeholder = "Start typing or select task below";
+      break;
+
+    default:
+      placeholder = "Explain your progress...";
+  }
+
+  console.log(placeholder);
 
   useEffect(() => {
     //cleanup
@@ -44,12 +65,12 @@ export default function SearchProject() {
   }, []);
 
   return (
-    <SearchWrapper>
+    <SearchWrapper className="flex-column justify-center">
       <CreateInput
         type="text"
         value={query}
         handleOnChange={handleOnChange}
-        placeholder="Start typing or select project below"
+        placeholder={placeholder}
         handleOnFocus={handleSearchFocus}
         name={inputName}
         // handleOnBlur={handleOnBlur}
@@ -62,16 +83,18 @@ export default function SearchProject() {
           setIsLoading={setIsLoading}
           setInputName={setInputName}
           setQuery={setQuery}
+          setIsDataVisible={setIsDataVisible}
         />
       )}
 
       {isLoading ? (
         <p>...Loading</p>
-      ) : inputName === "task" && isDataVisible ? (
+      ) : inputName === "task" ? (
         <ShowTasks
           tasksOfProject={filterData(tasksOfProject, query)}
           setInputName={setInputName}
           setQuery={setQuery}
+          setIsDataVisible={setIsDataVisible}
         />
       ) : (
         <></>
@@ -81,11 +104,26 @@ export default function SearchProject() {
 }
 
 const SearchWrapper = styled.div`
-  border: 1px solid lightgrey;
+  width: 100%;
+  position: relative;
+
+  div {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    left: -2px;
+    z-index: 100;
+  }
 
   input {
+    width: 100%;
     padding: 8px 15px;
-    width: 80%;
+    height: 55px;
     font-size: 20px;
+    display: block;
+    &::placeholder {
+      font-size: 16px;
+      color: #d4d4d4;
+    }
   }
 `;
