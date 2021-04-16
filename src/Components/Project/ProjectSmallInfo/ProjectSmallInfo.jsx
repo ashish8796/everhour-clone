@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { deleteProject } from '../../../store/projects/actions';
 import { ProjectTask } from '../Task/ProjectTask';
 import styles from './ProjectSmallInfo.module.css';
@@ -91,9 +92,13 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
             <button onClick={()=>handleBillingSave(id)}>Save</button>
         </div>
     ):(
-        <div>
+        <div><>
             {/* {console.log(redURL)} */}
+            <Route path="/task" >
+                <ProjectTask />
+            </Route>
             <Redirect to={redURL} />
+            </>
         </div>
     )
 }
