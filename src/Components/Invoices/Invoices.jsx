@@ -72,13 +72,11 @@ const Steps = styled.div`
   display:flex;
   flex-direction:column;
   width:50%;
-  /* border:1px solid green; */
   & > div {
     display:flex;
     min-width:80%;
     margin:10px 0px;
     padding:10px;
-    /* border:1px solid red; */
     div{
       flex-basis:86%;
       display:flex;

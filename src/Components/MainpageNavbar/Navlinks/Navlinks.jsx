@@ -38,6 +38,11 @@ const Navlinks = () => {
       exact: false,
       title: "Reports",
     },
+    {
+      to: "/invoices",
+      exact: false,
+      title: "Invoices",
+    },
   ];
   return (
     <div>
