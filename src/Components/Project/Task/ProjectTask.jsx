@@ -48,16 +48,17 @@ const ProjectTask =()=>{
     }
 
     const createTasksData = {
-        name: "Designing",
-        sec_id: "517803",
+        name: "Debugging",
+        sec_id: 12,
         id: params
     }
     const handleCreateTask = () => {
-        dispatch(createTask(createTasksData.id ,createTasksData.sec_id,createTasksData.name))
+        dispatch(createTask(createTasksData.id ,sections.sections[0].id,createTasksData.name))
     }
 
     const sections = useSelector((state) => state.sections, shallowEqual);
     console.log(sections);
+    
     // let TasksData = dispatch(setTasksOfProject(params));
     // const SectionData = dispatch(setAllSections(params));
     
