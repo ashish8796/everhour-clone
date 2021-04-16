@@ -50,6 +50,12 @@ export default function Routes() {
       <PrivateRoute path="/clients" exact>
         <Client/>
       </PrivateRoute>
+      <PrivateRoute path="/home" exact>
+        <div>page still in building process</div>
+      </PrivateRoute>
+      <PrivateRoute path="/schedule" exact>
+        <div>page still in building process</div>
+      </PrivateRoute>
 
       <PrivateRoute path="/task/:id">
         <ProjectTask />
