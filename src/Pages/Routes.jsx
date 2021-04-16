@@ -46,7 +46,7 @@ export default function Routes() {
         <Project />
       </PrivateRoute>
 
-      <PrivateRoute path="/task">
+      <PrivateRoute path="/task/:id">
         <ProjectTask />
       </PrivateRoute>
 
