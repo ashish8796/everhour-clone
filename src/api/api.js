@@ -69,6 +69,23 @@ export const createSectionProject = (id, createData) => {
   });
 };
 
+export const createTasks = (id, sec_id, createData) => {
+  console.log(id, createData);
+  let createTasksURL = "/projects/"+id+"/tasks";
+  console.log(createTasksURL)
+  return axios.post(createTasksURL, {
+    name: createData,
+    section: sec_id,
+    // labels: [
+    //   high,
+    //   bug
+    // ],
+    position: 1,
+    dueOn: "2018-03-05",
+    status: "open"
+  });
+};
+
 export const getUser = () => {
   return axios.get("/users/me");
 };

@@ -1,4 +1,4 @@
-import { createProjects, getAllProjects, getTasksOfProject, deleteProjects, getSectionOfProject, getSpecificProject, createSectionProject } from "./../../api/api";
+import { createProjects, getAllProjects, getTasksOfProject, deleteProjects, getSectionOfProject, getSpecificProject, createSectionProject, createTasks } from "./../../api/api";
 
 import {
   SET_ALL_SECTION,
@@ -103,5 +103,20 @@ export const createSection = (id,createData) => async (dispatch) => {
     });
   } catch (error) {
     dispatch(setSectionsError());
+  }
+};
+
+export const createTask = (id, sec_id, createData) => async (dispatch) => {
+
+  try {
+    await createTasks(id, sec_id, createData);
+    const {data} = await getTasksOfProject(id);
+    console.log(data);
+    dispatch({
+      type: SET_TASKS_OF_PROJECT,
+      payload: data,
+    });
+  }catch (error) {
+    return error;
   }
 };
