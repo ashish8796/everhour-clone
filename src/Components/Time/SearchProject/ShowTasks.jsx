@@ -10,6 +10,7 @@ export default function ShowTasks({
   setInputName,
   setQuery,
   setPlaceholder,
+  setIsDataVisible,
 }) {
   const dispatch = useDispatch();
   // const {comment } = useSelector(state => state.)
@@ -17,6 +18,7 @@ export default function ShowTasks({
   console.log(tasksOfProject);
 
   const handleOnClick = (id) => {
+    setIsDataVisible(false);
     setInputName("progress");
     setQuery("");
     setPlaceholder("Explain progress");

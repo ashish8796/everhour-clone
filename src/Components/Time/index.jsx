@@ -14,10 +14,12 @@ import Timer from "./Timer/Timer";
 export default function Time() {
   const dispatch = useDispatch();
   const [inputName, setInputName] = useState("project");
+  const [isDataVisible, setIsDataVisible] = useState(false);
   const { currentProjectId, currentProjectTaskId, timer } = useSelector(
     (state) => state.time,
     shallowEqual
   );
+
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
     shallowEqual
@@ -41,6 +43,7 @@ export default function Time() {
   const handleCloseTask = () => {
     dispatch(setCurrentTask(""));
     setInputName("task");
+    setIsDataVisible(true);
   };
 
   useEffect(() => {
@@ -105,7 +108,12 @@ export default function Time() {
 
         <FeatureSection className="flex justify-center background-white">
           {status === "stopped" ? (
-            <SearchProject inputName={inputName} setInputName={setInputName} />
+            <SearchProject
+              inputName={inputName}
+              setInputName={setInputName}
+              setIsDataVisible={setIsDataVisible}
+              isDataVisible={isDataVisible}
+            />
           ) : (
             <ShowTaskProgress />
           )}
@@ -113,7 +121,15 @@ export default function Time() {
           <Timer />
         </FeatureSection>
 
-        <TaskListSection>{userTime.length > 0 && <TaskList />}</TaskListSection>
+        <TaskListSection
+          opacity={
+            isDataVisible && (inputName == "project" || inputName == "task")
+              ? 0.5
+              : 1
+          }
+        >
+          {userTime.length > 0 && <TaskList />}
+        </TaskListSection>
       </TimeWrapper>
     </>
   );
@@ -163,5 +179,6 @@ const CurrentTask = styled(CurrentProject)`
 `;
 
 const TaskListSection = styled(Section)`
+  opacity: ${(props) => props.opacity};
   margin: 40px 0;
 `;

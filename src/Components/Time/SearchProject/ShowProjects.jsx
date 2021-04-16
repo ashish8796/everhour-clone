@@ -14,6 +14,7 @@ export default function ShowProjects({
   setInputName,
   setQuery,
   setPlaceholder,
+  setIsDataVisible,
 }) {
   const dispatch = useDispatch();
 
@@ -35,6 +36,10 @@ export default function ShowProjects({
     }
   };
 
+  const handleCloseProject = () => {
+    setIsDataVisible(false);
+  };
+
   useEffect(() => {
     return () => {
       setIsLoading(false);
@@ -44,7 +49,12 @@ export default function ShowProjects({
 
   return (
     <ProjectsModal className="background-white">
-      <p>RECENT PROJECTS</p>
+      <p className="flex justify-between">
+        <span>RECENT PROJECTS</span>{" "}
+        <span className="text-lightgray" onClick={handleCloseProject}>
+          X
+        </span>
+      </p>
       {projects.map((project) => (
         <ProjectPTag key={project.id} className="flex align-center">
           <Logo>
@@ -66,14 +76,22 @@ export default function ShowProjects({
 }
 
 const ProjectsModal = styled.div`
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-radius: 3px;
+
   p:first-child {
     font-size: 12px;
     padding: 15px 8px 5px;
+
+    span:last-child {
+      font-size: 20px;
+      cursor: pointer;
+    }
   }
 
   p {
-    border: 1px solid lightgray;
-    border-top: none;
+    border-bottom: 1px solid lightgray;
   }
 `;
 
