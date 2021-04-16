@@ -71,3 +71,15 @@ li {
 .grid {
   display: grid;
 }
+
+.background-white {
+  background-color: #fff;
+}
+
+.text-lightgray {
+  color: #a2aab1;
+}
+
+.primary-color {
+  color: #444;
+}

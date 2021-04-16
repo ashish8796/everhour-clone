@@ -64,7 +64,7 @@ export default function Timer() {
           timer.status === "stopped" ? handleStartTimer : handleStopTimer
         }
       >
-        {timer.status === "active" ? `|| ${time}` : "Start Timer"}
+        {timer.status === "active" ? `|| ${time}` : "START TIMER"}
       </StartTimerButton>
       {/* 
       <TimeTag>
@@ -77,14 +77,19 @@ export default function Timer() {
 const TimerCont = styled.div``;
 
 const StartTimerButton = styled.button`
-  background-color: #09d409;
+  background-color: #24be6a;
   color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
+  font-size: 13px;
   opacity: 1;
+  height: 55px;
+  min-width: 140px;
+  padding: 14px 0;
+  border-radius: 2px;
+  width: 110px;
+  border-color: #24be6a;
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.65;
     cursor: auto;
   }
 `;
