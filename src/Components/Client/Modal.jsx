@@ -30,7 +30,16 @@ const ModalMain = styled.div`
     justify-content:space-between;
     align-items:left;
     };
+    select{
+        padding:10px;
+        border:1px solid #24be6a;
+        margin-right:10px;
+    }
 
+    input{
+        padding:10px;
+        border:1px solid #24be6a;
+    }
    
 `
 const Head = styled.div`
