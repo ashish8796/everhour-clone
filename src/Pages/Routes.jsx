@@ -11,6 +11,7 @@ import { Login } from "../Components/Auth/Login/Login";
 import { Signup } from "../Components/Auth/Signup/Signup";
 import { PrivateRoute } from "./PrivateRoute";
 import Client from "./Client";
+import { Invoices } from "../Components/Invoices/Invoices";
 
 export default function Routes() {
   return (
@@ -50,8 +51,12 @@ export default function Routes() {
         <Client/>
       </PrivateRoute>
 
-      <PrivateRoute path="/task">
+      <PrivateRoute path="/task/:id">
         <ProjectTask />
+      </PrivateRoute>
+
+      <PrivateRoute path="/invoices">
+        <Invoices />
       </PrivateRoute>
 
       <Route>

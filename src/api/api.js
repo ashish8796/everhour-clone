@@ -1,6 +1,7 @@
 import Axios from "axios";
+import { loadData } from "../utils/localStorage";
 
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiKey= loadData("apiKey");
 
 console.log(apiKey);
 
@@ -57,6 +58,34 @@ export const getTimeSheet = () => {
 export const getSectionOfProject = (project_id) => {
   return axios.get(`projects/${project_id}/sections`);
 };
+
+export const createSectionProject = (id, createData) => {
+  console.log(id, createData);
+  let createSectionURL = "/projects/"+id+"/sections";
+  return axios.post(createSectionURL, {
+    name: createData,
+    position: 1,
+    status: "open"
+  });
+};
+
+export const createTasks = (id, sec_id, createData) => {
+  console.log(id, createData);
+  let createTasksURL = "/projects/"+id+"/tasks";
+  console.log(createTasksURL)
+  return axios.post(createTasksURL, {
+    name: createData,
+    section: sec_id,
+    // labels: [
+    //   high,
+    //   bug
+    // ],
+    position: 1,
+    dueOn: "2018-03-05",
+    status: "open"
+  });
+};
+
 export const getUser = () => {
   return axios.get("/users/me");
 };

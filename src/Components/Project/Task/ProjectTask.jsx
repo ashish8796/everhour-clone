@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import queryString from 'query-string'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { setAllSections, setSpecProjects } from '../../../store/task/actions';
+import { createSection, createTask, setAllSections, setSpecProjects } from '../../../store/task/actions';
 import { setTasksOfProject } from '../../../store/task/actions';
 import MainpageNav from '../../MainpageNavbar/MainpageNav';
 import styles from './ProjectTask.module.css';
@@ -38,6 +38,24 @@ const ProjectTask =()=>{
         })();
     }, [dispatch]);
 
+    const createSectionData = {
+        name: "Authentication",
+        id: params
+    }
+
+    const handleCreateSection = () => {
+        dispatch(createSection(createSectionData.id, createSectionData.name));
+    }
+
+    const createTasksData = {
+        name: "Designing",
+        sec_id: "517803",
+        id: params
+    }
+    const handleCreateTask = () => {
+        dispatch(createTask(createTasksData.id ,createTasksData.sec_id,createTasksData.name))
+    }
+
     const sections = useSelector((state) => state.sections, shallowEqual);
     console.log(sections);
     // let TasksData = dispatch(setTasksOfProject(params));
@@ -51,21 +69,22 @@ const ProjectTask =()=>{
             <div className={styles.headerSection}>
                 <h1>{sections.project_name.name}</h1>
             </div>
-            <hr style={{width: "60%", margin: "auto"}}/><br/>
+            <h3 style={{fontSize: "20px", color: "rgb(68,68,68)", borderBottom: "5px solid green", width: "30px"}}>list</h3>
+            <hr style={{width: "90%", color: "#7e7e7e"}}/><br/>
             <div>
             <div className={styles.DivTaskFlex}>
                 <h2>Listed Sections</h2>
-                <button>+</button>
+                <button onClick={handleCreateSection}>Add Section</button>
                 </div>
             {sections.sections.map((el)=>(<>
                 <h4>{el.name}</h4>
             </>))}
             </div>
-            <br/><hr style={{width: "200px", margin: "auto", background: "dimgrey"}}/><br/>
+            <br/><br/>
             <div>
                 <div className={styles.DivTaskFlex}>
                 <h2>Listed Tasks</h2>
-                <button>+</button>
+                <button onClick={handleCreateTask}>Add Task</button>
                 </div>
                 {sections.tasksOfProject.map((item)=><h4>{item.name} - {item.iteration}</h4>)}
             </div>
