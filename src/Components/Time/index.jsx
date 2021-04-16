@@ -113,9 +113,7 @@ export default function Time() {
           <Timer />
         </FeatureSection>
 
-        <TaskLiftedSection>
-          {userTime.length > 0 && <TaskList />}
-        </TaskLiftedSection>
+        <TaskListSection>{userTime.length > 0 && <TaskList />}</TaskListSection>
       </TimeWrapper>
     </>
   );
@@ -125,20 +123,19 @@ const TimeWrapper = styled.div`
   margin: 40px auto;
   max-width: 82%;
   font-family: Lato, sans-serif;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
-const Section = styled.section``;
-
-const CurrentDataCont = styled(Section)`
+const Section = styled.section`
   width: 100%;
 `;
+
+const CurrentDataCont = styled(Section)``;
 
 const FeatureSection = styled(Section)`
   border: 1px solid lightgrey;
   padding: 1px;
   border-radius: 3px;
-  width: 100%;
 `;
 
 const CurrentProject = styled.div`
@@ -165,4 +162,6 @@ const CurrentTask = styled(CurrentProject)`
   margin-left: 30px;
 `;
 
-const TaskLiftedSection = styled(Section)``;
+const TaskListSection = styled(Section)`
+  margin: 40px 0;
+`;
