@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import MainpageNav from '../MainpageNavbar/MainpageNav'
-// import { CreateInvoice } from './CreateInvoice/CreateInvoice'
+import { CreateInvoice } from './CreateInvoice/CreateInvoice'
 
 const Invoices = () => {
   const [showCreateInvoiceBox,setShowCreateInvoiceBox] = useState(false);
@@ -42,7 +42,7 @@ const Invoices = () => {
           </Steps>
         </div>
 
-        {/* {showCreateInvoiceBox ? <CreateInvoice setShowCreateInvoiceBox={setShowCreateInvoiceBox}/> : null} */}
+        {showCreateInvoiceBox ? <CreateInvoice setShowCreateInvoiceBox={setShowCreateInvoiceBox}/> : null}
       </Container>
     </>
   )
