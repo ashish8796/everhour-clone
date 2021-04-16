@@ -19,10 +19,6 @@ export default function SearchProject({
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // const [placeholder, setPlaceholder] = useState(
-  //
-  // );
-
   const { projects, tasksOfProject } = useSelector(
     (state) => state.projects,
     shallowEqual
@@ -89,7 +85,7 @@ export default function SearchProject({
 
       {isLoading ? (
         <p>...Loading</p>
-      ) : inputName === "task" ? (
+      ) : inputName === "task" && isDataVisible ? (
         <ShowTasks
           tasksOfProject={filterData(tasksOfProject, query)}
           setInputName={setInputName}
@@ -121,6 +117,8 @@ const SearchWrapper = styled.div`
     height: 55px;
     font-size: 20px;
     display: block;
+    color: #444;
+
     &::placeholder {
       font-size: 16px;
       color: #d4d4d4;
