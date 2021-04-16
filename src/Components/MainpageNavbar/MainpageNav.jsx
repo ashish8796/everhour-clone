@@ -1,6 +1,8 @@
 import React from 'react'
 import Navlinks from './Navlinks/Navlinks'
 import styled from "styled-components"
+import { useSelector } from 'react-redux'
+import { ProfileSection } from './ProfileSection/ProfileSection'
 
 const Navbar = styled.div`
     display:flex;
@@ -33,16 +35,22 @@ const Right = styled.div`
         margin-left:30px;
         width:40px;
         height:40px;
-        padding-top:10px;
+        /* padding-top:10px; */
         border-radius:50px;
-        background-color:purple;
+        /* border:1px solid red; */
+        /* background-color:purple; */
         color:white;
         text-align:center;
         align-items:center;
+        overflow:hidden;
+        img{
+            width:100%;
+        }
     }
 `
 
 const MainpageNav = () => {
+    const avatar = useSelector(state => state.auth.avatar)
     return (
         <Navbar>
             <div>
@@ -53,8 +61,9 @@ const MainpageNav = () => {
             </Pages>
             <Right>
                 <div>Subscribe now</div>
-                <span>S</span>
+                <span><img src={avatar} alt=""/></span>
             </Right>
+            <ProfileSection />
         </Navbar>
     )
 }
