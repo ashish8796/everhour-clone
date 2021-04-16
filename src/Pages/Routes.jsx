@@ -10,6 +10,7 @@ import { ProjectTask } from "../Components/Project/Task/ProjectTask";
 import { Login } from "../Components/Auth/Login/Login";
 import { Signup } from "../Components/Auth/Signup/Signup";
 import { PrivateRoute } from "./PrivateRoute";
+import Client from "./Client";
 import { Invoices } from "../Components/Invoices/Invoices";
 
 export default function Routes() {
@@ -45,6 +46,15 @@ export default function Routes() {
 
       <PrivateRoute path="/projects" exact>
         <Project />
+      </PrivateRoute>
+      <PrivateRoute path="/clients" exact>
+        <Client/>
+      </PrivateRoute>
+      <PrivateRoute path="/home" exact>
+        <div>page still in building process</div>
+      </PrivateRoute>
+      <PrivateRoute path="/schedule" exact>
+        <div>page still in building process</div>
       </PrivateRoute>
 
       <PrivateRoute path="/task/:id">

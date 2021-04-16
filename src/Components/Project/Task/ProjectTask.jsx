@@ -9,6 +9,10 @@ import styles from './ProjectTask.module.css';
 
 
 const ProjectTask =()=>{
+
+    const [sectionText, setSectionText] =React.useState("");
+    const [taskText, setTaskText] = React.useState("");
+    const [sectionChoose, setSectionChoose] = React.useState("");
     // const paramURL = useParams();
     // console.log(paramURL)
     //console.log("N",name)
@@ -44,20 +48,22 @@ const ProjectTask =()=>{
     }
 
     const handleCreateSection = () => {
-        dispatch(createSection(createSectionData.id, createSectionData.name));
+        //console.log(sectionText);
+        dispatch(createSection(createSectionData.id, sectionText));
     }
 
     const createTasksData = {
-        name: "Designing",
-        sec_id: "517803",
+        name: "Debugging",
+        sec_id: 12,
         id: params
     }
     const handleCreateTask = () => {
-        dispatch(createTask(createTasksData.id ,createTasksData.sec_id,createTasksData.name))
+        dispatch(createTask(createTasksData.id ,sections.sections[0].id, taskText))
     }
 
     const sections = useSelector((state) => state.sections, shallowEqual);
     console.log(sections);
+    
     // let TasksData = dispatch(setTasksOfProject(params));
     // const SectionData = dispatch(setAllSections(params));
     
@@ -74,6 +80,7 @@ const ProjectTask =()=>{
             <div>
             <div className={styles.DivTaskFlex}>
                 <h2>Listed Sections</h2>
+                <input className={styles.inputTaskPage} type="text" placeholder="Enter New section Name" onChange={(e)=>setSectionText(e.target.value)}/>
                 <button onClick={handleCreateSection}>Add Section</button>
                 </div>
             {sections.sections.map((el)=>(<>
@@ -84,13 +91,14 @@ const ProjectTask =()=>{
             <div>
                 <div className={styles.DivTaskFlex}>
                 <h2>Listed Tasks</h2>
+                <input className={styles.inputTaskPage} type="text" placeholder="Enter New Task Name" onChange={(e)=>setTaskText(e.target.value)}/>
+                {/* <input className={styles.inputTaskPage} type="text" placeholder="Enter Existing Section Name" onChange={(e)=>setSectionChoose(e.target.value)}/> */}
                 <button onClick={handleCreateTask}>Add Task</button>
                 </div>
-                {sections.tasksOfProject.map((item)=><h4>{item.name} - {item.iteration}</h4>)}
+                {sections.tasksOfProject.map((item)=><div className={styles.tasksDivOfProject}><div style={item.status==="open"?{background: "green", width: "15px", height: "15px", borderRadius: "8px"}:{background: "dimgrey", width: "15px", height: "15px", borderRadius: "8px"}}></div><h4>{item.name} - {item.iteration}</h4></div>)}
             </div>
         </div>
         </div>
     )
 }
-
 export {ProjectTask}

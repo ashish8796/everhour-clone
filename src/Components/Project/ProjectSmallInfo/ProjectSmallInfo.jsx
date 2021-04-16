@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect, Route, useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { deleteProject } from '../../../store/projects/actions';
+import { loadData } from '../../../utils/localStorage';
 import { ProjectTask } from '../Task/ProjectTask';
 import styles from './ProjectSmallInfo.module.css';
 
@@ -12,6 +13,7 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
     let history = useHistory();
     const [redURL, setRedURL] = React.useState("");
     const dispatch = useDispatch();
+    const imgUrl = loadData("avatar");
 
     const billingSmallInfo = (id) => {
         console.log(id);
@@ -51,7 +53,7 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
                 <button onClick={()=>handleDeleteSmallInfo(id)}>Delete</button>
             </div>
             <div className={styles.divPartMember}>
-                <img src="https://media-exp1.licdn.com/dms/image/C4D03AQHBXKGKLIMtFw/profile-displayphoto-shrink_200_200/0/1596092838135?e=1623888000&v=beta&t=MHN3wmj1gf1JrlyJnfHcU00xsBG0uUpsRcPWofguqW8" alt=""/>
+                <img style={{width: "28px"}} src={imgUrl} alt=""/>
             </div>
             <div>
                 <button onClick={()=>billingSmallInfo(id)}>$</button>

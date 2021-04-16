@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainpageNav from '../Components/MainpageNavbar/MainpageNav'
 import Bottombox from '../Components/Team/Bottombox'
 import Mainbox from '../Components/Team/Mainbox'
@@ -38,9 +38,15 @@ const TeamMembers = () => {
     const dispatch = useDispatch()
 
     const addMembers = () => {
+        if(member === ""){
+            alert("input cannot be empty")
+        }
+        else{
         dispatch(addMemberData(member))
         setMember("")
+        }
     }
+  
     return (
         <div>
             <MainpageNav/>

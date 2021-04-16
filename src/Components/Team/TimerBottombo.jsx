@@ -6,9 +6,7 @@ import styled from "styled-components"
 const Th = styled.th`
     color:#666666;
     font-size:20px;
-    /* width:15%; */
-    /* margin-right:80px;
-    margin-bottom:100px; */
+    margin-right:30px;
 `
 const Bigrow = styled.th`
     width:350px;
