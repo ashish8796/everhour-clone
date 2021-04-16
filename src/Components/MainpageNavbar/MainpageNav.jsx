@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navlinks from './Navlinks/Navlinks'
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
@@ -50,7 +50,9 @@ const Right = styled.div`
 `
 
 const MainpageNav = () => {
-    const avatar = useSelector(state => state.auth.avatar)
+    const avatar = useSelector(state => state.auth.avatar);
+    const [showProfileSection,setShowProfileSection] = useState(false);
+
     return (
         <Navbar>
             <div>
@@ -61,9 +63,9 @@ const MainpageNav = () => {
             </Pages>
             <Right>
                 <div>Subscribe now</div>
-                <span><img src={avatar} alt=""/></span>
+                <span onClick={() => setShowProfileSection(!showProfileSection)}><img src={avatar} alt=""/></span>
             </Right>
-            <ProfileSection />
+            {showProfileSection ? <ProfileSection/> : null}
         </Navbar>
     )
 }
