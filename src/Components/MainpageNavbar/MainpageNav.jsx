@@ -1,3 +1,4 @@
+//MainNavBar
 import React, { useState } from "react";
 import Navlinks from "./Navlinks/Navlinks";
 import styled from "styled-components";
@@ -29,7 +30,7 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   div {
-    color: blue;
+    color: #4a90e2;
     cursor: pointer;
   }
   span {

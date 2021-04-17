@@ -1,7 +1,9 @@
 import {
   SET_COMMENT,
+  SET_COUNTER,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
+  SET_INTERVAL,
   SET_TIMER_STATUS,
   START_TIMER,
   STOP_TIMER,
@@ -12,6 +14,10 @@ const initState = {
   currentProjectTaskId: "",
   comment: "",
   currentTask: {},
+  counter: {
+    seconds: 0,
+    counterInterval: "",
+  },
   timer: {
     status: "stopped",
     value: 0,
@@ -42,6 +48,10 @@ function timeReducer(state = initState, { type, payload }) {
         currentProjectId: payload.task.projects[0],
         currentProjectTaskId: payload.task.id,
         currentTask: payload,
+        counter: {
+          ...state.counter,
+          seconds: payload.today,
+        },
         timer: {
           status: payload.status,
           value: payload.today,
@@ -50,7 +60,22 @@ function timeReducer(state = initState, { type, payload }) {
     }
 
     case STOP_TIMER: {
-      return { ...state, timer: { status: payload.status, value: 0 } };
+      return {
+        ...state,
+        currentProjectTaskId: "",
+        timer: { status: payload.status, value: 0 },
+      };
+    }
+
+    case SET_COUNTER: {
+      return { ...state, counter: { ...state.counter, seconds: payload } };
+    }
+
+    case SET_INTERVAL: {
+      return {
+        ...state,
+        counter: { ...state.counter, counterInterval: payload },
+      };
     }
 
     default:

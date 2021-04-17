@@ -48,12 +48,15 @@ export default function Routes() {
       <PrivateRoute path="/projects" exact>
         <Project />
       </PrivateRoute>
+
       <PrivateRoute path="/clients" exact>
-        <Client/>
+        <Client />
       </PrivateRoute>
+
       <PrivateRoute path="/home" exact>
         <div>page still in building process</div>
       </PrivateRoute>
+
       <PrivateRoute path="/schedule" exact>
         <div>page still in building process</div>
       </PrivateRoute>
@@ -71,7 +74,6 @@ export default function Routes() {
       <Route>
         <h1>404! Sorry Page not found</h1>
       </Route>
-
     </Switch>
   );
 }

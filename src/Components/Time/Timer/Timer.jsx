@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
+  setCounter,
   setCurrentTask,
+  setIntervalId,
   startTimer,
   stopTimer,
 } from "../../../store/time/actions";
 import { convertSecIntoTime } from "../../../utils/utility";
+import { useInterval } from "../TaskList/UseInterval";
 
 export default function Timer({ setInputName }) {
   const dispatch = useDispatch();
-  const timerRef = useRef(null);
   const [isError, setIsError] = useState(false);
+
   const {
     comment,
     currentProjectId,
@@ -19,9 +22,10 @@ export default function Timer({ setInputName }) {
     timer,
   } = useSelector((state) => state.time);
 
-  const [time, setTime] = useState(timer.value);
-
-  console.log({ time });
+  const { seconds, counterInterval } = useSelector(
+    (state) => state.time.counter
+  );
+  const [count, setCount] = useState(seconds);
 
   const handleStartTimer = async () => {
     try {
@@ -32,37 +36,38 @@ export default function Timer({ setInputName }) {
       };
 
       await dispatch(startTimer(payload));
-      timerRef.current = setInterval(() => {
-        setTime((time) => time + 1);
+      // useInterval(() => {
+      //   dispatch(setCounter(seconds + 1));
+      // }, 1000);
+      let interval = setInterval(() => {
+        setCount((count) => {
+          dispatch(setCounter(count + 1));
+          return count + 1;
+        });
       }, 1000);
+      dispatch(setIntervalId(interval));
     } catch (error) {
       setIsError(true);
     }
   };
 
   const handleStopTimer = async () => {
-    clearInterval(timerRef.current);
-    timerRef.current = null;
+    clearInterval(counterInterval);
     try {
       await dispatch(stopTimer());
       dispatch(setCurrentTask(""));
       setInputName("task");
-      setTime(0);
+      dispatch(setCounter(0));
     } catch (error) {
       setIsError(true);
     }
   };
 
   useEffect(() => {
-    if (timer.status) {
-      timerRef.current = setInterval(() => {
-        setTime((time) => time + 1);
-      }, 1000);
-    }
     return () => {
-      clearInterval(timerRef.current);
+      clearInterval(counterInterval);
     };
-  }, [timer.status]);
+  }, []);
 
   return (
     <TimerCont className="flex">
@@ -80,7 +85,7 @@ export default function Timer({ setInputName }) {
               src="/assets/pause.svg"
               alt="pause"
             />
-            {convertSecIntoTime(time)}
+            {convertSecIntoTime(seconds)}
           </span>
         ) : (
           "START TIMER"

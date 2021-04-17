@@ -14,7 +14,7 @@ export default function ShowTasks({
   const dispatch = useDispatch();
   // const {comment } = useSelector(state => state.)
 
-  console.log(tasksOfProject);
+  // console.log(tasksOfProject);
 
   const handleOnClick = (id) => {
     setIsDataVisible(false);

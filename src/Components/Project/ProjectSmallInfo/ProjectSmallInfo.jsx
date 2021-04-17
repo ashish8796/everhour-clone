@@ -10,6 +10,7 @@ import styles from './ProjectSmallInfo.module.css';
 const ProjectSmallInfo = ({name, createdAt, id}) => {
     const [billingVisible, setBillingVisible] = React.useState(false);
     const [redProjectTask, setRedProjectTask] = React.useState(false);
+    const [favourite, setFavourite] =React.useState(false)
     let history = useHistory();
     const [redURL, setRedURL] = React.useState("");
     const dispatch = useDispatch();
@@ -36,6 +37,10 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
         history.push("/projects");
         setRedURL("/task/"+id);
     }
+    const handleFavourite = (e, id) => {
+        setFavourite(!favourite);
+        console.log(favourite, id)
+    }
     return !billingVisible && !redProjectTask?(
         <div className={styles.divPartMain}>
             <div>
@@ -46,7 +51,7 @@ const ProjectSmallInfo = ({name, createdAt, id}) => {
                 <p>{createdAt}</p>
             </div>
             <div title="Favourite">
-                <input type="checkbox"/>
+                <input type="checkbox" onChange={(e)=>handleFavourite(e, id)} />
                 <label htmlFor="">Favourite</label>
             </div>
             <div title="Delete">

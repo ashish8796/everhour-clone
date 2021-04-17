@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { loadData } from '../utils/localStorage';
 
 const apiKey = loadData('apiKey');
+//const apiKey = "9dfc-a39a-8fefa7-73b1bb-328e1bc4";
 
 console.log(apiKey);
 
@@ -52,7 +53,7 @@ export const getTimer = () => {
 };
 
 export const getTimeSheet = () => {
-  return axios.get('/timecards?from=2020-10-01&to=2020-11-01');
+  return axios.get('/timesheets?weekId=2115');
 };
 
 export const getSectionOfProject = (project_id) => {
@@ -108,4 +109,33 @@ export const getUsersProjects = (projectId) => {
 
 export const createInvoice = (clientId) => {
   return axios.get(`clients/${clientId}/invoices}`);
+};
+
+export const getAllClients = () => {
+  return axios.get('/clients');
+};
+
+export const getAllUsers = () => {
+  return axios.get('/team/users');
+};
+
+export const getClient = () => {
+  return axios.get('/clients');
+};
+
+const axios2 = Axios.create({
+  baseURL: 'https://json-random-exam12.herokuapp.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const postApi = (id, name) => {
+  //console.log(id, name);
+  const payload = {
+    id,
+    name,
+    projects: [],
+  };
+  return axios2.post('/everhour', payload);
 };

@@ -83,7 +83,7 @@ export default function SearchProject({
 
       {isLoading ? (
         <p>...Loading</p>
-      ) : inputName === "task" && isDataVisible ? (
+      ) : inputName === "task" ? (
         <ShowTasks
           tasksOfProject={filterData(tasksOfProject, query)}
           setInputName={setInputName}

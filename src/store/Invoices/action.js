@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { getAllclients, getUsersProjects } from '../../api/api';
 import {
   CREATE_INVOICE_FAILURE,
