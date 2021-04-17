@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTimeSheetDetails } from '../../store/Team/action'
 import styled from "styled-components"
 
-const Bottom = styled.div`
+const Bottom = styled.table`
     margin:0 auto;
     width:85%;
+    th{
+        font-size:22px;
+        font-weight:500;
+    }
+    th,td{
+        padding:10px 20px;
+        border:1px solid lightgray;
+        img{
+            border-radius:50px;
+        }
+    }
 ` 
 
-const Days = styled.div`
-    display:flex;
-    justify-content:space-between;
-    div{
-        border:1px solid lightgray;
-        padding:10px;
-    }
-     div:first-child{
-        padding:10px 20px;
-    }
-`
 
 
 const TimeSheetbottom = () => {
@@ -31,24 +31,25 @@ const TimeSheetbottom = () => {
 
     return (
         <Bottom>
-            <Days>
-                <div>trigger</div>
-                <div>mon</div>
-                <div>tue</div>
-                <div>wed</div>
-                <div>thu</div>
-                <div>fri</div>
-                <div>sat</div>
-                <div>sun</div>
-            </Days>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Members</th>
+                <th>Started</th>
+                <th>Ended</th>
+            </tr>
+            </thead>
             {
-                data?.map(({clockIn,clockOut,trigger}) => {
+                data?.map(({user,dailyTime},i) => {
                     return (
-                        <div>
-                            <div>{clockIn}</div>
-                            <div>{clockOut}</div>
-                            <div>{trigger}</div>
-                        </div>
+                       <tbody>
+                            <tr>
+                            <td>{i+1}</td>
+                            <td><img src={user.avatarUrl} alt={user.email}/>{user.email} {user.status}</td>
+                            <td>{dailyTime[0].date}</td>
+                            <td>{dailyTime[1].date}</td>
+                        </tr>
+                       </tbody>
                     )
                 })
             }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import styled from "styled-components"
+import { filterData } from '../../utils/filterData'
 
 const Client = styled.table`
     width:85%;
@@ -19,8 +20,11 @@ const Client = styled.table`
 
 `
 
-const Bottom = () => {
+const Bottom = ({query}) => {
     const {isLoading,isError,client} = useSelector(state => state.client,shallowEqual)
+    // const individualClient = filterData(client,query)
+    // console.log(individualClient)
+
     return isLoading?<div>...loading</div>:
             isError?<div>something went wrong</div>:
             <div>
@@ -34,7 +38,7 @@ const Bottom = () => {
                                 <th>payment Due Days</th>
                             </tr>
                         </thead>
-                        {   client?.map(({name,createdAt,status,favorite,paymentDueDays}) => {
+                        {   filterData(client,query)?.map(({name,createdAt,status,favorite,paymentDueDays}) => {
                             return (
                                 <tbody>
                                     <tr>
@@ -53,3 +57,4 @@ const Bottom = () => {
 }
 
 export default Bottom
+// useridSmith = 1019745

@@ -1,6 +1,7 @@
 import { CREATE_CLIENT_ERROR, CREATE_CLIENT_LOADING, CREATE_CLIENT_SUCCESS, GET_CLIENT_ERROR, GET_CLIENT_LOADING, GET_CLIENT_SUCCESS } from "./actionTypes"
 
 const init = {
+    query:"",
     client:[],
     isLoading:false,
     isError:false
