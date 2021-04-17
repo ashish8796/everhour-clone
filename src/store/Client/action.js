@@ -1,4 +1,4 @@
-import { createClient, getClient } from "../../api/api";
+import { createClient, getClient, getAllClients } from "../../api/api";
 import {
   CREATE_CLIENT_ERROR,
   CREATE_CLIENT_LOADING,
