@@ -2,24 +2,25 @@
   background-color: #ffffff;
   padding: 2% 3%;
   max-width: 82%;
-  margin: 0.5% auto;
+  margin: 3% auto;
   font-family: "Lato", sans-serif;
+  border-radius: 5px;
 }
+
 .MainProductPageBody {
   background-color: #f7f7f779;
 }
+
 .divProject1 {
   background-color: rgba(255, 253, 253, 0.349);
   display: flex;
-  padding: 1% 0;
-  margin: 1% 0;
 }
+
 .divProject1 > h3 {
-  color: black;
-  font-size: 27px;
-  font-weight: 500;
+  font-size: 25px;
   padding: 1%;
 }
+
 .divProject1 > input {
   margin-left: auto;
   padding: 2%;
@@ -28,12 +29,19 @@
   background-color: rgba(241, 220, 220, 0.432);
   color: black;
 }
+
 .divProject1 > button {
-  background-color: #24be6a;
+  background-color: #19b35e;
+  height: fit-content;
+  padding: 13px 20px;
+  border-radius: 2px;
   color: white;
-  font-size: 16px;
-  padding: 0 2%;
-  margin-right: 3%;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.divProject1 > button:hover {
+  opacity: 1;
 }
 
 /* project div 2 */

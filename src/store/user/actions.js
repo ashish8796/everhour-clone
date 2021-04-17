@@ -1,5 +1,5 @@
-import { getUser, getUserTime } from "../../api/api";
-import { SET_USER, SET_USER_TIME } from "./actionTypes";
+import { getAllUsers, getUser, getUserTime } from "../../api/api";
+import { SET_ALL_USERS, SET_USER, SET_USER_TIME } from "./actionTypes";
 
 export const setUser = () => async (dispatch) => {
   try {
@@ -15,5 +15,15 @@ export const setUserTime = (id) => async (dispatch) => {
   try {
     const { data } = await getUserTime(id);
     dispatch({ type: SET_USER_TIME, payload: data });
+  } catch (error) {}
+};
+
+export const setAllUsers = () => async (dispatch) => {
+  try {
+    const { data } = await getAllUsers();
+    dispatch({
+      type: SET_ALL_USERS,
+      payload: data,
+    });
   } catch (error) {}
 };
