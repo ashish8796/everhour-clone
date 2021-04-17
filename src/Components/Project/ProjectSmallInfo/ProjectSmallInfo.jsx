@@ -43,9 +43,9 @@ const ProjectSmallInfo = ({ project }) => {
     setRedURL("/task/" + id);
   };
 
-  return !billingVisible && !redProjectTask ? (
-    <div className={styles.divPartMain}>
-      <section className={`${styles.projectDetailsCont} flex`}>
+  const projectDetails = () => {
+    return (
+      <>
         <div className={styles.logo}>
           <img src="/assets/Everhour_logo.svg" alt="logo" />
         </div>
@@ -54,6 +54,14 @@ const ProjectSmallInfo = ({ project }) => {
           <h6 onClick={() => handleProjectTask(id)}>{name}</h6>
           <p>{createdAt}</p>
         </div>
+      </>
+    );
+  };
+
+  return !billingVisible && !redProjectTask ? (
+    <div className={styles.divPartMain}>
+      <section className={`${styles.projectDetailsCont} flex`}>
+        {projectDetails()}
 
         <div className={styles.favourite} title="Favourite">
           <Favourite setFavourite={setFavourite} />
@@ -81,20 +89,23 @@ const ProjectSmallInfo = ({ project }) => {
     </div>
   ) : !redProjectTask ? (
     <div className={styles.divPartBilling}>
-      <h3>Project Billing</h3>
-      <div className={styles.divPartBillingFlex}>
-        <div>
-          <img
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <h6>{name}</h6>
-          <p>{createdAt}</p>
-        </div>
-      </div>
+      <h3 className="flex justify-between">
+        <span>Project Billing</span>{" "}
+        <span
+          className="text-lightgray"
+          onClick={(e) => {
+            e.preventDefault();
+            setBillingVisible(false);
+          }}
+        >
+          X
+        </span>
+      </h3>
+
+      <div className={styles.divPartBillingFlex}>{projectDetails()}</div>
+
       <label htmlFor="">Billing</label>
+
       <div className={styles.divPartBillingInput}>
         <select name="" id="">
           <option value="Non-Billible">Non-Billible</option>
@@ -102,9 +113,12 @@ const ProjectSmallInfo = ({ project }) => {
           <option value="Hourly(Member Rate)">Hourly(Member Rate)</option>
           <option value="Fixed Fee">Fixed Fee</option>
         </select>
+
         <input type="number" placeholder="$ Amount" />
       </div>
+
       <label htmlFor="">Budget</label>
+
       <div className={styles.divPartBillingInput}>
         <select name="" id="">
           <option value="No-Budget">No-Budget</option>
@@ -112,8 +126,10 @@ const ProjectSmallInfo = ({ project }) => {
           <option value="Total Project Fees">Total Project Fees</option>
           <option value="Fixed Fee">Fixed Fee</option>
         </select>
+
         <input type="number" placeholder="$ Budget" />
       </div>
+
       <button onClick={() => handleBillingSave(id)}>Save</button>
     </div>
   ) : (
