@@ -19,8 +19,8 @@ input {
   border: none;
   background: none;
   /* border: 2px solid gray;
-  padding: 8px 15px;
-  border-radius: 3px; */
+ padding: 8px 15px;
+ border-radius: 3px; */
   cursor: pointer;
 }
 
@@ -68,6 +68,14 @@ li {
   font-size: 0;
 }
 
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
 .grid {
   display: grid;
 }
@@ -78,6 +86,10 @@ li {
 
 .text-lightgray {
   color: #a2aab1;
+}
+
+.border-lightgray {
+  border: 1px solid lightgray;
 }
 
 .primary-color {
