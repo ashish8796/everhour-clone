@@ -135,7 +135,16 @@ export const postApi = (id, name) => {
   const payload = {
     id,
     name,
-    projects: [],
+    projectName: '',
+    projectId: '',
+    budget: '',
+    createdDate: '',
   };
   return axios2.post('/everhour', payload);
+};
+
+export const putMockDataApi = (id, payload) => {
+  //console.log(id, name);
+  let urlPutApi = '/everhour/' + id;
+  return axios2.put(urlPutApi, payload);
 };
