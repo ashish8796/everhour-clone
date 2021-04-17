@@ -3,15 +3,20 @@ import styled from "styled-components";
 import CreateTaskTimerButton from "./CreateTaskTimerButton";
 import { findItem } from "../../../utils/findItem";
 import { changeTimeIntoMinHr } from "../../../utils/utility";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 
-export default function CreateTaskInTaskList({ task }) {
+export default function CreateTaskInTaskList({ task, date }) {
   const { projects } = useSelector((state) => state.projects);
+  const { currentProjectTaskId, currentTask } = useSelector(
+    (state) => state.time
+  );
+
   const [isTimerButtonVisible, setIsTimerButtonVisible] = useState(false);
 
   const taskRef = useRef(null);
   const handleMouseOver = (id) => {
     taskRef.current = id;
+    console.log(currentProjectTaskId === taskRef.current);
     setIsTimerButtonVisible(true);
   };
 
@@ -36,8 +41,13 @@ export default function CreateTaskInTaskList({ task }) {
           <section>
             <p className="flex align-center">
               <span>{task.name}</span>
-              {isTimerButtonVisible && (
-                <CreateTaskTimerButton id={taskRef.current} />
+              {(isTimerButtonVisible ||
+                (currentProjectTaskId === taskRef.current &&
+                  currentTask.userDate === date)) && (
+                <CreateTaskTimerButton
+                  id={taskRef.current}
+                  isTimerButtonVisible={isTimerButtonVisible}
+                />
               )}
             </p>
 

@@ -12,7 +12,6 @@ export default function TaskList() {
   let tasks;
   if (userTime.length) {
     tasks = filterTaskByDate(userTime);
-    console.log(tasks);
   }
 
   const handleTabClick = (e) => {
