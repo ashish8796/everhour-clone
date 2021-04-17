@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import styled from "styled-components"
+import { postApi } from '../../api/api'
 import { filterData } from '../../utils/filterData'
 
 const Client = styled.table`
@@ -22,6 +23,12 @@ const Client = styled.table`
 
 const Bottom = ({query}) => {
     const {isLoading,isError,client} = useSelector(state => state.client,shallowEqual)
+    console.log(client);
+    React.useEffect(()=>{
+        client.map((el)=>(
+            postApi(el.id,el.name)
+        ))
+    },[])
     // const individualClient = filterData(client,query)
     // console.log(individualClient)
 
