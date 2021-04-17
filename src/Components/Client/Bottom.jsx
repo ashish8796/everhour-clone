@@ -7,7 +7,7 @@ const Bottom = () => {
             isError?<div>something went wrong</div>:
             <div>
                 {
-                    client?.map((name,project,comment) => {
+                    client?.map(({name,project,comment}) => {
                         return (
                             <div>
                                 <div>{name}</div>

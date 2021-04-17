@@ -1,5 +1,9 @@
 import axios from 'axios';
+import { getAllclients, getUsersProjects } from '../../api/api';
 import {
+  CREATE_INVOICE_FAILURE,
+  CREATE_INVOICE_REQUEST,
+  CREATE_INVOICE_SUCCESS,
   GET_ALL_CLIENTS_FAILURE,
   GET_ALL_CLIENTS_REQUEST,
   GET_ALL_CLIENTS_SUCCESS,
@@ -29,18 +33,13 @@ export const getAllClientsFailure = () => {
 };
 
 // request to get all clients
-export const getAllclients = () => (dispatch) => {
+export const getAllclientsDetails = () => (dispatch) => {
   dispatch(getAllClientsRequest());
-  axios
-    .get('https://api.everhour.com/clients', {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': 'd453-9b4e-6882aa-723609-5c9540a0',
-      },
-    })
+  return getAllclients()
     .then((res) => {
+      console.log(res.data);
       const filterClientsData = res.data.map((client) => {
-        return { id: client.id, name: client.name };
+        return { id: client.id, name: client.name, projects: client.projects };
       });
       dispatch(getAllClientsSuccess(filterClientsData));
     })
@@ -68,20 +67,32 @@ export const getUsersProjectsFailure = () => {
 };
 
 // request to get projects of that clients
-export const getUsersProjects = () => (dispatch) => {
+export const getUsersProjectsDetails = (projectId) => (dispatch) => {
+  console.log('proidi', projectId);
   dispatch(getUsersProjectsRequest());
-  axios
-    .get('https://api.everhour.com/clients', {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': 'd453-9b4e-6882aa-723609-5c9540a0',
-      },
-    })
+  return getUsersProjects(projectId)
     .then((res) => {
-      const filterProjectsData = res.data.map((client) => {
-        return { id: client.id, name: client.name };
-      });
-      dispatch(getUsersProjectsSuccess(filterProjectsData));
+      dispatch(getUsersProjectsSuccess(res.data.name));
     })
     .catch((err) => dispatch(getUsersProjectsFailure()));
+};
+
+// Create Invoice
+export const createInvoiceRequest = () => {
+  return {
+    type: CREATE_INVOICE_REQUEST,
+  };
+};
+
+export const createInvoiceSuccess = (payload) => {
+  return {
+    type: CREATE_INVOICE_SUCCESS,
+    payload,
+  };
+};
+
+export const createInvoiceFailure = () => {
+  return {
+    type: CREATE_INVOICE_FAILURE,
+  };
 };
