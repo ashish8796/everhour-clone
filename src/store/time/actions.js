@@ -34,7 +34,7 @@ export const startTimer = (payload) => async (dispatch) => {
       type: START_TIMER,
       payload: data,
     });
-    return data.status;
+    return data.today;
   } catch (error) {
     return error;
   }
@@ -49,7 +49,7 @@ export const stopTimer = () => async (dispatch) => {
       type: STOP_TIMER,
       payload: data,
     });
-    return data.status;
+    // return data.today;
   } catch (error) {
     return error;
   }
