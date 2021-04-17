@@ -2,6 +2,7 @@ import Axios from "axios";
 import { loadData } from "../utils/localStorage";
 
 const apiKey= loadData("apiKey");
+//const apiKey = "9dfc-a39a-8fefa7-73b1bb-328e1bc4";
 
 console.log(apiKey);
 

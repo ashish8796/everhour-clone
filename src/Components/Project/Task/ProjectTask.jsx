@@ -20,7 +20,7 @@ const ProjectTask =()=>{
     var query = window.location.href;
     var lenQuery = query.length;
     let params = query.slice(27,lenQuery);
-    //console.log(params)
+    console.log(params)
 
     const dispatch = useDispatch();
 
