@@ -87,6 +87,7 @@ const Modal = ({setShowpop}) => {
     }
     const createClient = () => {
         dispatch(createClientData(state))
+        setShowpop(false)
     }
     return (
         <Modalbg>
