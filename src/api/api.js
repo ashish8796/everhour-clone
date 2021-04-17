@@ -131,7 +131,6 @@ const axios2 = Axios.create({
 });
 
 export const postApi = (id, name) => {
-  //console.log(id, name);
   const payload = {
     id,
     name,
@@ -147,4 +146,8 @@ export const putMockDataApi = (id, payload) => {
   //console.log(id, name);
   let urlPutApi = '/everhour/' + id;
   return axios2.put(urlPutApi, payload);
+};
+
+export const getMockDataApi = (id) => {
+  return axios2.get(`/everhour/${id}`);
 };

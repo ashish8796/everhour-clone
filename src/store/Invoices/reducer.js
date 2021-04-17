@@ -5,11 +5,13 @@ import {
   GET_USERS_PROJECTS_FAILURE,
   GET_USERS_PROJECTS_REQUEST,
   GET_USERS_PROJECTS_SUCCESS,
+  SELECT_DATE,
 } from './actionTypes';
 
 const initState = {
   allClients: [],
   projects: [],
+  date: '',
   isLoading: false,
   isError: false,
 };
@@ -56,6 +58,12 @@ export const invoiceReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    }
+    case SELECT_DATE: {
+      return {
+        ...state,
+        date: payload,
       };
     }
     default:

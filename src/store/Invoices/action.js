@@ -9,6 +9,7 @@ import {
   GET_USERS_PROJECTS_FAILURE,
   GET_USERS_PROJECTS_REQUEST,
   GET_USERS_PROJECTS_SUCCESS,
+  SELECT_DATE,
 } from './actionTypes';
 
 // Clients
@@ -36,7 +37,6 @@ export const getAllclientsDetails = () => (dispatch) => {
   dispatch(getAllClientsRequest());
   return getAllclients()
     .then((res) => {
-      console.log(res.data);
       const filterClientsData = res.data.map((client) => {
         return { id: client.id, name: client.name, projects: client.projects };
       });
@@ -67,7 +67,6 @@ export const getUsersProjectsFailure = () => {
 
 // request to get projects of that clients
 export const getUsersProjectsDetails = (projectId) => (dispatch) => {
-  console.log('proidi', projectId);
   dispatch(getUsersProjectsRequest());
   return getUsersProjects(projectId)
     .then((res) => {
@@ -93,5 +92,12 @@ export const createInvoiceSuccess = (payload) => {
 export const createInvoiceFailure = () => {
   return {
     type: CREATE_INVOICE_FAILURE,
+  };
+};
+
+export const selectDate = (payload) => {
+  return {
+    type: SELECT_DATE,
+    payload,
   };
 };

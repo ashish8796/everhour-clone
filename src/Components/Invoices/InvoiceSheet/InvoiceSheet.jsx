@@ -1,26 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { getMockDataApi } from '../../../api/api';
 
 
 const InvoiceSheet = () => {
+  const [clientDetails,setClientDetails] = useState("");
+
+  const date = useSelector(state => state.invoice.date);
+
+  const {id}= useParams();
+
+
+  useEffect(() => {
+    getMockDataApi(Number(id)).then((res) => {
+      setClientDetails(res.data)
+    }).catch(err => console.log(err))
+    
+  },[])
+
+  console.log(clientDetails);
+
   return (
     <Container>
       <div>
         <div>
           <div>
-            <h3>Invoice to </h3>
+            <h3>Invoice to {clientDetails.name}</h3>
             <button>Save Invoice</button>
             <button>Cancel</button>
           </div>
 
           <div>
-            <h3>Invoice Date</h3>
+            <h3>Invoice Date: {date}</h3>
             <h4></h4>
           </div>
 
           <div>
-            <h3>Invoice Item</h3>
+            <h3>Invoice Item: {clientDetails.projectName}</h3>
+            <h4>Project ID: {clientDetails.projectId}</h4>
             <div></div>
+          </div>
+
+          <div>
+            <h3>Total Amount(USD): ${clientDetails.budget}</h3>
           </div>
         </div>
       </div>

@@ -1,88 +1,96 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { getAllclientsDetails, getUsersProjectsDetails } from '../../../store/Invoices/action';
+import { getAllclientsDetails, getUsersProjectsDetails, selectDate } from '../../../store/Invoices/action';
 
 const CreateInvoice = ({setShowCreateInvoiceBox}) => {
-  const [client, setClient] = useState("");
-  const [hideAllClients, setHideAllClients] = useState(false);
-  const [clientId, setClientId] = useState("");
-  const [projects, setProjects] = useState("");
-  const [hideUserProjects, setHideUserProjects] = useState(false);
   const [redirectToInovice, setRedirectToInovice] = useState(false);
+  const [selectedClient,setSelectedClient] = useState("")
+  const [selectedProject,setSelectedProject] = useState("")
 
-  const allClients = useSelector(state => state.invoice.allClients);
-  const userProjects = useSelector(state => state.invoice.projects);
+  const dispatch = useDispatch();
+  const  allClients = useSelector(state => state.invoice.allClients);
+  const  clientsProjects = useSelector(state => state.invoice.projects);
 
 
-  const dispatch = useDispatch()
+  const handleOnChange = (e) => {
+    const {name,value} = e.target;
 
-  const handleGetClients = () => {
-    dispatch(getAllclientsDetails())
-  }
+    if(name === 'selectClient'){
 
-  const hanldeSelectClient = (id,name) => {
-    setClientId(id);
-    setClient(name)
-    setHideAllClients(true);
-  }
+      if (clientsProjects.length !== 0){
+        return
+      }
 
-  const handleGetProjects = () => {
-    const selectedClient =  allClients.filter((client) => client.id === clientId);
-    console.log(selectedClient)
-    const {projects} = selectedClient[0];
-    console.log("pro",projects);
+      let val = value.split(',')
+      const clientId = val[0];
+      setSelectedClient(clientId);
+      val.shift();
 
-    projects.map((projectId) => {
-      dispatch(getUsersProjectsDetails(projectId))
-    })
-  }
-  const hanldeSelectProject = (project) => {
-    setProjects(project)
-    setHideUserProjects(true);
-  }
+      if(val.length > 0){
+        val.map((item) => {
+          dispatch(getUsersProjectsDetails(item))
+        })  
+      }
+    } else if(name === 'selectProject'){
+      setSelectedProject(value)
+    }
+  } 
 
-  const createInvoice = () => {
-    if(clientId === ""){
-      return
+  const createInvoiceButton = () => {
+    if(selectedProject === ""){
+      return;
     }
     setRedirectToInovice(true);
   }
 
-  return (redirectToInovice ? <Redirect to={`/invoices/${clientId}`}/> :
+  useEffect(() => {
+    dispatch(getAllclientsDetails())
+  },[])
+
+  return (selectedProject && redirectToInovice ?  <Redirect to={`/invoices/${selectedClient}`}/>  :
     <Container>
       <div>
         <div>
           <h2>Create Invoice</h2>
           <button onClick={() => {setShowCreateInvoiceBox(false)}}>X</button>
         </div>
-
         <Formdiv>
           <div>
-            <div>
-              <label>Clients</label>
-              <input type="text" value={client} onClick={handleGetClients} onChange={(e) => {setClient(e.target.value)}}/>
-
-              <ClientsData>{!hideAllClients && allClients.length > 0 ? allClients.map(({id,name}) => {
-              return <div onClick={() => hanldeSelectClient(id,name)} key={id}>{name}</div>
-              }) : null}</ClientsData>
-            </div>
-           
-            <div>
-              <label>Projects</label>
-              <input type="text" value={projects} onClick={handleGetProjects}onChange={(e) => {setProjects(e.target.value)}}/>
-              <ClientsData>{!hideUserProjects && userProjects.length > 0 ? userProjects.map((project) => {
-              return <div onClick={() => hanldeSelectProject(project)} key={project}>{project}</div>
-              }) : null}</ClientsData>
-            </div>
-            
-
-            <label>Period</label>
-            <div><input type="date"/></div>
+          <div>
+            <label>Client</label>
+            <Select
+              name="selectClient"
+              // value={selectedClient}
+              onChange={handleOnChange}
+            >
+              <option value="Select client...">
+                Select client...
+              </option>
+              {allClients.map(({id,name,projects}) => {
+                return <option key={id} value={[id,projects]}>{name}</option>
+              })}
+            </Select>
           </div>
 
-          <button onClick={() => {createInvoice()}}>Create Inovice</button>
+          <div>
+            <label>Projects</label>
+            <Select
+              name="selectProject"
+              onChange={handleOnChange}
+            >
+              <option value="Select client...">
+                Select project...
+              </option>
+              {clientsProjects.map(item => <option key={item} value={item}>{item}</option>)}
+            </Select>
+          </div>
+            <label>Date</label>
+            <div><input type="date" onChange={(e) => dispatch(selectDate(e.target.value))}/></div>
+          </div>
+
+          <button onClick={() => {createInvoiceButton()}}>Create Inovice</button>
           <button onClick={() => {setShowCreateInvoiceBox(false)}}>Cancel</button>
         </Formdiv>
       </div>
@@ -180,3 +188,12 @@ const ClientsData = styled.div`
     box-shadow:0 2px 8px 0 rgb(0 0 0 / 17%),0 -2px 8px 0 rgb(0 0 0 / 17%);
   }
 `
+
+const Select = styled.select`
+  box-shadow:0 2px 4px 0 rgb(0 0 0 / 17%),0 -2px 4px 0 rgb(0 0 0 / 17%);
+    padding:8px;
+    display:block;
+    width:100%;
+    border:none;
+    margin-bottom:25px;
+`;
