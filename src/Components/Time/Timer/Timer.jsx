@@ -9,7 +9,6 @@ import {
   stopTimer,
 } from "../../../store/time/actions";
 import { convertSecIntoTime } from "../../../utils/utility";
-import { useInterval } from "../TaskList/UseInterval";
 
 export default function Timer({ setInputName }) {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ export default function Timer({ setInputName }) {
   const { seconds, counterInterval } = useSelector(
     (state) => state.time.counter
   );
-  const [count, setCount] = useState(seconds);
+  const [count, setCount] = useState(Number(seconds));
 
   const handleStartTimer = async () => {
     try {
@@ -35,14 +34,11 @@ export default function Timer({ setInputName }) {
         userDate: new Date().toISOString().split("T")[0],
       };
 
-      await dispatch(startTimer(payload));
-      // useInterval(() => {
-      //   dispatch(setCounter(seconds + 1));
-      // }, 1000);
+      const seconds = await dispatch(startTimer(payload));
       let interval = setInterval(() => {
         setCount((count) => {
-          dispatch(setCounter(count + 1));
-          return count + 1;
+          dispatch(setCounter(count < seconds ? seconds + 1 : count + 1));
+          return count < seconds ? seconds + 1 : count + 1;
         });
       }, 1000);
       dispatch(setIntervalId(interval));
