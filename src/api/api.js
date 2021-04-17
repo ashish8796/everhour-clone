@@ -53,7 +53,7 @@ export const getTimer = () => {
 };
 
 export const getTimeSheet = () => {
-  return axios.get("/timecards?from=2020-10-01&to=2020-11-01");
+  return axios.get("/timesheets?weekId=2115");
 };
 
 export const getSectionOfProject = (project_id) => {
@@ -105,4 +105,8 @@ export const getAllClients = () => {
 
 export const getAllUsers = () => {
   return axios.get("/team/users");
+};
+
+export const getClient = () => {
+  return axios.get("/clients");
 };

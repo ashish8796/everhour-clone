@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from "styled-components"
+import { filterData } from '../../utils/filterData'
 
 const Middle =styled.div`
     width:85%;
@@ -17,7 +19,11 @@ const Middle =styled.div`
         border:1px solid #24be6a;
     }
 `
-const Middlebox = () => {
+const Middlebox = ({query,setQuery}) => {
+
+    const searchClient = (e) => {
+        setQuery(e.target.value)
+    }
     return (
         <Middle>
             <select>
@@ -30,7 +36,8 @@ const Middlebox = () => {
                 <option value="budgets">budgets</option>
                 <option value="projects">projects</option>
             </select>
-            <input type="text" placeholder="search clients"/>
+            <input type="text" placeholder="search clients" value={query} onChange={searchClient}/>
+            
         </Middle>
     )
 }

@@ -2,15 +2,15 @@ import React from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import styled from "styled-components"
 
-const Bigrow = styled.div`
-    width:350px;
+const Bigrow = styled.th`
     font-size:22px;
+    padding:10px 40px;
     span{
         color:blue;
         margin-left:15px;
     }
 `
-const Bottom = styled.div`
+const Bottom = styled.table`
     width:85%;
     margin:auto;
     border:1px solid lightgray;
@@ -25,7 +25,8 @@ const Th = styled.th`
     margin-bottom:100px;
 `
 const Td = styled.td`
-
+    padding:10px 40px;
+    font-size:22px;
 `
 
 
@@ -33,7 +34,6 @@ const Bottombox = () => {
     const {members} = useSelector((state) => state.team,shallowEqual)
     return (
         <Bottom>
-            <table>
                 <thead>
                     <tr>
                         <Bigrow>
@@ -52,17 +52,16 @@ const Bottombox = () => {
                             <tbody>
                             <tr>
                             <Bigrow>{name} <span>{active ? "active" : "not active"}</span></Bigrow>
-                            <Td>{rate}</Td>
-                            <Td>{cost}</Td>
-                            <Td>{capacity}</Td>
-                            <Td>{limit}</Td>
-                            <Td>{teamGroups}</Td>
+                            <td>{rate}</td>
+                            <td>{cost}</td>
+                            <td>{capacity}</td>
+                            <td>{limit}</td>
+                            <td>{teamGroups}</td>
                             </tr>
                            </tbody>
                         )
                     })
                 }
-            </table>
         </Bottom>
     )
 }

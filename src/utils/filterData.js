@@ -4,6 +4,34 @@ function filterData(arr, query) {
   );
 }
 
+function filterSort(arr) {
+  for(var i=0; i<arr.length; i++){
+    for(var j=i+1;  j<arr.length; j++){
+      if(arr[i].name.toLowerCase()>arr[j].name.toLowerCase()){
+        var g=arr[j];
+        var h=arr[i];
+        arr[j]=h;
+        arr[i]=g;
+      }
+    }
+  }
+  return arr;
+}
+
+function filterSortReverse(arr) {
+  for(var i=0; i<arr.length; i++){
+    for(var j=i+1;  j<arr.length; j++){
+      if(arr[i].name.toLowerCase()<arr[j].name.toLowerCase()){
+        var g=arr[j];
+        var h=arr[i];
+        arr[j]=h;
+        arr[i]=g;
+      }
+    }
+  }
+  return arr;
+}
+
 function filterTaskByDate(arr) {
   const filteredArr = arr
     .filter((item) => item.task)
@@ -27,4 +55,4 @@ function filterTaskByDate(arr) {
   return taskByDate;
 }
 
-export { filterData, filterTaskByDate };
+export { filterData, filterTaskByDate, filterSort, filterSortReverse };

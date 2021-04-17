@@ -3,8 +3,15 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setAllClients } from "../../store/Client/action";
 import { setAllProjects } from "../../store/projects/actions";
 import { createAllProjects } from "../../store/projects/actions";
+
 import { setAllUsers, setUser } from "../../store/user/actions";
-import { filterData } from "../../utils/filterData";
+
+import {
+  filterData,
+  filterSort,
+  filterSortReverse,
+} from "../../utils/filterData";
+
 import MainpageNav from "../MainpageNavbar/MainpageNav";
 import CreateProjectModal from "./CreateProjectModal";
 import styles from "./project.module.css";
@@ -14,6 +21,7 @@ const Project = () => {
   const [createProjectTitle, setCreateProjectTitle] = React.useState("");
   const [projectData, setProjectData] = React.useState([]);
   const [projectSearch, setProjectSearch] = React.useState("");
+  const [filterBySort, setFilterBySort] = React.useState(null);
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -45,6 +53,13 @@ const Project = () => {
     // setProjectData(dataSearch);
     // console.log(projectData);
     //console.log(projects.projects);
+  };
+  const sortData = (e) => {
+    if (e === "Ascending") {
+      setProjectData(filterSort(copyData));
+    } else if (e === "Descending") {
+      setProjectData(filterSortReverse(copyData));
+    }
   };
 
   //projects.projects = filterData(projects.projects, projectSearch)
@@ -94,19 +109,20 @@ const Project = () => {
             <label htmlFor="">Select all</label>
           </div>
           <div className={styles.divProject2sub2}>
-            <select>
+            {/* <select>
               <option value="None">Group-By</option>
               <option value="Client">Client</option>
               <option value="Billing">Billing</option>
               <option value="Budget">Budget</option>
-            </select>
-            <select>
+            </select> */}
+            <select onChange={(e) => sortData(e.target.value)}>
               <option value="None">Filter</option>
               <option value="Client">All</option>
-              <option value="Billing">Active</option>
-              <option value="Budget">Favourites</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
             </select>
             <input
+              style={{ marginLeft: "30%" }}
               type="text"
               placeholder="Search projects..."
               onChange={(e) => findProjectPage(e)}
