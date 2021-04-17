@@ -4,40 +4,49 @@ import styled from "styled-components";
 import { createAllProjects } from "../../store/projects/actions";
 import CreateClient from "../CreateContent/CreateClient";
 import CreateInput from "../CreateContent/CreateInput";
+import CreateMember from "../CreateContent/CreateMember";
 
 const initState = {
   name: "",
   type: "list",
-  user: [],
-  client: "",
+  users: [],
+  client: "Select client...",
 };
 
 export default function CreateProjectModal({ setIsModalVisible }) {
   const dispatch = useDispatch();
-
+  const [isMember, setIsMember] = useState(false);
   const [admin, setAdmin] = useState("everyone");
   const { allClients } = useSelector((state) => state.client);
+  const { allUsers, user } = useSelector((state) => state.user);
+  console.log(allUsers);
   const [projectData, setProjectData] = useState({
     ...initState,
-    client: allClients[0].id,
+    users: [user.id],
   });
 
-  console.log(allClients);
-
-  const { name, type, user, client } = projectData;
+  const { name, type, users, client } = projectData;
 
   const handleOnChange = (e) => {
     let { type, name, value, checked } = e.target;
-    console.log({ type, name, value, checked });
 
-    setProjectData({ ...projectData, [name]: value });
+    if (type === "checkbox" && name === "users" && checked) {
+      setProjectData({ ...projectData, [name]: [...users, Number(value)] });
+    } else if (type === "checkbox" && name === "users" && !checked) {
+      setProjectData({
+        ...projectData,
+        [name]: users.filter((id) => id !== value),
+      });
+    } else if (type === "select-one") {
+      setProjectData({ ...projectData, [name]: Number(value) });
+    } else {
+      setProjectData({ ...projectData, [name]: value });
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
-
-  // console.log(projectData);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -45,7 +54,8 @@ export default function CreateProjectModal({ setIsModalVisible }) {
       name,
       type,
       changeProtected: admin === "admin",
-      client,
+      client: client === "Select client..." ? null : client,
+      users,
     };
 
     console.log(payload);
@@ -105,16 +115,59 @@ export default function CreateProjectModal({ setIsModalVisible }) {
 
           <div>
             <p>Client</p>
-            <select name="client" value={client} onChange={handleOnChange}>
+            <Select
+              name="client"
+              value={client}
+              onChange={handleOnChange}
+              className="border-lightgray primary-color"
+            >
+              <option value="Select client..." className="text-lightgray">
+                Select client...
+              </option>
               {allClients.map((client, i) => (
                 <CreateClient key={client.id} client={client} index={i} />
               ))}
-            </select>
+            </Select>
           </div>
 
-          <div>
+          <MemberCont className="flex-column">
             <p>Members</p>
-          </div>
+            <SelectMemberButton
+              className="border-lightgray primary-color flex justify-between"
+              onClick={() => {
+                setIsMember(!isMember);
+              }}
+            >
+              <span>
+                {users.length === 1
+                  ? `${user.name}`
+                  : `${users.length} of ${[user, ...allUsers].length}`}
+              </span>
+              <span>&#9660;</span>
+            </SelectMemberButton>
+            {isMember && (
+              <div style={{ position: "absolute" }}>
+                <button
+                  style={{
+                    fontSize: "25px",
+                    marginLeft: "auto",
+                    display: "block",
+                  }}
+                  onClick={() => setIsMember(false)}
+                  className="text-lightgray"
+                >
+                  X
+                </button>
+                {[user, ...allUsers].map((user, i) => (
+                  <CreateMember
+                    key={i}
+                    member={user}
+                    handleOnChange={handleOnChange}
+                  />
+                ))}
+              </div>
+            )}
+          </MemberCont>
 
           <div>
             <p>Who Can Manage Tasks</p>
@@ -140,11 +193,6 @@ export default function CreateProjectModal({ setIsModalVisible }) {
             />
             <RadioLabel>Only admins</RadioLabel>
           </div>
-
-          {/* <div>
-            <label>Project Name</label>
-            <input type="text" onChange={handleOnChange} />
-          </div> */}
 
           <Submit type="submit">Create Project</Submit>
 
@@ -208,9 +256,37 @@ const Heading = styled.div`
   }
 `;
 
+const Select = styled.select`
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 5px;
+  border-radius: 2px;
+  outline: none;
+  /* border: 1px solid lightgray; */
+`;
+
 const RadioLabel = styled.label`
   margin: 0 30px 0 10px;
   color: #444;
+`;
+
+const MemberCont = styled.div`
+  position: relative;
+
+  div {
+    width: 100%;
+    padding: 10px 0;
+    top: 50px;
+    z-index: 100;
+    background-color: #fff;
+  }
+`;
+
+const SelectMemberButton = styled.button`
+  text-align: left;
+  padding: 10px 5px;
+  padding: 10px 5px;
+  border-radius: 2px;
 `;
 
 const Submit = styled.button`

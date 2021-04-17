@@ -3,6 +3,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setAllClients } from "../../store/Client/action";
 import { setAllProjects } from "../../store/projects/actions";
 import { createAllProjects } from "../../store/projects/actions";
+import { setAllUsers, setUser } from "../../store/user/actions";
 import { filterData } from "../../utils/filterData";
 import MainpageNav from "../MainpageNavbar/MainpageNav";
 import CreateProjectModal from "./CreateProjectModal";
@@ -59,6 +60,8 @@ const Project = () => {
     (async () => {
       dispatch(setAllProjects());
       dispatch(setAllClients());
+      dispatch(setUser());
+      dispatch(setAllUsers());
     })();
   }, [dispatch]);
 
