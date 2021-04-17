@@ -1,39 +1,59 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { startTimer, stopTimer } from "../../../store/time/actions";
+import {
+  setCounter,
+  setIntervalId,
+  startTimer,
+  stopTimer,
+} from "../../../store/time/actions";
 
-export default function CreateTaskTimerButton({ id }) {
+export default function CreateTaskTimerButton({ id, isTimerButtonVisible }) {
+  const [isError, setIsError] = useState(false);
   const dispatch = useDispatch();
-  const { timer } = useSelector((state) => state.time);
+  const { timer, counter, currentProjectTaskId } = useSelector(
+    (state) => state.time
+  );
+  const [_, setCount] = useState(counter.seconds);
   console.log({ id, status: timer.status });
 
-  const handleStartTimer = () => {
-    console.log("Start Timer working");
-    const payload = { task: id };
-    console.log(payload);
-    dispatch(startTimer(payload));
+  const handleStartTimer = async () => {
+    try {
+      const payload = { task: id };
+
+      await dispatch(startTimer(payload));
+      let interval = setInterval(() => {
+        setCount((count) => {
+          dispatch(setCounter(count + 1));
+          return count + 1;
+        });
+      }, 1000);
+      dispatch(setIntervalId(interval));
+    } catch (error) {
+      setIsError(true);
+    }
   };
 
   const handleStopTimer = () => {
     dispatch(stopTimer());
+    clearInterval(counter.counterInterval);
   };
 
   return (
-    <TimerButton
+    <HandleTimerButton
       onClick={timer.status === "stopped" ? handleStartTimer : handleStopTimer}
     >
       <img
         src={
-          timer.status === "stopped" ? "/assets/start.svg" : "/assets/stop.svg"
+          id !== currentProjectTaskId ? "/assets/start.svg" : "/assets/stop.svg"
         }
         alt="logo"
       />
-    </TimerButton>
+    </HandleTimerButton>
   );
 }
 
-const TimerButton = styled.button`
+const HandleTimerButton = styled.button`
   margin-bottom: -5px;
   margin-left: 20px;
 `;

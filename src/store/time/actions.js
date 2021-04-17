@@ -1,8 +1,10 @@
 import { deleteTimer, postStartTimer } from "../../api/api";
 import {
   SET_COMMENT,
+  SET_COUNTER,
   SET_CURRENT_PROJECT,
   SET_CURRENT_TASK,
+  SET_INTERVAL,
   START_TIMER,
   STOP_TIMER,
 } from "./actionTypes";
@@ -53,9 +55,24 @@ export const stopTimer = () => async (dispatch) => {
   }
 };
 
+export const setCounter = (counter) => {
+  return {
+    type: SET_COUNTER,
+    payload: counter,
+  };
+};
+
 export const setComment = (comment) => {
   return {
     type: SET_COMMENT,
     payload: comment,
+  };
+};
+
+export const setIntervalId = (intervalId) => {
+  console.log(intervalId);
+  return {
+    type: SET_INTERVAL,
+    payload: intervalId,
   };
 };

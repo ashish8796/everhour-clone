@@ -10,7 +10,7 @@ export default function CreateTask({ tasks, date }) {
       <DateTag>{date}</DateTag>
 
       {tasks.map((task) => (
-        <CreateTaskInTaskList key={task.id} task={task} />
+        <CreateTaskInTaskList key={task.id} date={date} task={task} />
       ))}
     </DateTaskWrapper>
   );
