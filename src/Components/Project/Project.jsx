@@ -78,19 +78,19 @@ const Project = () => {
             <label htmlFor="">Select all</label>
           </div>
           <div className={styles.divProject2sub2}>
-            <select>
+            {/* <select>
               <option value="None">Group-By</option>
               <option value="Client">Client</option>
               <option value="Billing">Billing</option>
               <option value="Budget">Budget</option>
-            </select>
-            <select>
+            </select> */}
+            {/* <select>
               <option value="None">Filter</option>
               <option value="Client">All</option>
               <option value="Billing">Active</option>
               <option value="Budget">Favourites</option>
-            </select>
-            <input type="text" placeholder="Search projects..." onChange={(e)=>findProjectPage(e)} />
+            </select> */}
+            <input style={{marginLeft: "30%"}} type="text" placeholder="Search projects..." onChange={(e)=>findProjectPage(e)} />
           </div>
         </div>
         <div className={styles.divProject3}>
