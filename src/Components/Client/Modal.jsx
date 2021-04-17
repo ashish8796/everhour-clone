@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from "styled-components"
-import { createClientData } from '../../store/Client/action'
+import { createClientData, getClientData } from '../../store/Client/action'
 
 const Modalbg = styled.div`
     position:fixed;
@@ -87,8 +87,14 @@ const Modal = ({setShowpop}) => {
     }
     const createClient = () => {
         dispatch(createClientData(state))
+        .then(() => {
+            dispatch(getClientData())
+        })
         setShowpop(false)
     }
+    useEffect(() => {
+        dispatch(getClientData())
+    },[dispatch])
     return (
         <Modalbg>
             <ModalMain>

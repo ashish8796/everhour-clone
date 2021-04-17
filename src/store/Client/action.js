@@ -1,5 +1,5 @@
-import { createClient } from "../../api/api"
-import { CREATE_CLIENT_ERROR, CREATE_CLIENT_LOADING, CREATE_CLIENT_SUCCESS } from "./actionTypes"
+import { createClient,getClient } from "../../api/api"
+import { CREATE_CLIENT_ERROR, CREATE_CLIENT_LOADING, CREATE_CLIENT_SUCCESS, GET_CLIENT_ERROR, GET_CLIENT_LOADING, GET_CLIENT_SUCCESS } from "./actionTypes"
 
 const createClientLoading = () => {
     return{
@@ -20,6 +20,24 @@ const createClientFailure = () => {
     }
 }
 
+const getClientLoading = () => {
+    return{
+        type:GET_CLIENT_LOADING
+    }
+}
+
+const getClientSuccess = (payload) => {
+    return{
+        type:GET_CLIENT_SUCCESS,
+        payload
+    }
+}
+
+const getClientFailure = () => {
+    return{
+        type:GET_CLIENT_ERROR
+    }
+}
 const createClientData = (payload) => (dispatch) => {
     dispatch(createClientLoading())
 
@@ -29,4 +47,12 @@ const createClientData = (payload) => (dispatch) => {
     
 }
 
-export {createClientData}
+const getClientData = payload => dispatch => {
+    dispatch(getClientLoading())
+
+    return getClient(payload)
+    .then(res => dispatch(getClientSuccess(res.data)))
+    .catch(err => dispatch(getClientFailure()))
+}
+
+export {createClientData,getClientData}

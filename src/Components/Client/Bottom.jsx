@@ -24,19 +24,18 @@ const Bottom = () => {
     return isLoading?<div>...loading</div>:
             isError?<div>something went wrong</div>:
             <div>
-                {
-                    client?.map(({name,createdAt,status,favorite,paymentDueDays}) => {
-                        return (
-                            <Client>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Created AT</th>
-                                        <th>Favourite</th>
-                                        <th>payment Due Days</th>
-                                    </tr>
-                                </thead>
+                    <Client>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Created AT</th>
+                                <th>Favourite</th>
+                                <th>payment Due Days</th>
+                            </tr>
+                        </thead>
+                        {   client?.map(({name,createdAt,status,favorite,paymentDueDays}) => {
+                            return (
                                 <tbody>
                                     <tr>
                                         <td>{name}</td>
@@ -46,10 +45,10 @@ const Bottom = () => {
                                         <td>{paymentDueDays}</td>
                                     </tr>
                                 </tbody>
-                            </Client>
                         )
                     })
                 }
+                </Client>
             </div>
 }
 
