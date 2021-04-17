@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getAllProjects } from "../../api/api";
 import { createAllProjects } from "../../store/projects/actions";
 import CreateClient from "../CreateContent/CreateClient";
 import CreateInput from "../CreateContent/CreateInput";
@@ -44,27 +45,38 @@ export default function CreateProjectModal({ setIsModalVisible }) {
     }
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (e) => {
+    e.preventDefault();
     setIsModalVisible(false);
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSelectMember = (e) => {
     e.preventDefault();
-    const payload = {
-      name,
-      type,
-      changeProtected: admin === "admin",
-      client: client === "Select client..." ? null : client,
-      users,
-    };
 
-    console.log(payload);
-    // if (payload.name !== "") {
-    //   dispatch(createAllProjects(payload));
-    //   setIsModalVisible(false);
-    // } else {
-    //   alert("Please fill your project name");
-    // }
+    setIsMember(!isMember);
+  };
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        name,
+        type,
+        changeProtected: admin === "admin",
+        client: client === "Select client..." ? null : client,
+        users,
+      };
+
+      console.log(payload);
+
+      if (payload.name) {
+        await dispatch(createAllProjects(payload));
+        setIsModalVisible(false);
+      } else {
+        alert("Please fill your project name");
+      }
+    } catch (error) {}
   };
 
   return (
@@ -132,11 +144,10 @@ export default function CreateProjectModal({ setIsModalVisible }) {
 
           <MemberCont className="flex-column">
             <p>Members</p>
+
             <SelectMemberButton
               className="border-lightgray primary-color flex justify-between"
-              onClick={() => {
-                setIsMember(!isMember);
-              }}
+              onClick={handleSelectMember}
             >
               <span>
                 {users.length === 1
@@ -145,6 +156,7 @@ export default function CreateProjectModal({ setIsModalVisible }) {
               </span>
               <span>&#9660;</span>
             </SelectMemberButton>
+
             {isMember && (
               <div style={{ position: "absolute" }}>
                 <button
@@ -153,11 +165,15 @@ export default function CreateProjectModal({ setIsModalVisible }) {
                     marginLeft: "auto",
                     display: "block",
                   }}
-                  onClick={() => setIsMember(false)}
+                  onClick={(e) => {
+                    // e.stopPropagation();
+                    setIsMember(false);
+                  }}
                   className="text-lightgray"
                 >
                   X
                 </button>
+
                 {[user, ...allUsers].map((user, i) => (
                   <CreateMember
                     key={i}
@@ -195,7 +211,6 @@ export default function CreateProjectModal({ setIsModalVisible }) {
           </div>
 
           <Submit type="submit">Create Project</Submit>
-
           <Cancel className="text-lightgray" onClick={handleCloseModal}>
             Cancel
           </Cancel>
