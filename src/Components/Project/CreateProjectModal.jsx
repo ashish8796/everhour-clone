@@ -1,19 +1,30 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { createAllProjects } from "../../store/projects/actions";
+import CreateClient from "../CreateContent/CreateClient";
 import CreateInput from "../CreateContent/CreateInput";
 
 const initState = {
   name: "",
   type: "list",
   user: [],
-  changeProtected: true,
+  client: "",
 };
 
 export default function CreateProjectModal({ setIsModalVisible }) {
-  const [projectData, setProjectData] = useState(initState);
-  const [admin, setAdmin] = useState("everyone");
+  const dispatch = useDispatch();
 
-  const { name, type, user, changeProtected } = projectData;
+  const [admin, setAdmin] = useState("everyone");
+  const { allClients } = useSelector((state) => state.client);
+  const [projectData, setProjectData] = useState({
+    ...initState,
+    client: allClients[0].id,
+  });
+
+  console.log(allClients);
+
+  const { name, type, user, client } = projectData;
 
   const handleOnChange = (e) => {
     let { type, name, value, checked } = e.target;
@@ -28,7 +39,23 @@ export default function CreateProjectModal({ setIsModalVisible }) {
 
   // console.log(projectData);
 
-  const handleSubmitForm = () => {};
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const payload = {
+      name,
+      type,
+      changeProtected: admin === "admin",
+      client,
+    };
+
+    console.log(payload);
+    // if (payload.name !== "") {
+    //   dispatch(createAllProjects(payload));
+    //   setIsModalVisible(false);
+    // } else {
+    //   alert("Please fill your project name");
+    // }
+  };
 
   return (
     <ModalCont className={`flex justify-center align-center`}>
@@ -43,7 +70,7 @@ export default function CreateProjectModal({ setIsModalVisible }) {
           </button>
         </Heading>
 
-        <Form>
+        <Form onSubmit={handleSubmitForm}>
           <div>
             <p>Project Name</p>
             <input
@@ -78,6 +105,11 @@ export default function CreateProjectModal({ setIsModalVisible }) {
 
           <div>
             <p>Client</p>
+            <select name="client" value={client} onChange={handleOnChange}>
+              {allClients.map((client, i) => (
+                <CreateClient key={client.id} client={client} index={i} />
+              ))}
+            </select>
           </div>
 
           <div>
@@ -109,10 +141,10 @@ export default function CreateProjectModal({ setIsModalVisible }) {
             <RadioLabel>Only admins</RadioLabel>
           </div>
 
-          <div>
+          {/* <div>
             <label>Project Name</label>
             <input type="text" onChange={handleOnChange} />
-          </div>
+          </div> */}
 
           <Submit type="submit">Create Project</Submit>
 

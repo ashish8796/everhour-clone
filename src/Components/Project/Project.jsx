@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { setAllClients } from "../../store/Client/action";
 import { setAllProjects } from "../../store/projects/actions";
 import { createAllProjects } from "../../store/projects/actions";
 import { filterData } from "../../utils/filterData";
@@ -14,12 +15,6 @@ const Project = () => {
   const [projectSearch, setProjectSearch] = React.useState("");
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      dispatch(setAllProjects());
-    })();
-  }, [dispatch]);
 
   const createData = {
     type: "board",
@@ -56,7 +51,17 @@ const Project = () => {
   const projects = useSelector((state) => state.projects, shallowEqual);
   const copyData = projects.projects.map((item) => item);
 
-  React.useEffect(() => setProjectData(copyData), []);
+  useEffect(() => {
+    setProjectData(copyData);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      dispatch(setAllProjects());
+      dispatch(setAllClients());
+    })();
+  }, [dispatch]);
+
   console.log("H", copyData);
   //setProjectSearch(projects);
   //console.log(projects.projects);

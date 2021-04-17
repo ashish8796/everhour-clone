@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { loadData } from "../utils/localStorage";
 
-const apiKey= loadData("apiKey");
+const apiKey = loadData("apiKey");
 //const apiKey = "9dfc-a39a-8fefa7-73b1bb-328e1bc4";
 
 console.log(apiKey);
@@ -62,18 +62,18 @@ export const getSectionOfProject = (project_id) => {
 
 export const createSectionProject = (id, createData) => {
   console.log(id, createData);
-  let createSectionURL = "/projects/"+id+"/sections";
+  let createSectionURL = "/projects/" + id + "/sections";
   return axios.post(createSectionURL, {
     name: createData,
     position: 1,
-    status: "open"
+    status: "open",
   });
 };
 
 export const createTasks = (id, sec_id, createData) => {
   console.log(id, createData);
-  let createTasksURL = "/projects/"+id+"/tasks";
-  console.log(createTasksURL)
+  let createTasksURL = "/projects/" + id + "/tasks";
+  console.log(createTasksURL);
   return axios.post(createTasksURL, {
     name: createData,
     section: sec_id,
@@ -83,7 +83,7 @@ export const createTasks = (id, sec_id, createData) => {
     // ],
     position: 1,
     dueOn: "2018-03-05",
-    status: "open"
+    status: "open",
   });
 };
 
@@ -96,5 +96,13 @@ export const getUserTime = (id) => {
 };
 
 export const createClient = (payload) => {
-  return axios.post("/clients",payload)
-}
+  return axios.post("/clients", payload);
+};
+
+export const getAllClients = () => {
+  return axios.get("/clients");
+};
+
+export const getAllUsers = () => {
+  return axios.get("/team/users");
+};
