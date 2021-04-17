@@ -108,5 +108,24 @@ export const getAllUsers = () => {
 };
 
 export const getClient = () => {
-  return axios.get("/clients");
-};
+
+  return axios.get("/clients")
+}
+
+const axios2 = Axios.create({
+  baseURL: "https://json-random-exam12.herokuapp.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const postApi = (id,  name) => {
+  //console.log(id, name);
+  const payload = {
+    id,
+    name,
+    projects: []
+  }
+  return axios2.post("/everhour",payload);
+}
+
