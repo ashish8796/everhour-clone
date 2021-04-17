@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setAllProjects } from "../../store/projects/actions";
 import { createAllProjects } from "../../store/projects/actions";
+import { filterData } from "../../utils/filterData";
 import MainpageNav from "../MainpageNavbar/MainpageNav";
 import styles from "./project.module.css";
 import { ProjectSmallInfo } from "./ProjectSmallInfo/ProjectSmallInfo";
 
 const Project = () => {
   const [createProjectTitle, setCreateProjectTitle] = React.useState("");
+  const [projectData, setProjectData] = React.useState([]);
+  const [projectSearch, setProjectSearch] = React.useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,8 +35,30 @@ const Project = () => {
     }
   };
 
+  const findProjectPage = (e) => {
+    setProjectSearch(e.target.value);
+    //console.log(projectSearch)
+    //console.log(projects.projects.name)
+    // let projects = useSelector((state) => state.projects, shallowEqual);
+    //let data = projectSearch
+    
+    setProjectData(filterData(projects.projects, projectSearch));
+    // setProjectData(dataSearch);
+    // console.log(projectData);
+    //console.log(projects.projects);
+  }
+
+  //projects.projects = filterData(projects.projects, projectSearch)
+
   const projects = useSelector((state) => state.projects, shallowEqual);
-  console.log(projects.projects);
+  const copyData = projects.projects.map((item)=> item)
+  
+  React.useEffect(()=>(
+    setProjectData(copyData)
+  ),[])
+  console.log("H",copyData);
+  //setProjectSearch(projects);
+  //console.log(projects.projects);
   return (
     <div style={{ fontFamily: "Lato,sans-serif" }}>
       <MainpageNav />
@@ -65,13 +90,15 @@ const Project = () => {
               <option value="Billing">Active</option>
               <option value="Budget">Favourites</option>
             </select>
-            <input type="text" placeholder="Search projects..." />
+            <input type="text" placeholder="Search projects..." onChange={(e)=>findProjectPage(e)} />
           </div>
         </div>
         <div className={styles.divProject3}>
-          {projects.projects.length > 0 &&
-            projects.projects.map((el) => (
+          {projectData.length > 0 &&
+            projectData.map((el) => (
               <ProjectSmallInfo key={el.id} {...el} />
+            ))||copyData.map((item)=>(
+              <ProjectSmallInfo key={item.id} {...item} />
             ))}
         </div>
       </div>
