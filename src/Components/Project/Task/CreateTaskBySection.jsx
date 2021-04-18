@@ -5,6 +5,7 @@ import { createSection, createTask } from "../../../store/task/actions";
 import { changeTimeIntoMinHr } from "../../../utils/utility";
 
 export default function CreateTaskBySection({ tasks, section, projectId }) {
+  console.log({ tasks, projectId, section });
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
@@ -67,7 +68,7 @@ export default function CreateTaskBySection({ tasks, section, projectId }) {
     <Section>
       <SectionName>{section.name}</SectionName>
 
-      <TasksWrapper>{tasks.map((task) => createTaskJSx(task))}</TasksWrapper>
+      <TasksWrapper>{tasks?.map((task) => createTaskJSx(task))}</TasksWrapper>
 
       <AddTaskWrapper showInput={isAddTaskVisible}>
         {isAddTaskVisible && (

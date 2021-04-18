@@ -25,9 +25,9 @@ const ProjectTask = () => {
 
   useEffect(() => {
     (async () => {
-      dispatch(setTasksOfProject(params));
-      dispatch(setAllSections(params));
-      dispatch(setSpecProjects(params));
+      await dispatch(setTasksOfProject(params));
+      await dispatch(setSpecProjects(params));
+      await dispatch(setAllSections(params));
     })();
   }, [dispatch]);
 
@@ -52,6 +52,8 @@ const ProjectTask = () => {
   // let TasksData = dispatch(setTasksOfProject(params));
   // const SectionData = dispatch(setAllSections(params));
 
+  console.log(sections.sections);
+
   return (
     <div className={styles.BodyPageSection}>
       <MainpageNav />
@@ -63,16 +65,13 @@ const ProjectTask = () => {
         </div>
 
         <div>
-          {taskBySection &&
-            sections.sections.length > 0 &&
-            Object.keys(taskBySection).map((key) => (
+          {sections.sections.length > 0 &&
+            sections.sections.map((section) => (
               <CreateTaskBySection
-                key={key}
-                tasks={taskBySection[key]}
+                key={section.id}
+                tasks={taskBySection[section.id]}
                 projectId={params}
-                section={sections.sections.find(
-                  (section) => section.id === Number(key)
-                )}
+                section={section}
               />
             ))}
         </div>
