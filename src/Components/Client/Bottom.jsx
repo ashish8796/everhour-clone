@@ -44,6 +44,7 @@ const ProjectSpan = styled.span`
 
 const Logo = styled.div`
   margin-top: 6px;
+  color: #444;
 `;
 
 const LoadingCont = styled.div`
