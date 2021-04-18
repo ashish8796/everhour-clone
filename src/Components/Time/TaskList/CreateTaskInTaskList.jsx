@@ -107,6 +107,7 @@ const Comment = styled.span`
 
 const ProjectCont = styled.section`
   font-size: 14px;
+
   img {
     width: 16px;
     margin-right: 10px;

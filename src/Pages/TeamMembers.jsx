@@ -48,6 +48,7 @@ const TeamMembers = () => {
       <Relative>
         <Mainbox />
       </Relative>
+
       <Abosulte>
         <input
           type="text"
@@ -57,6 +58,7 @@ const TeamMembers = () => {
         />
         <button onClick={addMembers}>Invite Members</button>
       </Abosulte>
+
       <Middlebox />
       <Bottombox />
     </div>

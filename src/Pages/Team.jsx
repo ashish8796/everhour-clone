@@ -1,26 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import Mainbox from "../Components/Team/Mainbox";
+import TimerBottombo from "../Components/Team/TimerBottombo";
 import TimerMiddlebox from "../Components/Team/TimerMiddlebox";
-import TimeSheetbottom from "../Components/Team/TimeSheetbottom";
 
-const TeamTimesheet = () => {
+const Team = () => {
   return (
-    <TimeSheetCont>
+    <TeamTimerCont style={{ fontFamily: "Lato,sans-serif" }}>
       <Mainbox />
+
       <TimerMiddlebox />
-      <TimeSheetbottom />
-    </TimeSheetCont>
+      <TimerBottombo />
+    </TeamTimerCont>
   );
 };
 
-const TimeSheetCont = styled.div`
+const TeamTimerCont = styled.div`
   background-color: #fff;
   width: 82%;
   margin: 40px auto;
   border: 1px solid lightgray;
   border-radius: 5px;
-  font-family: "Lato", sans-serif;
 `;
 
-export default TeamTimesheet;
+export default Team;

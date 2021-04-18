@@ -1,65 +1,72 @@
-import React from 'react'
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const Middlebox = styled.div`
-     width:85%;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border:1px solid lightgray;
-    padding:40px;
-    height:10vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #fafafa;
 
-`
+  select {
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid #dddada;
+    padding: 10px;
+    color: #444;
+
+    &:focus {
+      border: 1px solid #24be6a;
+    }
+  }
+`;
 
 const Left = styled.div`
-     select{
-        border:1px solid #24be6a;
-        padding:10px;
-        :hover{
-            outline:none;
-            border:1px solid #24be6a;
-        }
-    }
-`
+  span {
+    margin-right: 10px;
+  }
+`;
 
 const Right = styled.div`
+  input {
+    margin-left: 20px;
+    height: 39px;
+    padding-left: 10px;
+    border: 1px solid #dddada;
+    border-radius: 2px;
 
-    select{
-        border:1px solid #24be6a;
-        padding:10px;
+    &:focus {
+      border: 1px solid #24be6a;
     }
-    input{
-        border:1px solid #24be6a;
-        margin-left:20px;
-        height:39px;
-        padding-left: 10px;
-    }
-
-`
+  }
+`;
 
 const TimerMiddlebox = () => {
-    return (
-        <Middlebox>
-            <Left>
-                <span>Members:-</span>
-                <select>
-                    <option value="all">all</option>
-                    <option value="only one">ANY ONE</option>
-                </select>
-            </Left>
-            <Right>
-                <select>
-                    <option value="Today">Today</option>
-                    <option value="Yesterday">Yesterday</option>
-                    <option value="last week">last week</option>
-                    <option value="this week">this week</option>
-                </select>
-                <input type="text" placeholder="Search members"/>
-            </Right>
-        </Middlebox>
-    )
-}
+  return (
+    <Middlebox>
+      <Left>
+        <span className="primary-color">Members:-</span>
+        <select>
+          <option value="all">all</option>
+          <option value="only one">ANY ONE</option>
+        </select>
+      </Left>
+      <Right>
+        <select>
+          <option value="Today">Today</option>
+          <option value="Yesterday">Yesterday</option>
+          <option value="last week">last week</option>
+          <option value="this week">this week</option>
+        </select>
+        <input
+          type="text"
+          className="primary-color"
+          placeholder="Search members"
+        />
+      </Right>
+    </Middlebox>
+  );
+};
 
-export default TimerMiddlebox
+export default TimerMiddlebox;
