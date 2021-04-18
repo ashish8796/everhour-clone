@@ -6,6 +6,7 @@ import {
   GET_USERS_PROJECTS_FAILURE,
   GET_USERS_PROJECTS_REQUEST,
   GET_USERS_PROJECTS_SUCCESS,
+  SAVED_INVOICE,
   SELECT_DATE,
 } from './actionTypes';
 
@@ -15,6 +16,7 @@ const initState = {
   date: '',
   isLoading: false,
   isError: false,
+  savedInvoices: [],
 };
 
 export const invoiceReducer = (state = initState, { type, payload }) => {
@@ -71,6 +73,12 @@ export const invoiceReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         date: payload,
+      };
+    }
+    case SAVED_INVOICE: {
+      return {
+        ...state,
+        savedInvoices: [...state.savedInvoices, payload],
       };
     }
     default:

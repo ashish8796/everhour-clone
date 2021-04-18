@@ -17,6 +17,7 @@ import MainpageNav from "../Components/MainpageNavbar/MainpageNav";
 import { InvoiceSheet } from "../Components/Invoices/InvoiceSheet/InvoiceSheet";
 import { Expenses } from "../Components/Expenses/Expenses";
 import Team from "./Team";
+import { Pie } from "../Components/Expenses/Pie";
 
 export default function Routes() {
   const { pathname } = useLocation();
@@ -66,6 +67,10 @@ export default function Routes() {
 
         <PrivateRoute path="/expenses" exact>
           <Expenses />
+        </PrivateRoute>
+
+        <PrivateRoute path="/expense-chart" exact>
+          <Pie />
         </PrivateRoute>
 
         <PrivateRoute path="/home" exact>
