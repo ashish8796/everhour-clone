@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import {getExpenses} from '../../api/api.js';
 
@@ -28,33 +28,45 @@ const expensesDetail = {
 const Pie = () => {
     const [stateExpenses, setStateExpenses] = React.useState([]);
     const [expenseData, setExpenseData] = React.useState(expensesDetail);
+    //const [reload, setReload] = useState(false);
 
     React.useEffect(()=>{
       var value = dataGetExpenses();
       console.log("P", stateExpenses)
-      // destructureUpdate()
-      
+      //destructureUpdate()
     },[])
-    console.log(stateExpenses)
+    expensesDetail.labels[0]=stateExpenses.category1;
+    expensesDetail.labels[1]=stateExpenses.category2;
+    expensesDetail.labels[2]=stateExpenses.category3;
+    expensesDetail.labels[3]=stateExpenses.category4;
+    expensesDetail.datasets[0].data[0]=stateExpenses.value1;
+    expensesDetail.datasets[0].data[1]=stateExpenses.value2;
+    expensesDetail.datasets[0].data[2]=stateExpenses.value3;
+    expensesDetail.datasets[0].data[3]=stateExpenses.value4;
+    
 
-      expensesDetail.labels[0]=stateExpenses.category1;
-      expensesDetail.labels[1]=stateExpenses.category2;
-      expensesDetail.labels[2]=stateExpenses.category3;
-      expensesDetail.labels[3]=stateExpenses.category4;
+    // useEffect(() => {
+    //   (async () => {
+    //     await dataGetExpenses();
+        
+    //   })();
+    //   setReload(true);
+    // },[]);
+    // console.log(stateExpenses)
+    //
 
-      expensesDetail.datasets[0].data[0]=stateExpenses.value1;
-      expensesDetail.datasets[0].data[1]=stateExpenses.value2;
-      expensesDetail.datasets[0].data[2]=stateExpenses.value3;
-      expensesDetail.datasets[0].data[3]=stateExpenses.value4;
+    
+    
 
     function dataGetExpenses(){
       return getExpenses().then((res)=>setStateExpenses(res.data));
     }
-    // function destructureUpdate(){
-    //   const {category1, category2, category3, category4} = stateExpenses;
-    //   console.log(category1);
-    //   let arr_name = [];
-    // }
+    function destructureUpdate(){
+      const {category1, category2, category3, category4} = stateExpenses;
+      console.log(category1);
+      let arr_name = [];
+      window.location.reload(true)
+    }
 
     return (
       <div style={{height: "800px", width: "800px", margin: "3% auto"}}>
@@ -76,7 +88,7 @@ const Pie = () => {
           }}
         />
       </div>
-    );
+    )
 }
 
 export {Pie}

@@ -1,51 +1,88 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import TeamMembers from "../../Pages/TeamMembers";
+import TimerMiddlebox from "./TimerMiddlebox";
+import TimerBottombo from "./TimerBottombo";
+import TeamTimesheet from "../../Pages/TeamTimesheet";
 
-const Outerbox = styled.div`
-  width: 85%;
-  margin: 15vh auto 0 auto;
-  border: 1px solid lightgray;
-  padding: 30px;
-  height: 25vh;
-  color: #444444;
+const Outerbox = styled.section`
+  color: #444;
+
   span {
-    font-size: 30px;
-    font-weight: 600px;
+    font-size: 25px;
   }
+
   div {
     display: flex;
   }
 `;
+
 const Blocks = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
+
   a {
-    color: #444444;
-    padding-bottom: 10px;
-    font-size: 25px;
+    display: block;
+    color: #444;
+    padding-bottom: 15px;
+    font-size: 16px;
     margin-right: 40px;
   }
+
   a:hover {
     color: black;
-    border-bottom: 3px solid #24be6a;
   }
 `;
 
+const MainBoxCont = styled.div`
+  border-bottom: 1px solid lightgray;
+  padding: 20px 30px 0;
+`;
+
 const Mainbox = () => {
+  const { pathname } = useLocation();
+
+  const styleTimer = {
+    borderBottom: pathname === "/team/timers" ? "3px solid #24be6a" : "none",
+  };
+
+  const styleTimesheet = {
+    borderBottom: pathname === "/team/timesheet" ? "3px solid #24be6a" : "none",
+  };
+
+  const styleMembers = {
+    borderBottom: pathname === "/team/members" ? "3px solid #24be6a" : "none",
+  };
+
+  console.log("timer is working");
+
   return (
-    <div>
-      <Outerbox>
-        <span>Team</span>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>...</span>
-        <Blocks>
-          <NavLink to={"/timer"}>Timers</NavLink>
-          <NavLink to={"/timesheet"}>TimeSheet</NavLink>
-          <NavLink to={"/members"}>Members</NavLink>
+    <>
+      <MainBoxCont>
+        <Outerbox>
+          <span>Team</span>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span>...</span>
+        </Outerbox>
+
+        <Blocks className="flex">
+          <NavLink to={"/team/timers"} style={styleTimer}>
+            Timers
+          </NavLink>
+
+          <NavLink to={"/team/timesheet"} style={styleTimesheet}>
+            TimeSheet
+          </NavLink>
+
+          <NavLink to={"/team/members"} style={styleMembers}>
+            Members
+          </NavLink>
         </Blocks>
-      </Outerbox>
-    </div>
+      </MainBoxCont>
+    </>
   );
 };
+
+const PageDataWrapper = styled.section``;
 
 export default Mainbox;

@@ -183,9 +183,10 @@ const Bottom = styled.div`
   }
   & > div:first-child{
     background-color:#FAFAFA;
+    font-weight:bold; 
   }
   & > div:nth-child(2){
-    font-weight:bold;
+    /* */
   }
 
 
