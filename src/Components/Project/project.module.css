@@ -1,10 +1,10 @@
 .divProjectMain {
   background-color: #ffffff;
-  padding: 2% 3%;
   max-width: 82%;
   margin: 3% auto;
   font-family: "Lato", sans-serif;
   border-radius: 5px;
+  padding-bottom: 40px;
 }
 
 .MainProductPageBody {
@@ -14,6 +14,7 @@
 .divProject1 {
   background-color: rgba(255, 253, 253, 0.349);
   display: flex;
+  padding: 2% 3%;
 }
 
 .divProject1 > h3 {
@@ -31,6 +32,7 @@
 }
 
 .divProject1 > button {
+  margin-left: auto;
   background-color: #19b35e;
   height: fit-content;
   padding: 13px 20px;
@@ -49,9 +51,16 @@
   color: black;
   font-size: 16px;
   display: flex;
-  padding: 1% 0;
+  padding: 1% 10px 1% 30px;
   margin: 1% 0;
+  background-color: #fafafa;
 }
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
 .divProject2sub1 {
   padding: 0 1%;
   width: 70%;
@@ -64,11 +73,17 @@
   width: 52%;
 }
 .divProject2sub2 > select {
+  outline: none;
+  border-radius: 2px;
   padding: 2%;
-  border-color: rgba(0, 139, 139, 0.253);
   color: dimgray;
   margin: 0 2%;
 }
+
+.divProject2sub2 > select:hover {
+  border: 1px solid #19b35e;
+}
+
 .divProject2sub2 > select > * {
   padding: 5%;
   color: rgb(68, 44, 44);
@@ -76,8 +91,12 @@
 .divProject2sub2 > input {
   margin: 0 2%;
   color: rgba(0, 0, 0, 0.699);
-  background-color: rgba(224, 222, 222, 0.192);
   padding: 3%;
+  border-radius: 2px;
+}
+
+.divProject2sub2 > input:focus {
+  border: 1px solid #19b35e;
 }
 
 /* div3 design */

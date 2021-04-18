@@ -16,7 +16,6 @@ export default function CreateTaskInTaskList({ task, date }) {
   const taskRef = useRef(null);
   const handleMouseOver = (id) => {
     taskRef.current = id;
-    console.log(currentProjectTaskId === taskRef.current);
     setIsTimerButtonVisible(true);
   };
 

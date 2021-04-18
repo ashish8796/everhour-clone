@@ -75,8 +75,8 @@ const Project = () => {
     (async () => {
       dispatch(setAllProjects());
       dispatch(setAllClients());
-      dispatch(setUser());
-      dispatch(setAllUsers());
+      await dispatch(setUser());
+      await dispatch(setAllUsers());
     })();
   }, [dispatch]);
 
@@ -96,15 +96,10 @@ const Project = () => {
       <div className={`${styles.divProjectMain} border-lightgray`}>
         <div className={styles.divProject1}>
           <h3 className="primary-color">Projects</h3>
-          <input
-            type="text"
-            placeholder="Title Of the project"
-            onChange={(e) => setCreateProjectTitle(e.target.value)}
-          />
           <button onClick={handleCreateProject}>Create Project</button>
         </div>
-        <div className={styles.divProject2}>
-          <div className={styles.divProject2sub1}>
+        <div className={`${styles.divProject2} flex align-center`}>
+          <div className={`${styles.divProject2sub1} flex align-center`}>
             <input type="checkbox" />
             <label htmlFor="">Select all</label>
           </div>
@@ -115,7 +110,10 @@ const Project = () => {
               <option value="Billing">Billing</option>
               <option value="Budget">Budget</option>
             </select> */}
-            <select onChange={(e) => sortData(e.target.value)}>
+            <select
+              onChange={(e) => sortData(e.target.value)}
+              className={`border-lightgray`}
+            >
               <option value="None">Filter</option>
               <option value="Client">All</option>
               <option value="Ascending">Ascending</option>
@@ -126,16 +124,17 @@ const Project = () => {
               type="text"
               placeholder="Search projects..."
               onChange={(e) => findProjectPage(e)}
+              className="background-white border-lightgray"
             />
           </div>
         </div>
         <div className={styles.divProject3}>
           {(projectData.length > 0 &&
             projectData.map((el) => (
-              <ProjectSmallInfo key={el.id} {...el} />
+              <ProjectSmallInfo key={el.id} project={el} />
             ))) ||
             copyData.map((item) => (
-              <ProjectSmallInfo key={item.id} {...item} />
+              <ProjectSmallInfo key={item.id} project={item} />
             ))}
         </div>
       </div>

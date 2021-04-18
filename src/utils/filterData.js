@@ -5,13 +5,13 @@ function filterData(arr, query) {
 }
 
 function filterSort(arr) {
-  for(var i=0; i<arr.length; i++){
-    for(var j=i+1;  j<arr.length; j++){
-      if(arr[i].name.toLowerCase()>arr[j].name.toLowerCase()){
-        var g=arr[j];
-        var h=arr[i];
-        arr[j]=h;
-        arr[i]=g;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i].name.toLowerCase() > arr[j].name.toLowerCase()) {
+        var g = arr[j];
+        var h = arr[i];
+        arr[j] = h;
+        arr[i] = g;
       }
     }
   }
@@ -19,13 +19,13 @@ function filterSort(arr) {
 }
 
 function filterSortReverse(arr) {
-  for(var i=0; i<arr.length; i++){
-    for(var j=i+1;  j<arr.length; j++){
-      if(arr[i].name.toLowerCase()<arr[j].name.toLowerCase()){
-        var g=arr[j];
-        var h=arr[i];
-        arr[j]=h;
-        arr[i]=g;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i].name.toLowerCase() < arr[j].name.toLowerCase()) {
+        var g = arr[j];
+        var h = arr[i];
+        arr[j] = h;
+        arr[i] = g;
       }
     }
   }
@@ -55,4 +55,24 @@ function filterTaskByDate(arr) {
   return taskByDate;
 }
 
-export { filterData, filterTaskByDate, filterSort, filterSortReverse };
+function filterTaskBySection(arr) {
+  const taskBySection = {};
+
+  arr.forEach((task) => {
+    if (task.section in taskBySection) {
+      taskBySection[task.section].push(task);
+    } else {
+      taskBySection[task.section] = [task];
+    }
+  });
+
+  return taskBySection;
+}
+
+export {
+  filterData,
+  filterTaskByDate,
+  filterSort,
+  filterSortReverse,
+  filterTaskBySection,
+};

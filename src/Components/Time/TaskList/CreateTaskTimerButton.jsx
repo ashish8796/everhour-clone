@@ -14,18 +14,19 @@ export default function CreateTaskTimerButton({ id, isTimerButtonVisible }) {
   const { timer, counter, currentProjectTaskId } = useSelector(
     (state) => state.time
   );
-  const [_, setCount] = useState(counter.seconds);
-  console.log({ id, status: timer.status });
+  const [_, setCount] = useState(Number(counter.seconds));
+  // console.log({ id, status: timer.status });
 
   const handleStartTimer = async () => {
+    console.log(id);
     try {
       const payload = { task: id };
 
-      await dispatch(startTimer(payload));
+      const seconds = await dispatch(startTimer(payload));
       let interval = setInterval(() => {
         setCount((count) => {
-          dispatch(setCounter(count + 1));
-          return count + 1;
+          dispatch(setCounter(count < seconds ? seconds + 1 : count + 1));
+          return count < seconds ? seconds + 1 : count + 1;
         });
       }, 1000);
       dispatch(setIntervalId(interval));
