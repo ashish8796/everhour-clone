@@ -52,7 +52,7 @@ const ProjectSmallInfo = ({ project }) => {
   };
   const handleBillingSave = () => {
     setBillingVisible(false);
-    //console.log(budgetTrack,id,name,createdAt);
+
     const payloadMockApi = {
       id: clientId,
       name: client,
@@ -61,7 +61,7 @@ const ProjectSmallInfo = ({ project }) => {
       budget: budgetTrack,
       createdDate: createdAt,
     };
-    //console.log(payloadMockApi)
+
     putMockDataApi(clientId, payloadMockApi);
   };
   const handleProjectTask = () => {
@@ -74,7 +74,6 @@ const ProjectSmallInfo = ({ project }) => {
     console.log(favourite, id);
   };
   const hanldeSelectClient = (id, name) => {
-    //console.log(id, name)
     setClientId(id);
     setClient(name);
     setHideAllClients(true);
@@ -128,18 +127,7 @@ const ProjectSmallInfo = ({ project }) => {
         </div>
       </section>
     </div>
-  ) : // <div className={styles.divPartBillingInput}>
-
-  // </div>
-
-  // <div className={styles.divPartBillingInput}>
-
-  //     <label htmlFor="">Budget</label>
-  //     <input type="number" placeholder="$ Budget" onChange={(e)=>setBudgetTrack(e.target.value)} />
-  // </div>
-  // <button onClick={()=>handleBillingSave(id)}>Save</button>
-
-  !redProjectTask ? (
+  ) : !redProjectTask ? (
     <div className={styles.divPartBilling}>
       <h3 className="flex justify-between">
         <span>Project Billing</span>{" "}
@@ -181,6 +169,7 @@ const ProjectSmallInfo = ({ project }) => {
 
         <input type="number" placeholder="$ Budget" />
       </div>
+
       {/* 
       <label htmlFor="">Client Name</label>
       <input
