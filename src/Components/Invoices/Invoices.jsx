@@ -41,7 +41,6 @@ const Invoices = () => {
             <button onClick={() => {setShowCreateInvoiceBox(true)}}>Create an Invoice</button>
           </Steps>
         </div>
-
         {showCreateInvoiceBox ? <CreateInvoice setShowCreateInvoiceBox={setShowCreateInvoiceBox}/> : null}
       </Container>
     </>

@@ -4,7 +4,7 @@ import { Redirect, Route, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { putMockDataApi } from "../../../api/api";
-import { getAllclients } from "../../../store/Invoices/action";
+import { getAllclientsDetails } from "../../../store/Invoices/action";
 import { deleteProject } from "../../../store/projects/actions";
 import { loadData } from "../../../utils/localStorage";
 import { ProjectTask } from "../Task/ProjectTask";
