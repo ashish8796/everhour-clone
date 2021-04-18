@@ -158,6 +158,11 @@ export const setExpenses = (id, payload) => {
   return axios2.put(urlPostExpenses, payload)
 }
 
+export const getExpenses = () => {
+  let urlGetExpenses = "/expenses/"+1;
+  return axios2.get(urlGetExpenses)
+}
+
 export const getMockDataApi = (id) => {
   return axios2.get(`/everhour/${id}`);
 };
