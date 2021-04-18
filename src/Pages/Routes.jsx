@@ -65,6 +65,7 @@ export default function Routes() {
         <PrivateRoute path="/expenses" exact>
           <Expenses />
         </PrivateRoute>
+
         <PrivateRoute path="/expense-chart" exact>
           <Pie />
         </PrivateRoute>

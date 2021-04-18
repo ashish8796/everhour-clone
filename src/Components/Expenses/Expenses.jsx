@@ -46,7 +46,6 @@ const Expenses =  () => {
         setExpenses(1,dataExpense);
         setStateClick(true);
     }
-
     return stateClick? <Redirect to="/expense-chart" /> : (
         <div className={styles.ExpensesPrimaryDiv}>
             <div className={styles.sylingFormBox}>
