@@ -54,7 +54,6 @@ const Invoices = () => {
             </button>
           </Steps>
         </div>
-
         {showCreateInvoiceBox ? (
           <CreateInvoice setShowCreateInvoiceBox={setShowCreateInvoiceBox} />
         ) : null}
