@@ -1,30 +1,51 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { createSection, createTask } from "../../../store/task/actions";
 import { changeTimeIntoMinHr } from "../../../utils/utility";
 
-export default function CreateTaskBySection({ tasks, section }) {
-  console.log(tasks, section);
+export default function CreateTaskBySection({ tasks, section, projectId }) {
+  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
   const [buttonType, setButtonType] = useState("");
 
-  const createTask = (task) => {
+  const handleToggleTaskStatus = (e) => {};
+
+  const createTaskJSx = (task) => {
     return (
       <TaskCont key={task.id} className="flex" status={task.status}>
-        <input type="checkbox" checked={task.status === "closed"} />
+        <input
+          type="checkbox"
+          checked={task.status === "closed"}
+          onChange={handleToggleTaskStatus}
+        />
 
         <p>
           <span>{task.name}</span>{" "}
-          <span>{changeTimeIntoMinHr(Number(task.time.total))}</span>
+          <span>
+            {task.time && changeTimeIntoMinHr(Number(task.time.total))}
+          </span>
         </p>
       </TaskCont>
     );
   };
 
-  const handleAddItem = (e) => {
+  const handleAddItem = async (e) => {
     const { value } = e.target;
-    if (value === "Task") {
-    } else if (value === "Section") {
+
+    try {
+      if (value === "Task" && query) {
+        await dispatch(createTask(projectId, section.id, query));
+        setQuery("");
+        setIsAddTaskVisible(false);
+      } else if (value === "Section" && query) {
+        await dispatch(createSection(projectId, query));
+        setQuery("");
+        setIsAddTaskVisible(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -46,7 +67,7 @@ export default function CreateTaskBySection({ tasks, section }) {
     <Section>
       <SectionName>{section.name}</SectionName>
 
-      <TasksWrapper>{tasks.map((task) => createTask(task))}</TasksWrapper>
+      <TasksWrapper>{tasks.map((task) => createTaskJSx(task))}</TasksWrapper>
 
       <AddTaskWrapper showInput={isAddTaskVisible}>
         {isAddTaskVisible && (
@@ -60,7 +81,9 @@ export default function CreateTaskBySection({ tasks, section }) {
             />
 
             <div>
-              <AddItemButton>Add {buttonType}</AddItemButton>
+              <AddItemButton onClick={handleAddItem} value={buttonType}>
+                Add {buttonType}
+              </AddItemButton>
               <Cancel onClick={handleClose}>Cancel</Cancel>
             </div>
           </>

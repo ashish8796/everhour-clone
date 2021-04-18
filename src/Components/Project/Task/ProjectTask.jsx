@@ -4,7 +4,6 @@ import queryString from "query-string";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {
   createSection,
-  createTask,
   setAllSections,
   setSpecProjects,
 } from "../../../store/task/actions";
@@ -16,8 +15,6 @@ import CreateTaskBySection from "./CreateTaskBySection";
 
 const ProjectTask = () => {
   const [sectionText, setSectionText] = React.useState("");
-  const [taskText, setTaskText] = React.useState("");
-  const [sectionChoose, setSectionChoose] = React.useState("");
   const { tasksOfProject } = useSelector((state) => state.projects);
 
   var query = window.location.href;
@@ -34,27 +31,18 @@ const ProjectTask = () => {
     })();
   }, [dispatch]);
 
-  const createSectionData = {
-    name: "Authentication",
-    id: params,
-  };
+  //   const createSectionData = {
+  //     name: "Authentication",
+  //     id: params,
+  //   };
 
-  const handleCreateSection = () => {
-    //console.log(sectionText);
-    dispatch(createSection(createSectionData.id, sectionText));
-  };
-
-  const createTasksData = {
-    name: "Debugging",
-    sec_id: 12,
-    id: params,
-  };
-  const handleCreateTask = () => {
-    dispatch(createTask(createTasksData.id, sections.sections[0].id, taskText));
-  };
+  //   const createTasksData = {
+  //     name: "Debugging",
+  //     sec_id: 12,
+  //     id: params,
+  //   };
 
   const sections = useSelector((state) => state.sections, shallowEqual);
-  console.log(sections);
 
   let taskBySection;
   if (tasksOfProject.length > 0) {
@@ -76,69 +64,17 @@ const ProjectTask = () => {
 
         <div>
           {taskBySection &&
+            sections.sections.length > 0 &&
             Object.keys(taskBySection).map((key) => (
               <CreateTaskBySection
                 key={key}
                 tasks={taskBySection[key]}
+                projectId={params}
                 section={sections.sections.find(
                   (section) => section.id === Number(key)
                 )}
               />
             ))}
-
-          <div className={styles.DivTaskFlex}>
-            <h2>Listed Sections</h2>
-            <input
-              className={styles.inputTaskPage}
-              type="text"
-              placeholder="Enter New section Name"
-              onChange={(e) => setSectionText(e.target.value)}
-            />
-            <button onClick={handleCreateSection}>Add Section</button>
-          </div>
-          {sections.sections.map((el) => (
-            <>
-              <h4>{el.name}</h4>
-            </>
-          ))}
-        </div>
-
-        <div>
-          <div className={styles.DivTaskFlex}>
-            <h2>Listed Tasks</h2>
-            <input
-              className={styles.inputTaskPage}
-              type="text"
-              placeholder="Enter New Task Name"
-              onChange={(e) => setTaskText(e.target.value)}
-            />
-            {/* <input className={styles.inputTaskPage} type="text" placeholder="Enter Existing Section Name" onChange={(e)=>setSectionChoose(e.target.value)}/> */}
-            <button onClick={handleCreateTask}>Add Task</button>
-          </div>
-          {sections.tasksOfProject.map((item) => (
-            <div className={styles.tasksDivOfProject}>
-              <div
-                style={
-                  item.status === "open"
-                    ? {
-                        background: "green",
-                        width: "15px",
-                        height: "15px",
-                        borderRadius: "8px",
-                      }
-                    : {
-                        background: "dimgrey",
-                        width: "15px",
-                        height: "15px",
-                        borderRadius: "8px",
-                      }
-                }
-              ></div>
-              <h4>
-                {item.name} - {item.iteration}
-              </h4>
-            </div>
-          ))}
         </div>
       </div>
     </div>
