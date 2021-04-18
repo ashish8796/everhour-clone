@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export default function CreateUserImg({ user }) {
-  console.log(user);
-
   return "avatarUrl" in user ? (
     <KnownImg style={{ width: "28px" }} src={user.avatarUrl} alt="" />
   ) : (

@@ -1,25 +1,35 @@
 .MainTaskDiv {
   background-color: #ffffff;
   text-align: left;
-  padding: 2% 4%;
   height: auto;
-  width: 80%;
+  width: 82%;
   margin: 2% auto;
   font-family: "Lato", sans-serif;
-  box-shadow: 1px -1px 1px rgba(105, 105, 105, 0.336);
-  border: 1px solid rgba(105, 105, 105, 0.308);
+  border: 1px solid rgb(228, 226, 226);
+  border-radius: 5px;
 }
+
 .BodyPageSection {
   background-color: #fafafa;
 }
+
 .headerSection {
-  height: 70px;
+  border-bottom: 1px solid rgb(228, 226, 226);
+  padding: 20px 40px 0;
 }
-.MainTaskDiv > div > h1 {
+
+.listCont {
+  color: #444;
+  border-bottom: 3px solid rgb(6, 170, 6);
+  width: 30px;
+  padding: 10px 0;
+}
+
+.MainTaskDiv > div > h2 {
   font-size: 28px;
-  font-weight: 600;
-  color: rgb(68, 68, 68);
+  color: #444;
 }
+
 .MainTaskDiv > div > div > h2 {
   font-size: 25px;
   padding: 1% 0.5%;
@@ -27,6 +37,7 @@
   font-weight: 600;
   color: rgb(68, 68, 68);
 }
+
 .MainTaskDiv > div > div > h4 {
   font-size: 18px;
   padding: 0.5%;
@@ -34,6 +45,7 @@
   margin-top: 2px;
   color: rgb(27, 27, 27);
 }
+
 .MainTaskDiv > div > h4 {
   font-size: 18px;
   margin-top: 2px;
@@ -41,12 +53,15 @@
   font-weight: 500;
   color: rgb(27, 27, 27);
 }
+
 .tasksDivOfProject {
   display: flex;
 }
+
 .tasksDivOfProject > div {
   margin: 1%;
 }
+
 .MainTaskDiv > div > div > button {
   background-color: #e7e7e796;
   padding: 1% 2%;
