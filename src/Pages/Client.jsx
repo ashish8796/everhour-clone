@@ -17,7 +17,6 @@ const Client = () => {
   }, [dispatch]);
   return (
     <div>
-      <MainPageNav />
       <Mainbox />
       <Middlebox query={query} setQuery={setQuery} />
       {client.length === 0 ? <WithoutBottomData /> : <Bottom query={query} />}
