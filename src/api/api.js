@@ -148,6 +148,16 @@ export const putMockDataApi = (id, payload) => {
   return axios2.put(urlPutApi, payload);
 };
 
+export const postExpenses = (payload) => {
+  let urlPostExpenses = "/expenses";
+  return axios2.post(urlPostExpenses, payload)
+}
+
+export const setExpenses = (id, payload) => {
+  let urlPostExpenses = "/expenses/"+id;
+  return axios2.put(urlPostExpenses, payload)
+}
+
 export const getMockDataApi = (id) => {
   return axios2.get(`/everhour/${id}`);
 };

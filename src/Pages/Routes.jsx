@@ -13,6 +13,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import Client from "./Client";
 import { Invoices } from "../Components/Invoices/Invoices";
 import { InvoiceSheet } from "../Components/Invoices/InvoiceSheet/InvoiceSheet";
+import { Expenses } from "../Components/Expenses/Expenses";
 
 export default function Routes() {
   return (
@@ -62,6 +63,9 @@ export default function Routes() {
       </PrivateRoute>
       <PrivateRoute path="/task/:id">
         <ProjectTask />
+      </PrivateRoute>
+      <PrivateRoute path="/expenses">
+        <Expenses />
       </PrivateRoute>
 
       <PrivateRoute path="/invoices" exact>
