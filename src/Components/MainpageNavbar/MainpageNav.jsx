@@ -1,5 +1,5 @@
 //MainNavBar
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navlinks from "./Navlinks/Navlinks";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -18,14 +18,7 @@ const Navbar = styled.div`
     width: 45px;
   }
 `;
-const Pages = styled.div`
-  color: #333333;
 
-  a:hover {
-    border-bottom: 3px solid #24be6a;
-    padding-bottom: 15px;
-  }
-`;
 const Right = styled.div`
   display: flex;
   align-items: center;
@@ -38,10 +31,7 @@ const Right = styled.div`
     margin-left: 30px;
     width: 40px;
     height: 40px;
-    /* padding-top:10px; */
     border-radius: 50px;
-    /* border:1px solid red; */
-    /* background-color:purple; */
     color: white;
     text-align: center;
     align-items: center;
@@ -64,9 +54,11 @@ const MainpageNav = () => {
           alt="everhour logo"
         />
       </div>
-      <Pages>
+
+      <div>
         <Navlinks />
-      </Pages>
+      </div>
+
       <Right>
         <div>Subscribe now</div>
         <span onClick={() => setShowProfileSection(!showProfileSection)}>

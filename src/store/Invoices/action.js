@@ -10,6 +10,7 @@ import {
   GET_USERS_PROJECTS_FAILURE,
   GET_USERS_PROJECTS_REQUEST,
   GET_USERS_PROJECTS_SUCCESS,
+  SAVED_INVOICE,
   SELECT_DATE,
 } from './actionTypes';
 
@@ -105,6 +106,13 @@ export const createInvoiceFailure = () => {
 export const selectDate = (payload) => {
   return {
     type: SELECT_DATE,
+    payload,
+  };
+};
+
+export const saveInovices = (payload) => {
+  return {
+    type: SAVED_INVOICE,
     payload,
   };
 };

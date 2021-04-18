@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { putMockDataApi } from "../../../api/api";
+import { getAllclients, putMockDataApi } from "../../../api/api";
 import { getAllclientsDetails } from "../../../store/Invoices/action";
 import { deleteProject } from "../../../store/projects/actions";
 import { loadData } from "../../../utils/localStorage";
@@ -78,9 +78,10 @@ const ProjectSmallInfo = ({ project }) => {
     setClient(name);
     setHideAllClients(true);
   };
+
   const handleGetClients = () => {
     console.log("hello");
-    dispatch(getAllclients());
+    // dispatch(getAllclients());
   };
 
   const projectDetails = () => {

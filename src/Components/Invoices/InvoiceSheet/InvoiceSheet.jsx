@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { getMockDataApi } from '../../../api/api';
+import { saveInovices } from '../../../store/Invoices/action';
 import MainpageNav from '../../MainpageNavbar/MainpageNav';
 
 
 const InvoiceSheet = () => {
   const [clientDetails,setClientDetails] = useState("");
   const date = useSelector(state => state.invoice.date);
-  const [status,setStatus] = useState("DRAFT")
-
-
+  const [status,setStatus] = useState("DRAFT");
   const {id}= useParams();
+  const dispatch = useDispatch();
 
+  const {pathname} = useLocation();
+
+  const saveInvoice = ( ) => {
+    setStatus("SENT")
+    dispatch(saveInovices(pathname))
+  }
 
   useEffect(() => {
     getMockDataApi(Number(id)).then((res) => {
@@ -22,11 +29,12 @@ const InvoiceSheet = () => {
     
   },[])
 
+  
+
   console.log(clientDetails);
   
   return (
     <>
-    <MainpageNav />
     <Container>
       <div>
         <Head>
@@ -35,7 +43,7 @@ const InvoiceSheet = () => {
         </Head>
         <div>
           <Top>
-            <button className={status} onClick={() => {setStatus("SENT")}}>Mark as Sent</button>
+            <button className={status} onClick={() => saveInvoice()}>Mark as Sent</button>
             {/* <button>Save Invoice</button> */}
           </Top>
 
