@@ -1,36 +1,36 @@
-import Axios from 'axios';
-import { loadData } from '../utils/localStorage';
+import Axios from "axios";
+import { loadData } from "../utils/localStorage";
 
-const apiKey = loadData('apiKey');
+const apiKey = loadData("apiKey");
 //const apiKey = "9dfc-a39a-8fefa7-73b1bb-328e1bc4";
 
 console.log(apiKey);
 
 const axios = Axios.create({
-  baseURL: 'https://api.everhour.com',
+  baseURL: "https://api.everhour.com",
   headers: {
-    'Content-Type': 'application/json',
-    'x-api-key': apiKey,
+    "Content-Type": "application/json",
+    "x-api-key": apiKey,
   },
 });
 
 export const getAllProjects = () => {
-  return axios.get('/projects');
+  return axios.get("/projects");
 };
 
 export const getSpecificProject = (id) => {
-  let spec_url = '/projects/' + id;
+  let spec_url = "/projects/" + id;
   return axios.get(spec_url);
 };
 
 export const deleteProjects = (id) => {
-  let delete_url = '/projects/' + id;
+  let delete_url = "/projects/" + id;
   return axios.delete(delete_url);
 };
 
 export const createProjects = (createData) => {
   console.log(createData);
-  return axios.post('/projects', {
+  return axios.post("/projects", {
     name: createData.name,
     type: createData.type,
   });
@@ -45,15 +45,15 @@ export const postStartTimer = (payload) => {
 };
 
 export const deleteTimer = () => {
-  return axios.delete('/timers/current');
+  return axios.delete("/timers/current");
 };
 
 export const getTimer = () => {
-  return axios.get('/team/timers');
+  return axios.get("/team/timers");
 };
 
 export const getTimeSheet = () => {
-  return axios.get('/timesheets?weekId=2115');
+  return axios.get("/timesheets?weekId=2115");
 };
 
 export const getSectionOfProject = (project_id) => {
@@ -62,17 +62,17 @@ export const getSectionOfProject = (project_id) => {
 
 export const createSectionProject = (id, createData) => {
   console.log(id, createData);
-  let createSectionURL = '/projects/' + id + '/sections';
+  let createSectionURL = "/projects/" + id + "/sections";
   return axios.post(createSectionURL, {
     name: createData,
     position: 1,
-    status: 'open',
+    status: "open",
   });
 };
 
 export const createTasks = (id, sec_id, createData) => {
   console.log(id, createData);
-  let createTasksURL = '/projects/' + id + '/tasks';
+  let createTasksURL = "/projects/" + id + "/tasks";
   console.log(createTasksURL);
   return axios.post(createTasksURL, {
     name: createData,
@@ -82,13 +82,13 @@ export const createTasks = (id, sec_id, createData) => {
     //   bug
     // ],
     position: 1,
-    dueOn: '2018-03-05',
-    status: 'open',
+    dueOn: "2018-03-05",
+    status: "open",
   });
 };
 
 export const getUser = () => {
-  return axios.get('/users/me');
+  return axios.get("/users/me");
 };
 
 export const getUserTime = (id) => {
@@ -96,11 +96,11 @@ export const getUserTime = (id) => {
 };
 
 export const createClient = (payload) => {
-  return axios.post('/clients', payload);
+  return axios.post("/clients", payload);
 };
 
 export const getAllclients = () => {
-  return axios.get('/clients');
+  return axios.get("/clients");
 };
 
 export const getUsersProjects = (projectId) => {
@@ -112,21 +112,21 @@ export const createInvoice = (clientId) => {
 };
 
 export const getAllClients = () => {
-  return axios.get('/clients');
+  return axios.get("/clients");
 };
 
 export const getAllUsers = () => {
-  return axios.get('/team/users');
+  return axios.get("/team/users");
 };
 
 export const getClient = () => {
-  return axios.get('/clients');
+  return axios.get("/clients");
 };
 
 const axios2 = Axios.create({
-  baseURL: 'https://json-random-exam12.herokuapp.com',
+  baseURL: "https://json-random-exam12.herokuapp.com",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
@@ -134,29 +134,29 @@ export const postApi = (id, name) => {
   const payload = {
     id,
     name,
-    projectName: '',
-    projectId: '',
-    budget: '',
-    createdDate: '',
+    projectName: "",
+    projectId: "",
+    budget: "",
+    createdDate: "",
   };
-  return axios2.post('/everhour', payload);
+  return axios2.post("/everhour", payload);
 };
 
 export const putMockDataApi = (id, payload) => {
   //console.log(id, name);
-  let urlPutApi = '/everhour/' + id;
+  let urlPutApi = "/everhour/" + id;
   return axios2.put(urlPutApi, payload);
 };
 
 export const postExpenses = (payload) => {
   let urlPostExpenses = "/expenses";
-  return axios2.post(urlPostExpenses, payload)
-}
+  return axios2.post(urlPostExpenses, payload);
+};
 
 export const setExpenses = (id, payload) => {
-  let urlPostExpenses = "/expenses/"+id;
-  return axios2.put(urlPostExpenses, payload)
-}
+  let urlPostExpenses = "/expenses/" + id;
+  return axios2.put(urlPostExpenses, payload);
+};
 
 export const getMockDataApi = (id) => {
   return axios2.get(`/everhour/${id}`);

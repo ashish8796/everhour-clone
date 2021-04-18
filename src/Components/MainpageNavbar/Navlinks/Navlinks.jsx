@@ -31,7 +31,7 @@ const Navlinks = () => {
       title: "Clients",
     },
     {
-      to: "/timer",
+      to: "/team/timers",
       exact: false,
       title: "Team",
     },
