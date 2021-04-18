@@ -1,4 +1,5 @@
 import {
+  EMPTY_USER_PROJECTS,
   GET_ALL_CLIENTS_FAILURE,
   GET_ALL_CLIENTS_REQUEST,
   GET_ALL_CLIENTS_SUCCESS,
@@ -58,6 +59,12 @@ export const invoiceReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    }
+    case EMPTY_USER_PROJECTS: {
+      return {
+        ...state,
+        projects: [],
       };
     }
     case SELECT_DATE: {

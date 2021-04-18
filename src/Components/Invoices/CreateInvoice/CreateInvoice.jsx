@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { getAllclientsDetails, getUsersProjectsDetails, selectDate } from '../../../store/Invoices/action';
+import { emptyUserProjects, getAllclientsDetails, getUsersProjectsDetails, getUsersProjectsSuccess, selectDate } from '../../../store/Invoices/action';
 
 const CreateInvoice = ({setShowCreateInvoiceBox}) => {
   const [redirectToInovice, setRedirectToInovice] = useState(false);
@@ -20,7 +20,7 @@ const CreateInvoice = ({setShowCreateInvoiceBox}) => {
     if(name === 'selectClient'){
 
       if (clientsProjects.length !== 0){
-        return
+        dispatch(emptyUserProjects([]))
       }
 
       let val = value.split(',')
@@ -49,7 +49,7 @@ const CreateInvoice = ({setShowCreateInvoiceBox}) => {
     dispatch(getAllclientsDetails())
   },[])
 
-  return (selectedProject && redirectToInovice ?  <Redirect to={`/invoices/${selectedClient}`}/>  :
+  return (
     <Container>
       <div>
         <div>
@@ -90,7 +90,7 @@ const CreateInvoice = ({setShowCreateInvoiceBox}) => {
             <div><input type="date" onChange={(e) => dispatch(selectDate(e.target.value))}/></div>
           </div>
 
-          <button onClick={() => {createInvoiceButton()}}>Create Inovice</button>
+          <button onClick={() => {createInvoiceButton()}}><Link to={`/invoices/${selectedClient}`}>Create Inovice</Link></button>
           <button onClick={() => {setShowCreateInvoiceBox(false)}}>Cancel</button>
         </Formdiv>
       </div>
@@ -168,7 +168,12 @@ const Formdiv = styled.div`
     color:white;
     font-size:14px;
     padding:13px 0;
+
+    a{
+      color:white;
+    }
   }
+ 
   button+button{
     background-color:white;
     color:#767676;
