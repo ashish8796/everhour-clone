@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Favourite({ setFavourite }) {
+export default function Favourite({ setFavourite = () => {}, status = false }) {
   const [toggleFavourite, setToggleFavourite] = useState(false);
 
   const handleToggleFavourite = (e) => {
@@ -12,7 +12,7 @@ export default function Favourite({ setFavourite }) {
   return (
     <svg width="19" height="18" onClick={handleToggleFavourite}>
       <path
-        fill={toggleFavourite ? "wheat" : "#fdfdfd"}
+        fill={toggleFavourite || status ? "wheat" : "#fdfdfd"}
         fillRule="evenodd"
         stroke="#dad8d8"
         strokeLinecap="round"
