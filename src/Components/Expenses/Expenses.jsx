@@ -41,10 +41,16 @@ const Expenses =  () => {
     const handleChangeSelect = (item) => {
         console.log(item.target.name, item.target.value);
     }
-    const manageExpenses = () => {
+    const manageExpenses = async () => {
+       try{
         console.log(dataExpense);
-        setExpenses(1,dataExpense);
+        await setExpenses(1,dataExpense);
         setStateClick(true);
+       }
+       catch(err){
+           
+       }
+        
     }
     return stateClick? <Redirect to="/expense-chart" /> : (
         <div className={styles.ExpensesPrimaryDiv}>
