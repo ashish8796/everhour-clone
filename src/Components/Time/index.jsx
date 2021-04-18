@@ -5,7 +5,6 @@ import { setAllProjects } from "../../store/projects/actions";
 import { setCurrentProject, setCurrentTask } from "../../store/time/actions";
 import { setUser, setUserTime } from "../../store/user/actions";
 import { findItem } from "../../utils/findItem";
-import MainpageNav from "../MainpageNavbar/MainpageNav";
 import SearchProject from "./SearchProject/SearchProject";
 import ShowTaskProgress from "./SearchProject/ShowTaskTimer";
 import TaskList from "./TaskList/TaskList";
@@ -64,79 +63,69 @@ export default function Time() {
   }, [dispatch, user.id]);
 
   return (
-    <>
-      <MainpageNav />
+    <TimeWrapper className="flex-column align-center primary-color">
+      {status === "stopped" && currentProjectId && (
+        <CurrentDataCont className="flex">
+          <CurrentProject className="background-white text-lightgray">
+            <p className="flex justify-between">
+              <span>Project</span>
+              <CloseSpan>
+                <button className="text-lightgray" onClick={handleCloseProject}>
+                  X
+                </button>
+              </CloseSpan>
+            </p>
+            <p>
+              <ItemName>{currentProject?.name}</ItemName> . Everhour
+            </p>
+          </CurrentProject>
 
-      <TimeWrapper className="flex-column align-center primary-color">
-        {status === "stopped" && currentProjectId && (
-          <CurrentDataCont className="flex">
-            <CurrentProject className="background-white text-lightgray">
+          {currentProjectTaskId && (
+            <CurrentTask className="background-white text-lightgray">
               <p className="flex justify-between">
-                <span>Project</span>
+                <span>Task</span>
                 <CloseSpan>
-                  <button
-                    className="text-lightgray"
-                    onClick={handleCloseProject}
-                  >
+                  <button className="text-lightgray" onClick={handleCloseTask}>
                     X
                   </button>
                 </CloseSpan>
               </p>
               <p>
-                <ItemName>{currentProject?.name}</ItemName> . Everhour
+                <ItemName>{currentTask?.name}</ItemName>
               </p>
-            </CurrentProject>
+            </CurrentTask>
+          )}
+        </CurrentDataCont>
+      )}
 
-            {currentProjectTaskId && (
-              <CurrentTask className="background-white text-lightgray">
-                <p className="flex justify-between">
-                  <span>Task</span>
-                  <CloseSpan>
-                    <button
-                      className="text-lightgray"
-                      onClick={handleCloseTask}
-                    >
-                      X
-                    </button>
-                  </CloseSpan>
-                </p>
-                <p>
-                  <ItemName>{currentTask?.name}</ItemName>
-                </p>
-              </CurrentTask>
-            )}
-          </CurrentDataCont>
+      <FeatureSection
+        className="flex justify-center background-white"
+        status={status}
+      >
+        {status === "stopped" ? (
+          <SearchProject
+            inputName={inputName}
+            setInputName={setInputName}
+            setIsDataVisible={setIsDataVisible}
+            isDataVisible={isDataVisible}
+          />
+        ) : (
+          <ShowTaskProgress />
         )}
 
-        <FeatureSection
-          className="flex justify-center background-white"
-          status={status}
-        >
-          {status === "stopped" ? (
-            <SearchProject
-              inputName={inputName}
-              setInputName={setInputName}
-              setIsDataVisible={setIsDataVisible}
-              isDataVisible={isDataVisible}
-            />
-          ) : (
-            <ShowTaskProgress />
-          )}
+        <Timer setInputName={setInputName} />
+      </FeatureSection>
 
-          <Timer setInputName={setInputName} />
-        </FeatureSection>
-
-        <TaskListSection
-          opacity={
-            isDataVisible && (inputName == "project" || inputName == "task")
-              ? 0.5
-              : 1
-          }
-        >
-          {userTime.length > 0 && <TaskList />}
-        </TaskListSection>
-      </TimeWrapper>
-    </>
+      <TaskListSection
+        opacity={
+          isDataVisible && (inputName == "project" || inputName == "task")
+            ? 0.5
+            : 1
+        }
+      >
+        {userTime.length > 0 && <TaskList />}
+      </TaskListSection>
+    </TimeWrapper>
   );
 }
 

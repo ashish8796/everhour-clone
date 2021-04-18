@@ -1,7 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navlinks = () => {
+  const location = useLocation();
+
   const links = [
     {
       to: "/home",
@@ -44,15 +46,20 @@ const Navlinks = () => {
       title: "Invoices",
     },
   ];
+
   return (
     <div>
       {links.map(({ to, exact, title }) => (
         <NavLink
           key={to}
           style={{
-            color: "#666666",
+            color: `${to === location.pathname ? "#000000" : "#666666"}`,
             textDecoration: "none",
             marginRight: "30px",
+            paddingBottom: "18px",
+            borderBottom: `${
+              to === location.pathname ? "2px solid #24be6a" : "none"
+            }`,
           }}
           to={to}
           exact={exact}

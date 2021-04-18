@@ -3,7 +3,6 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { setExpenses, postExpenses } from '../../api/api';
 import { setAllProjects } from '../../store/projects/actions';
-import MainpageNav from '../MainpageNavbar/MainpageNav';
 import styles from './Expenses.module.css';
 
 const expensesData = {
@@ -47,7 +46,6 @@ const Expenses =  () => {
 
     return(
         <div className={styles.ExpensesPrimaryDiv}>
-            <MainpageNav />
             <div className={styles.sylingFormBox}>
                 <h1 className={styles.expensesHeader}>Manage Your Expenses</h1>
                 <div>
