@@ -53,10 +53,6 @@ export default function Routes() {
           {pathname === "/team/timesheet" ? <TeamTimesheet /> : <TeamMembers />}
         </PrivateRoute>
 
-        {/* <PrivateRoute exact path="/team/members">
-          <Team />
-        </PrivateRoute> */}
-
         <PrivateRoute path="/projects" exact>
           <Project />
         </PrivateRoute>
