@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import { setExpenses, postExpenses } from '../../api/api';
 import { setAllProjects } from '../../store/projects/actions';
@@ -18,6 +19,7 @@ const expensesData = {
     value4: "",
 }
 const Expenses =  () => {
+    const [stateClick, setStateClick] = useState(false)
     const [dataExpense, setDataExpense] = React.useState(expensesData);
 
     React.useEffect(()=>{
@@ -42,9 +44,9 @@ const Expenses =  () => {
     const manageExpenses = () => {
         console.log(dataExpense);
         setExpenses(1,dataExpense);
+        setStateClick(true);
     }
-
-    return(
+    return stateClick? <Redirect to="/expense-chart" /> : (
         <div className={styles.ExpensesPrimaryDiv}>
             <div className={styles.sylingFormBox}>
                 <h1 className={styles.expensesHeader}>Manage Your Expenses</h1>
