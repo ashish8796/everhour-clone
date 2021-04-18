@@ -1,45 +1,63 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import styled from "styled-components"
-import { filterData } from '../../utils/filterData'
+import React from "react";
+import styled from "styled-components";
 
-const Middle =styled.div`
-    width:85%;
-    margin:0 auto;
-    padding:20px 40px 20px 50%;  
-    border:1px solid lightgray;
-     select{
-        padding:10px;
-        border:1px solid #24be6a;
-        margin-right:10px;
-    }
+const Middle = styled.div`
+  margin: 0 auto;
+  padding: 20px 40px;
+  background-color: #fafafa;
+  justify-content: flex-end;
 
-    input{
-        padding:10px;
-        border:1px solid #24be6a;
-    }
-`
-const Middlebox = ({query,setQuery}) => {
+  select {
+    padding: 0 20px;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid lightgrey;
+    color: #444;
+  }
 
-    const searchClient = (e) => {
-        setQuery(e.target.value)
-    }
-    return (
-        <Middle>
-            <select>
-                <option value="none">none</option>
-                <option value="budgets">budgets</option>
-                <option value="projects">projects</option>
-            </select>
-            <select>
-                <option value="none">none</option>
-                <option value="budgets">budgets</option>
-                <option value="projects">projects</option>
-            </select>
-            <input type="text" placeholder="search clients" value={query} onChange={searchClient}/>
-            
-        </Middle>
-    )
-}
+  input {
+    padding: 10px;
+  }
 
-export default Middlebox
+  select,
+  input {
+    border-radius: 2px;
+  }
+
+  select:focus,
+  input:focus {
+    border: 1px solid #24be6a;
+  }
+`;
+
+const Middlebox = ({ query, setQuery }) => {
+  const searchClient = (e) => {
+    setQuery(e.target.value);
+  };
+
+  return (
+    <Middle className="flex">
+      <select>
+        <option value="none">None</option>
+        <option value="budgets">Budgets</option>
+        <option value="projects">Projects</option>
+      </select>
+
+      <select>
+        <option value="none">None</option>
+        <option value="budgets">Budgets</option>
+        <option value="projects">Projects</option>
+      </select>
+
+      <input
+        type="text"
+        placeholder="Search clients"
+        value={query}
+        onChange={searchClient}
+        className="border-lightgray"
+      />
+    </Middle>
+  );
+};
+
+export default Middlebox;
