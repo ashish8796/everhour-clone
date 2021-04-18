@@ -1,24 +1,24 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Redirect, Route } from 'react-router-dom'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Redirect, Route } from "react-router-dom";
 
 function PrivateRoute({
   children,
-  exact=false,
+  exact = false,
   path,
   to,
-  push=false,
-  redirectPath = "/login"
-}){
+  push = false,
+  redirectPath = "/login",
+}) {
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
-  const isAuth = useSelector(state => state.auth.isAuth);
-
-  return( isAuth ?
-    <Route path={path} exact>
+  return isAuth ? (
+    <Route path={path} exact={exact}>
       {children}
-    </Route> :
-    <Redirect to={redirectPath} push={push}/>
-  )
+    </Route>
+  ) : (
+    <Redirect to={redirectPath} push={push} />
+  );
 }
 
-export {PrivateRoute}
+export { PrivateRoute };

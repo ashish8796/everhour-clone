@@ -3,7 +3,7 @@ import Bottom from "../Components/Client/Bottom";
 import WithoutBottomData from "../Components/Client/WithoutBottomData";
 import Mainbox from "../Components/Client/Mainbox";
 import Middlebox from "../Components/Client/Middlebox";
-import MainPageNav from "../Components/MainpageNavbar/MainpageNav";
+
 import { useEffect, useState } from "react";
 import { getClientData, setAllClients } from "../store/Client/action";
 

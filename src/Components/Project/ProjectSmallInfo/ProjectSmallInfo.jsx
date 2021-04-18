@@ -78,9 +78,10 @@ const ProjectSmallInfo = ({ project }) => {
     setClient(name);
     setHideAllClients(true);
   };
+
   const handleGetClients = () => {
     console.log("hello");
-    dispatch(getAllclients());
+    // dispatch(getAllclients());
   };
 
   const projectDetails = () => {

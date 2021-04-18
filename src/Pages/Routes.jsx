@@ -18,69 +18,72 @@ import { InvoiceSheet } from "../Components/Invoices/InvoiceSheet/InvoiceSheet";
 
 export default function Routes() {
   const { isAuth } = useSelector((state) => state.auth);
-
+  console.log(isAuth);
   return (
-    <Switch>
+    <>
       {isAuth && <MainpageNav />}
 
-      <Route path="/" exact>
-        <Home />
-      </Route>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
 
-      <Route path="/login">
-        <Login />
-      </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
 
-      <Route path="/signup">
-        <Signup />
-      </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
 
-      <PrivateRoute path="/time">
-        <Time />
-      </PrivateRoute>
+        <PrivateRoute path="/time">
+          <Time />
+        </PrivateRoute>
 
-      <PrivateRoute exact path="/timer">
-        <TeamTimer />
-      </PrivateRoute>
+        <PrivateRoute exact path="/timer">
+          <TeamTimer />
+        </PrivateRoute>
 
-      <PrivateRoute exact path="/timesheet">
-        <TeamTimesheet />
-      </PrivateRoute>
+        <PrivateRoute exact path="/timesheet">
+          <TeamTimesheet />
+        </PrivateRoute>
 
-      <PrivateRoute exact path="/members">
-        <TeamMembers />
-      </PrivateRoute>
+        <PrivateRoute exact path="/members">
+          <TeamMembers />
+        </PrivateRoute>
 
-      <PrivateRoute path="/projects" exact>
-        <Project />
-      </PrivateRoute>
+        <PrivateRoute path="/projects" exact>
+          <Project />
+        </PrivateRoute>
 
-      <PrivateRoute path="/clients" exact>
-        <Client />
-      </PrivateRoute>
+        <PrivateRoute path="/clients" exact>
+          <Client />
+        </PrivateRoute>
 
-      <PrivateRoute path="/home" exact>
-        <div>page still in building process</div>
-      </PrivateRoute>
+        <PrivateRoute path="/home" exact>
+          <div>page still in building process</div>
+        </PrivateRoute>
 
-      <PrivateRoute path="/schedule" exact>
-        <div>page still in building process</div>
-      </PrivateRoute>
-      <PrivateRoute path="/task/:id">
-        <ProjectTask />
-      </PrivateRoute>
+        <PrivateRoute path="/schedule" exact>
+          <div>page still in building process</div>
+        </PrivateRoute>
 
-      <PrivateRoute path="/invoices" exact>
-        <Invoices />
-      </PrivateRoute>
+        <PrivateRoute path="/task/:id">
+          <ProjectTask />
+        </PrivateRoute>
 
-      <PrivateRoute path="/invoices/:id" exact>
-        <InvoiceSheet />
-      </PrivateRoute>
+        <PrivateRoute path="/invoices" exact>
+          <Invoices />
+        </PrivateRoute>
 
-      <Route>
-        <h1>404! Sorry Page not found</h1>
-      </Route>
-    </Switch>
+        <PrivateRoute path="/invoices/:id" exact>
+          <InvoiceSheet />
+        </PrivateRoute>
+
+        <Route>
+          <h1>404! Sorry Page not found</h1>
+        </Route>
+      </Switch>
+    </>
   );
 }

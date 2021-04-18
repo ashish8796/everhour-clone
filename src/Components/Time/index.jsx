@@ -5,7 +5,6 @@ import { setAllProjects } from "../../store/projects/actions";
 import { setCurrentProject, setCurrentTask } from "../../store/time/actions";
 import { setUser, setUserTime } from "../../store/user/actions";
 import { findItem } from "../../utils/findItem";
-import MainpageNav from "../MainpageNavbar/MainpageNav";
 import SearchProject from "./SearchProject/SearchProject";
 import ShowTaskProgress from "./SearchProject/ShowTaskTimer";
 import TaskList from "./TaskList/TaskList";

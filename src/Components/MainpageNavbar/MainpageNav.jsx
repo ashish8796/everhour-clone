@@ -55,7 +55,9 @@ const MainpageNav = () => {
         />
       </div>
 
-      <Navlinks />
+      <div>
+        <Navlinks />
+      </div>
 
       <Right>
         <div>Subscribe now</div>

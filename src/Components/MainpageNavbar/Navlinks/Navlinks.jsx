@@ -49,7 +49,7 @@ const Navlinks = () => {
 
   return (
     <div>
-      {links.map(({ to, exact, title }, index) => (
+      {links.map(({ to, exact, title }) => (
         <NavLink
           key={to}
           style={{
@@ -63,13 +63,6 @@ const Navlinks = () => {
           }}
           to={to}
           exact={exact}
-          onMouseOver={(e) => {
-            e.target.style.color = "#000000";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.color =
-              to !== location.pathname ? "#666666" : "#000000";
-          }}
         >
           {title}
         </NavLink>
