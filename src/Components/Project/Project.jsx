@@ -85,7 +85,6 @@ const Project = () => {
   //console.log(projects.projects);
   return (
     <div style={{ fontFamily: "Lato,sans-serif" }}>
-      <MainpageNav />
       {isModalVisible && (
         <CreateProjectModal
           setIsModalVisible={setIsModalVisible}

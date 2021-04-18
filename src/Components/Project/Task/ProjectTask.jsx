@@ -8,7 +8,6 @@ import {
   setSpecProjects,
 } from "../../../store/task/actions";
 import { setTasksOfProject } from "../../../store/task/actions";
-import MainpageNav from "../../MainpageNavbar/MainpageNav";
 import styles from "./ProjectTask.module.css";
 import { filterTaskBySection } from "./../../../utils/filterData";
 import CreateTaskBySection from "./CreateTaskBySection";
@@ -56,7 +55,6 @@ const ProjectTask = () => {
 
   return (
     <div className={styles.BodyPageSection}>
-      <MainpageNav />
       <div className={styles.MainTaskDiv}>
         <div className={styles.headerSection}>
           <h2>{sections.project_name.name}</h2>

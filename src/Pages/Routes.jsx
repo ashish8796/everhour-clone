@@ -12,11 +12,17 @@ import { Signup } from "../Components/Auth/Signup/Signup";
 import { PrivateRoute } from "./PrivateRoute";
 import Client from "./Client";
 import { Invoices } from "../Components/Invoices/Invoices";
+import { useSelector } from "react-redux";
+import MainpageNav from "../Components/MainpageNavbar/MainpageNav";
 import { InvoiceSheet } from "../Components/Invoices/InvoiceSheet/InvoiceSheet";
 
 export default function Routes() {
+  const { isAuth } = useSelector((state) => state.auth);
+
   return (
     <Switch>
+      {isAuth && <MainpageNav />}
+
       <Route path="/" exact>
         <Home />
       </Route>
@@ -67,6 +73,7 @@ export default function Routes() {
       <PrivateRoute path="/invoices" exact>
         <Invoices />
       </PrivateRoute>
+
       <PrivateRoute path="/invoices/:id" exact>
         <InvoiceSheet />
       </PrivateRoute>
