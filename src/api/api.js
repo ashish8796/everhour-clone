@@ -149,20 +149,24 @@ export const putMockDataApi = (id, payload) => {
 };
 
 export const postExpenses = (payload) => {
-  let urlPostExpenses = "/expenses";
-  return axios2.post(urlPostExpenses, payload)
-}
+  let urlPostExpenses = '/expenses';
+  return axios2.post(urlPostExpenses, payload);
+};
 
 export const setExpenses = (id, payload) => {
-  let urlPostExpenses = "/expenses/"+id;
-  return axios2.put(urlPostExpenses, payload)
-}
+  let urlPostExpenses = '/expenses/' + id;
+  return axios2.put(urlPostExpenses, payload);
+};
 
 export const getExpenses = () => {
-  let urlGetExpenses = "/expenses/"+1;
-  return axios2.get(urlGetExpenses)
-}
+  let urlGetExpenses = '/expenses/' + 1;
+  return axios2.get(urlGetExpenses);
+};
 
 export const getMockDataApi = (id) => {
+  return axios2.get(`/everhour/${id}`);
+};
+
+export const getProjectMockApi = (id) => {
   return axios2.get(`/everhour/${id}`);
 };

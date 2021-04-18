@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getAllclients, putMockDataApi } from "../../../api/api";
-import { getAllclientsDetails } from "../../../store/Invoices/action";
+import { emptyUserProjects, getAllclientsDetails } from "../../../store/Invoices/action";
 import { deleteProject } from "../../../store/projects/actions";
 import { loadData } from "../../../utils/localStorage";
 import { ProjectTask } from "../Task/ProjectTask";
@@ -36,11 +36,22 @@ const ProjectSmallInfo = ({ project }) => {
   const imgUrl = loadData("avatar");
   const allClients = useSelector((state) => state.invoice.allClients);
   const { allUsers } = useSelector((state) => state.user);
+  const [selectedClient,setSelectedClient] = useState("");
+
 
   const billingSmallInfo = (id) => {
     console.log(id);
     setBillingVisible(true);
   };
+
+  const handleOnChange = (e) => {
+    const {name,value} = e.target;
+    const val = value.split(',')
+    console.log(val)
+    setSelectedClient(val);
+  } 
+
+
   const handleDeleteSmallInfo = (id) => {
     const idType = id.slice(0, 2);
     if (idType === "ev") {
@@ -51,18 +62,18 @@ const ProjectSmallInfo = ({ project }) => {
     }
   };
   const handleBillingSave = () => {
-    setBillingVisible(false);
 
+    console.log(name, createdAt, id, users )
     const payloadMockApi = {
-      id: clientId,
-      name: client,
-      projectName: name,
+      id: selectedClient[0],
+      name: selectedClient[1],
+      projectName:name,
       projectId: id,
       budget: budgetTrack,
       createdDate: createdAt,
     };
-
-    putMockDataApi(clientId, payloadMockApi);
+    putMockDataApi(selectedClient[0], payloadMockApi);
+    setBillingVisible(false)
   };
   const handleProjectTask = () => {
     setRedProjectTask(true);
@@ -83,6 +94,12 @@ const ProjectSmallInfo = ({ project }) => {
     console.log("hello");
     // dispatch(getAllclients());
   };
+
+
+  useEffect(() => {
+    dispatch(getAllclientsDetails())
+  },[])
+
 
   const projectDetails = () => {
     return (
@@ -145,61 +162,33 @@ const ProjectSmallInfo = ({ project }) => {
 
       <div className={styles.divPartBillingFlex}>{projectDetails()}</div>
 
-      <label htmlFor="">Billing</label>
+        <Label>Client</Label>
+        <div > 
+            <Select
+              name="selectClient"
+              // value={selectedClient}
+              onChange={handleOnChange}
+            >
+              <option value="Select client...">
+                Select client...
+              </option>
+              {allClients.map(({id,name,projects}) => {
+                return <option key={id} value={[id,name,projects[0]]}>{name}</option>
+              })}
+            </Select>
+          </div>
 
-      <div className={styles.divPartBillingInput}>
-        <select name="" id="">
-          <option value="Non-Billible">Non-Billible</option>
-          <option value="Hourly(Project Hours)">Hourly(Project Hours)</option>
-          <option value="Hourly(Member Rate)">Hourly(Member Rate)</option>
-          <option value="Fixed Fee">Fixed Fee</option>
-        </select>
+      <Label htmlFor="">Budget</Label>
 
-        <input type="number" placeholder="$ Amount" />
+      <div >
+        <Input type="number" placeholder="$ Budget" onChange={(e) => {setBudgetTrack(e.target.value)}}/>
       </div>
 
-      <label htmlFor="">Budget</label>
-
-      <div className={styles.divPartBillingInput}>
-        <select name="" id="">
-          <option value="No-Budget">No-Budget</option>
-          <option value="Total Project Hours">Total Project Hours</option>
-          <option value="Total Project Fees">Total Project Fees</option>
-          <option value="Fixed Fee">Fixed Fee</option>
-        </select>
-
-        <input type="number" placeholder="$ Budget" />
-      </div>
-
-      {/* 
-      <label htmlFor="">Client Name</label>
-      <input
-        type="text"
-        value={client}
-        onClick={handleGetClients}
-        onChange={(e) => {
-          setClient(e.target.value);
-        }}
-      /> */}
-
-      <ClientsData>
-        {!hideAllClients && allClients.length > 0
-          ? allClients.map(({ id, name }) => {
-              return (
-                <div onClick={() => hanldeSelectClient(id, name)} key={id}>
-                  {name}
-                </div>
-              );
-            })
-          : null}
-      </ClientsData>
-
-      <button onClick={() => handleBillingSave(id)}>Save</button>
+      <button onClick={() => handleBillingSave()}>Save</button>
     </div>
   ) : (
     <div>
       <>
-        {/* {console.log(redURL)} */}
         <Redirect to={redURL} />
       </>
     </div>
@@ -208,17 +197,33 @@ const ProjectSmallInfo = ({ project }) => {
 
 export { ProjectSmallInfo };
 
-const ClientsData = styled.div`
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 17%), 0 -2px 4px 0 rgb(0 0 0 / 17%);
-  width: 25%;
-  z-index: 50;
-  background-color: #dddddd;
-  position: absolute;
-  top: 200px;
-  left: 150px;
 
-  div {
-    padding: 6px 6px;
-    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 17%), 0 -2px 8px 0 rgb(0 0 0 / 17%);
-  }
+
+const Input = styled.input`
+box-shadow:0 2px 4px 0 rgb(0 0 0 / 17%),0 -2px 4px 0 rgb(0 0 0 / 17%);
+  padding:8px;
+  display:block;
+  width:86%;
+  margin:auto;
+  border:none;
+  margin-bottom:25px;
 `;
+
+
+
+const Select = styled.select`
+  box-shadow:0 2px 4px 0 rgb(0 0 0 / 17%),0 -2px 4px 0 rgb(0 0 0 / 17%);
+    padding:8px;
+    display:block;
+    width:86%;
+    margin:auto;
+    border:none;
+    margin-bottom:25px;
+`;
+
+const Label = styled.div`
+  margin-bottom:20px;
+  display:block;
+  width:86%;
+  margin:16px auto;
+`

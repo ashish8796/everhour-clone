@@ -62,10 +62,8 @@ const Project = () => {
     }
   };
 
-  //projects.projects = filterData(projects.projects, projectSearch)
 
   const projects = useSelector((state) => state.projects, shallowEqual);
-  console.log("P",projects)
   const copyData = projects.projects.map((item) => item);
 
   useEffect(() => {
@@ -81,7 +79,6 @@ const Project = () => {
     })();
   }, [dispatch]);
 
-  console.log("H", copyData);
   //setProjectSearch(projects);
   //console.log(projects.projects);
   return (

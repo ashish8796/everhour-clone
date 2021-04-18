@@ -3,13 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { getMockDataApi } from '../../../api/api';
+import { getExpenses, getMockDataApi } from '../../../api/api';
 import { saveInovices } from '../../../store/Invoices/action';
 import MainpageNav from '../../MainpageNavbar/MainpageNav';
 
 
 const InvoiceSheet = () => {
   const [clientDetails,setClientDetails] = useState("");
+  const [expenses,setExpenses] = useState("");
+
   const date = useSelector(state => state.invoice.date);
   const [status,setStatus] = useState("DRAFT");
   const {id}= useParams();
@@ -27,10 +29,14 @@ const InvoiceSheet = () => {
       setClientDetails(res.data)
     }).catch(err => console.log(err))
     
+    getExpenses().then((res) => {
+      setExpenses(res.data)
+    }).catch(err => console.log(err))
+
   },[])
 
   
-
+  console.log(expenses)
   console.log(clientDetails);
   
   return (
@@ -68,8 +74,12 @@ const InvoiceSheet = () => {
                <h3>Total Amount(USD)</h3>
             </div>
             <div>
-              {`${clientDetails.name} :: ${clientDetails.projectName} :: ${date}`}
-               <h3>${clientDetails.budget}</h3>
+              <div>
+                  {`${clientDetails.name}:: ${clientDetails.projectName} :: ${date}`}
+                   Budget: ${clientDetails.budget} { `${"  "}`}
+                    Total-Expenses:${Number(expenses.value1) + Number(expenses.value2)+ Number(expenses.value3) + Number(expenses.value4)}
+               </div>
+               <span>${Number(expenses.value1) + Number(expenses.value2)+ Number(expenses.value3) + Number(expenses.value4) + Number(clientDetails.budget)}</span>
             </div>
           </Bottom>
         </div>
@@ -162,14 +172,25 @@ const Mid = styled.div`
 `
 const Bottom = styled.div`
   margin-top:50px;
-  padding:10px 80px;
+  padding:20px 80px;
   & > div{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:10px;
+    font-size:19px;
+
   }
   & > div:first-child{
     background-color:#FAFAFA;
+  }
+  & > div:nth-child(2){
+    font-weight:bold;
+  }
+
+
+  span{
+    font-size:22px;
+    font-weight:bold;
   }
 `

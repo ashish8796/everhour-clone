@@ -37,13 +37,7 @@ const CreateInvoice = ({setShowCreateInvoiceBox}) => {
       setSelectedProject(value)
     }
   } 
-
-  const createInvoiceButton = () => {
-    if(selectedProject === ""){
-      return;
-    }
-    setRedirectToInovice(true);
-  }
+ 
 
   useEffect(() => {
     dispatch(getAllclientsDetails())
@@ -90,7 +84,7 @@ const CreateInvoice = ({setShowCreateInvoiceBox}) => {
             <div><input type="date" onChange={(e) => dispatch(selectDate(e.target.value))}/></div>
           </div>
 
-          <button onClick={() => {createInvoiceButton()}}><Link to={`/invoices/${selectedClient}`}>Create Inovice</Link></button>
+          <button><Link to={`/invoices/${selectedClient}`}>Create Inovice</Link></button>
           <button onClick={() => {setShowCreateInvoiceBox(false)}}>Cancel</button>
         </Formdiv>
       </div>
