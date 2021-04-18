@@ -3,6 +3,7 @@ import {
   CREATE_INVOICE_FAILURE,
   CREATE_INVOICE_REQUEST,
   CREATE_INVOICE_SUCCESS,
+  EMPTY_USER_PROJECTS,
   GET_ALL_CLIENTS_FAILURE,
   GET_ALL_CLIENTS_REQUEST,
   GET_ALL_CLIENTS_SUCCESS,
@@ -62,6 +63,12 @@ export const getUsersProjectsSuccess = (payload) => {
 export const getUsersProjectsFailure = () => {
   return {
     type: GET_USERS_PROJECTS_FAILURE,
+  };
+};
+
+export const emptyUserProjects = () => {
+  return {
+    type: EMPTY_USER_PROJECTS,
   };
 };
 
