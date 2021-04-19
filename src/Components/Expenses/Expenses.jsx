@@ -144,9 +144,6 @@ const Expenses = () => {
           </button>
         </div>
       </div>
-      <button className={styles.ExpensesButton} onClick={manageExpenses}>
-        Create Expenses
-      </button>
     </>
   );
 };

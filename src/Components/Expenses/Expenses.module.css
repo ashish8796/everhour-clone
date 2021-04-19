@@ -1,5 +1,5 @@
 .ExpensesPrimaryDiv {
-  background-color: #ebe8e881;
+  background-color: #fafafa;
   height: 880px;
 }
 .sylingFormBox {
@@ -9,6 +9,8 @@
   width: 58%;
   padding: 2%;
   margin: 2% auto;
+  border: 1px solid rgba(136, 134, 134, 0.514);
+  border-radius: 5px;
 }
 .expensesHeader {
   font-size: 28px;

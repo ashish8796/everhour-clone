@@ -7,7 +7,7 @@ import {
 } from './actionTypes';
 
 const isAuth = loadData('isAuth');
-const fullName = loadData('username');
+const fullName = loadData('fullName');
 const apiKey = loadData('apiKey');
 const avatar = loadData('avatar');
 

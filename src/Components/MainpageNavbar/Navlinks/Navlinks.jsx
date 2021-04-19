@@ -6,15 +6,15 @@ const Navlinks = () => {
 
   const links = [
     {
-      to: "/home",
+      to: "/",
       exact: true,
       title: "Home",
     },
-    {
-      to: "/schedule",
-      exact: false,
-      title: "Schedule",
-    },
+    // {
+    //   to: "/schedule",
+    //   exact: false,
+    //   title: "Schedule",
+    // },
     {
       to: "/time",
       exact: false,
@@ -36,9 +36,9 @@ const Navlinks = () => {
       title: "Team",
     },
     {
-      to: "/reports",
+      to: "/expenses",
       exact: false,
-      title: "Reports",
+      title: "Expenses",
     },
     {
       to: "/invoices",
