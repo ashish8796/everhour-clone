@@ -10,9 +10,7 @@
 6. Start Coding.
 
 Always first push your code to `project-demo` branch and check that how is the project look and functioning work? Then create a PR.
-You can see the changes in the project by visiting the following link:-
-
-# https://ashish8796.github.io/unit-3-project/
+You can see the changes in the project by visiting the
 
 # Code merging instruction
 
@@ -20,3 +18,22 @@ You can see the changes in the project by visiting the following link:-
 
 1. Create a pull request(PR).
 2. Assign one reviewer to review your code.
+
+## Team Magnesium
+
+1. Ashish Kumar Saini
+2. Neeraj Rawat
+3. Soumyadri Das
+4. Smith Rakesh
+
+## Library Used
+
+1. react.js
+2. redux
+3. react-redux
+4. react-router-dom
+5. axios
+6. react-chart2.js
+7. styled-components
+8. redux-thunk
+9. chart.js
