@@ -91,7 +91,8 @@ const Bottom = ({ query }) => {
               <Favourite status={favorite} />
               <br />
               <ProjectSpan>
-                {projects.length ? projects.length : "No"} Projects
+                {/* {projects.length ? projects.length : "No"} Projects */}
+                No Projects
               </ProjectSpan>
             </div>
           </td>

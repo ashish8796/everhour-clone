@@ -63,7 +63,8 @@ const ProjectTask = () => {
         </div>
 
         <div>
-          {sections.sections.length > 0 &&
+          {
+          // sections.sections.length > 0 &&
             sections.sections.map((section) => (
               <CreateTaskBySection
                 key={section.id}
