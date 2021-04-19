@@ -7,6 +7,7 @@ import {
   startTimer,
   stopTimer,
 } from "../../../store/time/actions";
+import { setUserTime } from "../../../store/user/actions";
 
 export default function CreateTaskTimerButton({ id, isTimerButtonVisible }) {
   const [isError, setIsError] = useState(false);
@@ -15,6 +16,7 @@ export default function CreateTaskTimerButton({ id, isTimerButtonVisible }) {
     (state) => state.time
   );
   const [_, setCount] = useState(Number(counter.seconds));
+  const { user } = useSelector((state) => state.user);
   // console.log({ id, status: timer.status });
 
   const handleStartTimer = async () => {
@@ -23,6 +25,7 @@ export default function CreateTaskTimerButton({ id, isTimerButtonVisible }) {
       const payload = { task: id };
 
       const seconds = await dispatch(startTimer(payload));
+      await dispatch(setUserTime(user.id));
       let interval = setInterval(() => {
         setCount((count) => {
           dispatch(setCounter(count < seconds ? seconds + 1 : count + 1));
