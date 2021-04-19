@@ -9,9 +9,6 @@
 5. Checkout to your branch `git checkout ashish-project-name`.
 6. Start Coding.
 
-Always first push your code to `project-demo` branch and check that how is the project look and functioning work? Then create a PR.
-You can see the changes in the project by visiting the
-
 # Code merging instruction
 
 "No one can merge code directly into master branch."
