@@ -4,6 +4,7 @@ import queryString from "query-string";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {
   createSection,
+  createTask,
   setAllSections,
   setSpecProjects,
 } from "../../../store/task/actions";
@@ -11,6 +12,7 @@ import { setTasksOfProject } from "../../../store/task/actions";
 import styles from "./ProjectTask.module.css";
 import { filterTaskBySection } from "./../../../utils/filterData";
 import CreateTaskBySection from "./CreateTaskBySection";
+import styled from "styled-components";
 
 const ProjectTask = () => {
   const [sectionText, setSectionText] = React.useState("");
@@ -43,9 +45,10 @@ const ProjectTask = () => {
 
   const sections = useSelector((state) => state.sections, shallowEqual);
 
-  let taskBySection;
+  let taskBySection = [];
   if (tasksOfProject.length > 0) {
     taskBySection = filterTaskBySection(tasksOfProject);
+    console.log(taskBySection);
   }
 
   // let TasksData = dispatch(setTasksOfProject(params));
@@ -68,14 +71,53 @@ const ProjectTask = () => {
             sections.sections.map((section) => (
               <CreateTaskBySection
                 key={section.id}
-                tasks={taskBySection[section.id]}
+                tasks={
+                  section.id in taskBySection ? taskBySection[section.id] : []
+                }
                 projectId={params}
                 section={section}
               />
             ))}
+
+          {sections.sections.length === 0 && (
+            <PatchSection>
+              <input
+                style={{
+                  border: "2px solid #c2c2c2",
+                  padding: "10px 20px",
+                  margin: "0 20px",
+                  borderRadius: "2px",
+                }}
+                type="text"
+                value={sectionText}
+                onChange={(e) => {
+                  setSectionText(e.target.value);
+                }}
+              />
+              {/* <button
+                onClick={() => {
+                  dispatch(createSection(params, sectionText));
+                }}
+              >
+                Add Task
+              </button> */}
+              <button
+                onClick={() => {
+                  console.log({ params, sectionText });
+                  dispatch(createSection(params, sectionText));
+                  setSectionText("");
+                }}
+              >
+                Add Section
+              </button>
+            </PatchSection>
+          )}
         </div>
       </div>
     </div>
   );
 };
+
+const PatchSection = styled.div``;
+
 export { ProjectTask };
