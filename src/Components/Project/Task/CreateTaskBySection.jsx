@@ -11,6 +11,8 @@ export default function CreateTaskBySection({ tasks, section, projectId }) {
   const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
   const [buttonType, setButtonType] = useState("");
 
+  console.log(tasks);
+
   const handleToggleTaskStatus = (e) => {};
 
   const createTaskJSx = (task) => {

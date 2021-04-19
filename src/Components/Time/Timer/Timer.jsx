@@ -8,12 +8,14 @@ import {
   startTimer,
   stopTimer,
 } from "../../../store/time/actions";
+import { setUserTime } from "./../../../store/user/actions";
 import { convertSecIntoTime } from "../../../utils/utility";
 
 export default function Timer({ setInputName }) {
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
-
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
   const {
     comment,
     currentProjectId,
@@ -51,6 +53,7 @@ export default function Timer({ setInputName }) {
     clearInterval(counterInterval);
     try {
       await dispatch(stopTimer());
+      await dispatch(setUserTime(user.id));
       dispatch(setCurrentTask(""));
       setInputName("task");
       dispatch(setCounter(0));
