@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { loadData } from "../../utils/localStorage";
 
 const Navbar = () => {
+
+  const fullName = loadData("fullName");
+  console.log(fullName)
+
   return (
     <Nav>
       <div>
@@ -38,7 +43,7 @@ const Navbar = () => {
             <p>{`EN >`}</p>
           </div>
           <Link to="/login">
-            <button>Log in</button>
+            <button>{fullName ? fullName : "Log in"}</button>
           </Link>
           <Link to="/signup">
             <button>Sign up</button>
