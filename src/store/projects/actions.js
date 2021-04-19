@@ -1,22 +1,23 @@
-import { createProjects, getAllProjects, getTasksOfProject, deleteProjects } from "./../../api/api";
+import {
+  createProjects,
+  getAllProjects,
+  getTasksOfProject,
+  deleteProjects,
+} from './../../api/api';
 import {
   CREATE_ALL_PROJECTS,
   CREATE_PROJECTS_ERROR,
   CREATE_PROJECTS_LOADING,
-} from "./actionsTypes";
+} from './actionsTypes';
 
 import {
   SET_ALL_PROJECTS,
   SET_PROJECTS_ERROR,
   SET_PROJECTS_LOADING,
   SET_TASKS_OF_PROJECT,
-} from "./actionsTypes";
+} from './actionsTypes';
 
-import {
-  DELETE_PROJECTS,
-  DELETE_ERROR,
-  DELETE_LOADING,
-} from "./actionsTypes";
+import { DELETE_PROJECTS, DELETE_ERROR, DELETE_LOADING } from './actionsTypes';
 
 export const createProjectsLoading = () => {
   return {
@@ -59,7 +60,6 @@ export const setAllProjects = () => async (dispatch) => {
 
   try {
     const { data } = await getAllProjects();
-    console.log(data);
     dispatch({
       type: SET_ALL_PROJECTS,
       payload: data,
@@ -74,7 +74,7 @@ export const createAllProjects = (createData) => async (dispatch) => {
 
   try {
     await createProjects(createData);
-    const {data} = await getAllProjects();
+    const { data } = await getAllProjects();
     console.log(data);
     dispatch({
       type: SET_ALL_PROJECTS,
@@ -90,7 +90,7 @@ export const deleteProject = (id) => async (dispatch) => {
 
   try {
     await deleteProjects(id);
-    const {data} = await getAllProjects();
+    const { data } = await getAllProjects();
     console.log(data);
     dispatch({
       type: SET_ALL_PROJECTS,

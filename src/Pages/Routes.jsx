@@ -1,9 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { Project } from "../Components/Project/Project";
 import Home from "./Home";
 import Time from "./Time";
-import TeamTimer from "./TeamTimer";
+import TeamTimer from "./Team";
 import TeamTimesheet from "./TeamTimesheet";
 import TeamMembers from "./TeamMembers";
 import { ProjectTask } from "../Components/Project/Task/ProjectTask";
@@ -16,9 +16,12 @@ import { useSelector } from "react-redux";
 import MainpageNav from "../Components/MainpageNavbar/MainpageNav";
 import { InvoiceSheet } from "../Components/Invoices/InvoiceSheet/InvoiceSheet";
 import { Expenses } from "../Components/Expenses/Expenses";
+import Team from "./Team";
 import { Pie } from "../Components/Expenses/Pie";
 
 export default function Routes() {
+  const { pathname } = useLocation();
+
   const { isAuth } = useSelector((state) => state.auth);
   console.log(isAuth);
   return (
@@ -42,16 +45,12 @@ export default function Routes() {
           <Time />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/timer">
-          <TeamTimer />
+        <PrivateRoute exact path="/team/timers">
+          <Team />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/timesheet">
-          <TeamTimesheet />
-        </PrivateRoute>
-
-        <PrivateRoute exact path="/members">
-          <TeamMembers />
+        <PrivateRoute exact path="/team/:subLink">
+          {pathname === "/team/timesheet" ? <TeamTimesheet /> : <TeamMembers />}
         </PrivateRoute>
 
         <PrivateRoute path="/projects" exact>
@@ -69,7 +68,7 @@ export default function Routes() {
         <PrivateRoute path="/expense-chart" exact>
           <Pie />
         </PrivateRoute>
-        
+
         <PrivateRoute path="/home" exact>
           <div>page still in building process</div>
         </PrivateRoute>
