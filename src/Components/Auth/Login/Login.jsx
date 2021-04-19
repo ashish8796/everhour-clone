@@ -29,7 +29,7 @@ const Login = () => {
 
   console.log(isAuth);
   return (
-    <div>
+    <LoginCont>
       <Navbar />
       <Chatbot />
       <div>
@@ -137,11 +137,15 @@ const Login = () => {
         </div>
       </TryFree>
       <Footer />
-    </div>
+    </LoginCont>
   );
 };
 
 export { Login };
+
+const LoginCont = styled.div`
+  font-family: "Lato", sans-serif;
+`;
 
 const Headings = styled.div`
   margin-top: 140px;
